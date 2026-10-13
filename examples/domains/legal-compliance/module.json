@@ -1,0 +1,40 @@
+{
+  "id": "legal-compliance-example",
+  "title": "Legal compliance example — obligation ledger (non-medical)",
+  "description": "A minimal, non-medical module built on the same lgd-skeleton/1.0 contract as the 21 medical repositories. It turns a set of contract clauses into an obligation ledger: what must be done, by when, triggered by what, and who owns it. Included to show that the skeleton is industry-neutral — the contract is identical, only the domain content differs.",
+  "triggers": {
+    "keywords": [
+      "legal",
+      "compliance",
+      "contract",
+      "obligation",
+      "deadline",
+      "clause"
+    ],
+    "file_patterns": [
+      "legal_obligations.py"
+    ],
+    "intents": [
+      "contract obligations",
+      "compliance deadlines",
+      "obligation ledger"
+    ]
+  },
+  "provides": [
+    "legal-compliance-example",
+    "obligation-ledger",
+    "deadline-extraction"
+  ],
+  "skills": [],
+  "needs_backends": [],
+  "license": "Apache-2.0",
+  "upstream": null,
+  "cost": "low",
+  "lazy": true,
+  "nested": true,
+  "entry": "scripts/legal_obligations.py",
+  "deps": [],
+  "generated_by": "lgd-skeleton/1.0 (non-medical example)",
+  "idea": "Contract clause → obligation ledger with deadlines and owners",
+  "extension_note": "Add an obligation type by extending OBLIGATION_TYPES; add an escalation rule in ESCALATION_RULES."
+}

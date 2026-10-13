@@ -1123,6 +1123,8 @@ Four properties define it:
 
 Why it is shaped this way: the same skeleton that sequences a European MDR clinical evaluation also sequences a finance controls review or a legal compliance workflow — the *ordering*, *gating* and *audit trail* are the reusable parts, not the domain content.
 
+That claim is testable rather than asserted: [`examples/domains/legal-compliance`](./examples/domains/legal-compliance) is a working non-medical module — it turns contract clauses into an obligation ledger — built on the identical module contract, with no medical code anywhere in it.
+
 ### The medical-device reference domain
 
 The medical field is the first and deepest domain implemented on LGD. It is split into two layers.
@@ -1209,6 +1211,7 @@ Four ways in, in ascending order of effort:
 | `harness.py` | 6-dimension quality gate (fit, accuracy, fluency, outsider run, usability, gold regression) |
 | `scaffold.py` | Generator for new modules built on the same contract |
 | `discover.py` | Prints the routing table; `--json` for machine output |
+| `examples/domains/legal-compliance/` | A working non-medical module on the same contract |
 
 Licence: **CC BY 4.0** — see [LICENSE](./LICENSE). Individual modules carry CC0, CC BY 4.0 or Apache-2.0 as stated in their own repositories.
 
@@ -1257,6 +1260,8 @@ flowchart TB
 | **配置化，而非改码** | 行业、机构、语区都放在 `config/`。采用方通过配置与自有私有插件适配，而不是改内核源码。 |
 
 为什么长成这样：同一套骨架，既能编排一次欧盟 MDR 临床评价，也能编排一次财务内控复核或法律合规流程 —— 可复用的是**顺序、门禁与审计轨迹**，不是领域内容本身。
+
+这个说法可验证，不是口号：[`examples/domains/legal-compliance`](./examples/domains/legal-compliance) 就是一个可运行的非医疗模块 —— 把合同条款转成义务台账，用的是**完全相同的模块契约**，其中不含任何医疗代码。
 
 ### 医疗领域：参考实现
 
@@ -1344,6 +1349,7 @@ python scripts/sterilization_val.py --demo
 | `harness.py` | 6 维质量门禁（适配/准确/流畅/外人实跑/易用/gold 语义回归） |
 | `scaffold.py` | 按同一契约生成新模块 |
 | `discover.py` | 打印路由表；`--json` 输出机器可读格式 |
+| `examples/domains/legal-compliance/` | 按同一契约实现的非医疗示例模块 |
 
 许可：**CC BY 4.0** —— 见 [LICENSE](./LICENSE)。各子模块许可在其仓库内声明（CC0 / CC BY 4.0 / Apache-2.0 混合）。
 

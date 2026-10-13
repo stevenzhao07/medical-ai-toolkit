@@ -1,0 +1,44 @@
+name: Claim a module (become a maintainer)
+description: Take long-term ownership of one of the 21 repositories in this matrix.
+title: "[maintainer] <module>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Handing a module to an outside maintainer is an outcome we want, not a concession.
+
+        Standards change continuously. Keeping one module current — tracking the standard, updating
+        values, answering corrections — is real ongoing work, and it is better done by someone who
+        uses that module than by someone who once wrote it.
+  - type: input
+    id: module
+    attributes:
+      label: Which module
+      description: Repository name from the matrix
+      placeholder: design-controls-toolkit
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why this module, and what you would change first
+      description: A concrete first change is more convincing than a general offer.
+    validations:
+      required: true
+  - type: input
+    id: background
+    attributes:
+      label: Relevant background (optional)
+      description: Domain experience, or the standards you work with day to day
+    validations:
+      required: false
+  - type: dropdown
+    id: arrangement
+    attributes:
+      label: Preferred arrangement
+      options:
+        - Co-maintainer (share with the original author)
+        - Sole maintainer of this module
+        - Contributor first, decide later
+    validations:
+      required: false

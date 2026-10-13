@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Proposals from other industries
+    url: https://github.com/stevenzhao07/medical-ai-toolkit/blob/main/README.md
+    about: LGD's core is industry-neutral. Finance, legal, industrial-safety and other domains are welcome as modules too.

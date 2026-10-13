@@ -1,0 +1,71 @@
+name: Report a factual error
+description: A regulatory value, standard number, clause reference or date in one of the modules is wrong or out of date.
+title: "[error] <module> — <what is wrong>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections are the highest-value contribution to this project. Regulations and standards change,
+        so a value that was right a year ago may be wrong today.
+
+        Please cite the primary source that contradicts what the module says. If you cannot cite one,
+        say so — we will mark the item for verification rather than guess.
+  - type: input
+    id: module
+    attributes:
+      label: Which module
+      description: Repository name
+      placeholder: sterilization-validation
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Where it appears
+      description: File, CLI flag, or the output line
+      placeholder: scripts/sterilization_val.py --endotoxin
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What the module currently says
+      placeholder: The exact text or value
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should say, and why
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary source
+      description: Link or citation to the authoritative text (standard, regulation, official notice)
+      placeholder: https://...
+    validations:
+      required: true
+  - type: dropdown
+    id: jurisdiction
+    attributes:
+      label: Jurisdiction (if applicable)
+      options:
+        - NMPA (China)
+        - EU MDR
+        - FDA (US)
+        - PMDA (Japan)
+        - ISO / IEC standard
+        - Multiple / not jurisdiction-specific
+    validations:
+      required: false
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope of the error
+      options:
+        - label: Affects a numeric value or limit
+        - label: Affects a standard number or clause reference
+        - label: Affects a date or effective-version statement
+        - label: Affects wording only (no factual change)
