@@ -7,7 +7,7 @@ Copy this structure for every tool module. Keep it short; link don't duplicate.
 
 > One-line purpose. <-- 一句话定位
 
-**Contributed by [@stevenzhao07](https://github.com/stevenzhao07) · Affiliation: MedXpert · Pure technical input, no commercial promotion.**
+**Contributed by [@stevenzhao07](https://github.com/stevenzhao07).** Open-source reference implementation; technical input only. (Any specific organisational relationship is disclosed separately by the account owner, not auto-added here.)
 
 ## What it does
 <!-- 2-4 sentences. What decision/output it produces. -->
@@ -41,7 +41,7 @@ v0.1.0 (2026-xx-xx)
 See the portal [CONTRIBUTING.md](https://github.com/stevenzhao07/medical-ai-toolkit/blob/main/CONTRIBUTING.md).
 
 ## License
-Apache-2.0 (code) / CC BY 4.0 (content). See LICENSE.
+See this repository's `LICENSE` file. Licenses vary **per repository** across the `@stevenzhao07` account (Apache-2.0 / CC BY 4.0 / CC0 / MIT) — do not assume one account-wide license. The authoritative terms are always the repo's own `LICENSE`.
 ```
 
 > Rule: every regulatory constant must carry a **source + version + verified-on date**, or be marked `⚠️ 待核实`. Never state a number as fact without its origin.

@@ -108,7 +108,7 @@ python harness.py --module medical-ai-toolkit
 
 ## 📦 CI status (transparency)
 
-- `harness` workflow: **last success 2026-10-13 02:55Z**. Earlier runs on the same day (02:28Z, 02:37Z) **failed** and were fixed before the green run. We keep this visible rather than hiding it.
+- `harness` workflow: the **PR branch `opt/portal-nav` re-ran green on 2026-10-13 11:03Z** (run `38387590604`, success). On `main`, the last green was 2026-10-13 02:55Z; earlier same-day runs (02:22Z, 02:28Z, 02:37Z) **failed** and were fixed before the green run. We keep this visible rather than hiding it. The PR's own earlier failing run `38384747668` (on commit `54c2fbf9`) was caused by a README usage-section heading that the harness's usability gate did not recognise; it is fixed in the current head `08b8bf2d`.
 - `pages-build-deployment`: present but **GitHub Pages is not currently published** for this repo (`pages_config: None`). The earlier README implied Pages was live — that claim is being corrected here.
 
 ## 🤝 Contributing
@@ -119,7 +119,7 @@ To contribute: **fork** the repository, **clone** it locally, then open an issue
 
 ## 📄 License
 
-Each repository ships its own `LICENSE` file. Across the account the licenses are **mixed per repository** — Apache-2.0, CC BY 4.0, CC0, and MIT — and the authoritative terms are those in each repo's `LICENSE`. See each repository's `LICENSE` for details. (A unified attribution/provenance note is pending a separate PR.)
+**This repository (`medical-ai-toolkit`) is licensed under CC BY 4.0** (see `LICENSE`). Across the account the licenses are **mixed per repository** — Apache-2.0, CC BY 4.0, CC0, and MIT — and the authoritative terms are those in each repo's own `LICENSE`. Always check the specific repository's `LICENSE`; no single account-wide license is asserted. (A unified attribution/provenance note is pending owner approval.)
 
 ## 🤖 Attribution & AI assistance
 

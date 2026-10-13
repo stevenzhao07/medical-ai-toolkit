@@ -9,7 +9,7 @@ The repositories in this account are **open reference implementations and decisi
 If you find a security vulnerability in the code (e.g. unsafe eval, path traversal, supply-chain issue):
 
 1. **Do not open a public Issue.**
-2. Email the maintainer via the contact in `PROJECT_ATTRIBUTION.md`, or use GitHub's private security advisory for the repo.
+2. Email the maintainer via the contact shown in the repository README, or use GitHub's private security advisory for the repo.
 3. Include: affected repo/version, reproduction steps, impact, suggested fix.
 
 We aim to acknowledge within **7 days** and provide a remediation plan within **30 days** for confirmed issues.
