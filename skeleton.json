@@ -2,7 +2,7 @@
   "schema": "lgd-skeleton/1.0",
   "root": "medical-ai-toolkit",
   "generated_by": "lgd-skeleton/1.0 manifest.py",
-  "generated_at": "2026-10-13T02:28:06.589132+00:00",
+  "generated_at": "2026-10-13T02:37:05.892548+00:00",
   "count": 21,
   "routing": {
     "ai-a3-laws": "repos/ai-a3-laws",

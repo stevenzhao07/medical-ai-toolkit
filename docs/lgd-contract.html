@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The lgd-skeleton/1.0 module contract · medical-ai-toolkit</title>
+<style>
+:root{--bg:#fff;--bg-soft:#f7f9fc;--ink:#0d1b2a;--ink-2:#3e5062;--ink-3:#6b7f92;
+--line:#e3e9f0;--brand:#2f6df6;--brand-2:#7aa8ff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:860px;margin:0 auto;padding:0 20px;display:flex;gap:14px;align-items:center;height:54px;flex-wrap:wrap}
+.nav .brand{font-weight:700}.nav .sp{flex:1}.nav a{font-size:13.5px;color:var(--ink-2)}
+.nav a.on{color:var(--brand);font-weight:600}
+main{max-width:860px;margin:0 auto;padding:34px 20px 80px}
+h1{font-size:30px;line-height:1.25;margin:0 0 18px;letter-spacing:-.01em}
+h2{font-size:22px;margin:44px 0 12px;padding-top:10px;border-top:1px solid var(--line)}
+h2:first-of-type{border-top:none;padding-top:0}
+h3{font-size:17px;margin:26px 0 8px}
+p{margin:12px 0;color:var(--ink-2)}
+ul,ol{color:var(--ink-2);padding-left:24px}li{margin:5px 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:#0d1b2a;color:#e6edf6;border-radius:10px;padding:15px 17px;overflow:auto;font-size:13px;line-height:1.6}
+pre code{background:none;border:none;color:inherit;padding:0;font-size:inherit}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+blockquote{margin:16px 0;border-left:3px solid var(--brand-2);background:var(--bg-soft);padding:12px 16px;border-radius:0 8px 8px 0;color:var(--ink-2)}
+hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+footer{border-top:1px solid var(--line);padding:22px 20px 60px;max-width:860px;margin:0 auto;font-size:13px;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="nav"><div class="in"><a class="brand" href="../index.html">medical-ai-toolkit</a><span class="sp"></span><a href="./index.html">Documentation</a><a href="./lgd-contract.html" class="on">Contract</a><a href="./matrix.html">Matrix</a><a href="./contributing.html">Contributing</a><a href="./verification-policy.html">Verification</a><a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a></div></div>
+<main>
+<h1>The <code>lgd-skeleton/1.0</code> module contract</h1>
+<p>A module is a directory with a <code>module.json</code> and an entry script. That is the whole contract. Nothing registers itself anywhere, and the core contains no list of modules.</p>
+<h2><code>module.json</code> fields</h2>
+<table><thead><tr><th>Field</th><th>Required</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code></td><td>yes</td><td>Repository/module identifier. Also the key used in the routing table</td></tr><tr><td><code>title</code></td><td>yes</td><td>Human-readable name</td></tr><tr><td><code>description</code></td><td>yes</td><td>One paragraph. Doubles as the repository description and the TeamAI skill description</td></tr><tr><td><code>triggers</code></td><td>yes</td><td><code>keywords</code> / <code>intents</code> / <code>file_patterns</code>. How a router decides this module is relevant. <code>keywords</code> or <code>intents</code> must be non-empty</td></tr><tr><td><code>provides</code></td><td>yes</td><td>Capability names this module offers. Used for discovery and for de-duplication</td></tr><tr><td><code>entry</code></td><td>yes</td><td>Path to the CLI, e.g. <code>scripts/control_review.py</code></td></tr><tr><td><code>deps</code></td><td>yes</td><td>Third-party dependencies. <code>[]</code> means standard library only — the norm here</td></tr><tr><td><code>license</code></td><td>yes</td><td>SPDX identifier</td></tr><tr><td><code>upstream</code></td><td>no</td><td>An upstream project this work is intended for, or <code>null</code> when there is none</td></tr><tr><td><code>cost</code>, <code>lazy</code>, <code>nested</code></td><td>no</td><td>Loading hints. <code>lazy</code> means load only when triggers match</td></tr><tr><td><code>generated_by</code></td><td>no</td><td>Provenance of the scaffold</td></tr><tr><td><code>extension_note</code></td><td>no</td><td>How to extend this module without reading all of it</td></tr></tbody></table>
+<h2>The entry script</h2>
+<p>Three requirements, all mechanical:</p>
+<ol><li><code>--demo</code> runs a self-contained sample and exits <code>0</code>.</li><li><code>--help</code> works and exits <code>0</code>.</li><li>Bad input exits <code>2</code> with a message on stderr. Never a bare traceback.</li></ol>
+<p>Zero third-party dependencies is not a style preference. A compliance artefact has to be auditable offline, and reproducible years after the environment that produced it is gone. <code>harness.py</code> enforces this: it parses the entry script's imports with <code>ast</code> and fails the module if it imports a third-party package while declaring <code>deps: []</code>.</p>
+<h2>How the core uses a module</h2>
+<table><thead><tr><th>Core piece</th><th>Use of the contract</th></tr></thead><tbody><tr><td><code>router.py</code></td><td>Reads <code>triggers</code> only, matches against an intent, and loads the module's full text <strong>only on a match</strong> — roughly 20 tokens per module at rest</td></tr><tr><td><code>harness.py</code></td><td>Six dimensions: fit (schema + <code>deps</code> vs actual imports), accuracy (<code>--demo</code> output contains the module's key fields), fluency (<code>--help</code>), outsider run (every runnable command in the README), usability, and gold regression against <code>gold_set.json</code></td></tr><tr><td><code>manifest.py</code></td><td>Aggregates every module into <code>skeleton.json</code>, <code>llms.txt</code>, <code>AGENTS.md</code>, the A2A card and the TeamAI layout</td></tr><tr><td><code>scaffold.py</code></td><td>Generates a new module from the same contract</td></tr></tbody></table>
+<h2>Adding a domain</h2>
+<ol><li>Copy <a href="https://github.com/stevenzhao07/medical-ai-toolkit/tree/main/examples/domains/legal-compliance"><code>examples/domains/legal-compliance</code></a> to <code>examples/domains/&lt;your-domain&gt;/</code>.</li><li>Rewrite <code>module.json</code> — <code>id</code>, <code>title</code>, <code>description</code>, <code>triggers</code>, <code>provides</code>, <code>entry</code>, <code>extension_note</code>.</li><li>Rewrite the script, keeping the CLI shape and the zero-dependency rule.</li><li>Run <code>python harness.py --module &lt;your-module-id&gt;</code>.</li></ol>
+<p>None of these steps touches the core. That is the design: the reusable parts are the ordering, the gates and the audit trail — not the domain content.</p>
+<h2>What is not a module</h2>
+<ul><li>A script without <code>module.json</code> — nothing can route to it.</li><li>A module that shells out to a service — it stops being offline-auditable.</li><li>A module whose <code>--demo</code> needs the network or a credentialed environment.</li><li>A module that only works inside one organisation's private data — that belongs in that organisation's <code>plugins/</code>, not here.</li></ul>
+<hr>
+<h2>中文</h2>
+<p>一个模块 = 一个目录 + <code>module.json</code> + 一个入口脚本。契约就这么多。没有任何注册表，内核里也不保存模块清单。</p>
+<p><strong><code>module.json</code> 字段</strong>（必填/含义见上表）：<code>id</code>、<code>title</code>、<code>description</code>、<code>triggers</code>（<code>keywords</code>/<code>intents</code>/<code>file_patterns</code>，其中 keywords 或 intents 必须非空）、<code>provides</code>、<code>entry</code>、<code>deps</code>、<code>license</code> 为必填；<code>upstream</code>（无既定目标时写 <code>null</code>）、<code>cost</code>/<code>lazy</code>/<code>nested</code>、<code>generated_by</code>、<code>extension_note</code> 可选。</p>
+<p><strong>入口脚本三条机械要求</strong>：① <code>--demo</code> 跑内置样例并退 <code>0</code>；② <code>--help</code> 可用并退 <code>0</code>；③ 输入错误退 <code>2</code> 并在 stderr 给出信息，<strong>绝不允许裸 traceback</strong>。</p>
+<p><strong>零第三方依赖不是风格偏好</strong>：合规产物必须能离线审计，并在产出它的环境消失多年后仍可复现。<code>harness.py</code> 会强制检查这一点 —— 它用 <code>ast</code> 解析入口脚本的 import，若声明 <code>deps: []</code> 却引用了第三方包，直接判不合格。</p>
+<p><strong>内核如何使用契约</strong>：<code>router.py</code> 只读 <code>triggers</code>，命中才载入模块全文（每个模块常驻约 20 token）；<code>harness.py</code> 跑 6 个维度（适配/准确/流畅/外人实跑/易用/gold 回归）；<code>manifest.py</code> 把全部模块聚合成 <code>skeleton.json</code>、<code>llms.txt</code>、<code>AGENTS.md</code>、A2A 卡与 TeamAI 布局；<code>scaffold.py</code> 按同一契约生成新模块。</p>
+<p><strong>加一个领域</strong>：复制 <code>examples/domains/legal-compliance</code> → 改写 <code>module.json</code> → 改写脚本（保持 CLI 形状与零依赖）→ 跑 <code>python harness.py --module &lt;id&gt;</code>。这些步骤<strong>都不触碰内核</strong>。可复用的正是顺序、门禁与审计轨迹，不是领域内容。</p>
+<p><strong>什么不算模块</strong>：没有 <code>module.json</code> 的脚本（无法被路由）；依赖外部服务的模块（不再可离线审计）；<code>--demo</code> 需要联网或凭据环境的模块；只对某一个内部数据集有效的模块（那属于该组织的私有 <code>plugins/</code>）。</p>
+</main>
+<footer>medical-ai-toolkit · <a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a> · Licence CC BY 4.0 · Contributed by Xinghua Zhao (@stevenzhao07) · Affiliation: MedXpert</footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The matrix — 21 repositories · medical-ai-toolkit</title>
+<style>
+:root{--bg:#fff;--bg-soft:#f7f9fc;--ink:#0d1b2a;--ink-2:#3e5062;--ink-3:#6b7f92;
+--line:#e3e9f0;--brand:#2f6df6;--brand-2:#7aa8ff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:860px;margin:0 auto;padding:0 20px;display:flex;gap:14px;align-items:center;height:54px;flex-wrap:wrap}
+.nav .brand{font-weight:700}.nav .sp{flex:1}.nav a{font-size:13.5px;color:var(--ink-2)}
+.nav a.on{color:var(--brand);font-weight:600}
+main{max-width:860px;margin:0 auto;padding:34px 20px 80px}
+h1{font-size:30px;line-height:1.25;margin:0 0 18px;letter-spacing:-.01em}
+h2{font-size:22px;margin:44px 0 12px;padding-top:10px;border-top:1px solid var(--line)}
+h2:first-of-type{border-top:none;padding-top:0}
+h3{font-size:17px;margin:26px 0 8px}
+p{margin:12px 0;color:var(--ink-2)}
+ul,ol{color:var(--ink-2);padding-left:24px}li{margin:5px 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:#0d1b2a;color:#e6edf6;border-radius:10px;padding:15px 17px;overflow:auto;font-size:13px;line-height:1.6}
+pre code{background:none;border:none;color:inherit;padding:0;font-size:inherit}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+blockquote{margin:16px 0;border-left:3px solid var(--brand-2);background:var(--bg-soft);padding:12px 16px;border-radius:0 8px 8px 0;color:var(--ink-2)}
+hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+footer{border-top:1px solid var(--line);padding:22px 20px 60px;max-width:860px;margin:0 auto;font-size:13px;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="nav"><div class="in"><a class="brand" href="../index.html">medical-ai-toolkit</a><span class="sp"></span><a href="./index.html">Documentation</a><a href="./lgd-contract.html">Contract</a><a href="./matrix.html" class="on">Matrix</a><a href="./contributing.html">Contributing</a><a href="./verification-policy.html">Verification</a><a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a></div></div>
+<main>
+<h1>The matrix — 21 repositories</h1>
+<p>Each repository is an independent module. There is no monorepo, no shared build, and no dependency between them: a module can be cloned, run and audited on its own. What they share is the <a href="./lgd-contract.html"><code>lgd-skeleton/1.0</code> contract</a> and this routing table.</p>
+<h2>Layer 1 — AI governance (9)</h2>
+<table><thead><tr><th>Repository</th><th>What it does</th><th>Entry</th><th>Licence</th><th>Intended upstream</th></tr></thead><tbody><tr><td><code>samd-ra-toolkit</code></td><td>SaMD/AIaMD registration and quality-system mapping</td><td><code>scripts/samd_map.py</code></td><td>CC-BY-4.0</td><td>OpenRegulatory/templates</td></tr><tr><td><code>ai-governance-checklist</code></td><td>Governance self-check; model card and data card templates</td><td><code>scripts/gov_checklist.py</code></td><td>CC-BY-4.0</td><td>OWASP AI Exchange · AI Verify</td></tr><tr><td><code>ai-a3-laws</code></td><td>Runtime constraints on autonomous decisions: authority, autonomy, accountability</td><td><code>scripts/a3_laws.py</code></td><td>CC0</td><td>OWASP AI Exchange</td></tr><tr><td><code>ai-model-passport</code></td><td>Model identity, provenance and verification with a signed fingerprint</td><td><code>scripts/ai_passport.py</code></td><td>CC0</td><td>—</td></tr><tr><td><code>fhir-ortho-toolkit</code></td><td>UDI profiles and resource builders for HL7 FHIR R4</td><td><code>scripts/fhir_ortho.py</code></td><td>CC0</td><td>HL7 community</td></tr><tr><td><code>omop-ortho-toolkit</code></td><td>Concept sets and ETL shape toward OMOP CDM v5.4</td><td><code>scripts/omop_ortho.py</code></td><td>Apache-2.0</td><td>OHDSI CDM WG</td></tr><tr><td><code>ml-validation-toolkit</code></td><td>Performance, calibration and subgroup fairness without scikit-learn</td><td><code>scripts/ml_validation.py</code></td><td>Apache-2.0</td><td>—</td></tr><tr><td><code>delivery-guard</code></td><td>17 pre-delivery gates plus a dual SHA-256 provenance ledger</td><td><code>scripts/delivery_guard.py</code></td><td>Apache-2.0</td><td>—</td></tr><tr><td><code>multilingual-ifu</code></td><td>An IFU template in 14 language versions with a structural completeness check</td><td><code>scripts/ifu_index.py</code></td><td>CC-BY-4.0</td><td>OpenRegulatory/templates</td></tr></tbody></table>
+<h2>Layer 2 — device lifecycle (11)</h2>
+<table><thead><tr><th>Repository</th><th>Stage</th><th>Entry</th><th>Licence</th><th>Main standard</th></tr></thead><tbody><tr><td><code>design-controls-toolkit</code></td><td>Design controls</td><td><code>scripts/design_controls.py</code></td><td>Apache-2.0</td><td>ISO 13485 §7.3 · 21 CFR 820.30 · IEC 62366-1</td></tr><tr><td><code>iso14971-risk-file</code></td><td>Risk management</td><td><code>scripts/risk_file.py</code></td><td>Apache-2.0</td><td>ISO 14971 · TR 24971</td></tr><tr><td><code>iec62304-software</code></td><td>Software lifecycle</td><td><code>scripts/sw_lifecycle.py</code></td><td>CC-BY-4.0</td><td>IEC 62304</td></tr><tr><td><code>device-regulatory-map</code></td><td>Classification and route mapping</td><td><code>scripts/device_reg_map.py</code></td><td>CC-BY-4.0</td><td>NMPA · EU MDR · FDA · PMDA</td></tr><tr><td><code>clinical-evaluation</code></td><td>Clinical evaluation</td><td><code>scripts/cer_planner.py</code></td><td>CC-BY-4.0</td><td>MDR Art.61 · MDCG · CER + PMCF</td></tr><tr><td><code>biocompatibility-iso10993</code></td><td>Biocompatibility</td><td><code>scripts/biocompat.py</code></td><td>CC-BY-4.0</td><td>ISO 10993-1</td></tr><tr><td><code>sterilization-validation</code></td><td>Sterilisation and cleaning</td><td><code>scripts/sterilization_val.py</code></td><td>Apache-2.0</td><td>ISO 11135 · 11137 · 17665</td></tr><tr><td><code>manufacturing-gmp</code></td><td>Production quality</td><td><code>scripts/gmp_toolkit.py</code></td><td>CC-BY-4.0</td><td>GMP 2025 revision · IQ/OQ/PQ</td></tr><tr><td><code>udi-assignment</code></td><td>UDI assignment</td><td><code>scripts/udi_assign.py</code></td><td>CC0</td><td>GS1 · HIBCC · ICCBBA · 21 CFR 830</td></tr><tr><td><code>pms-vigilance</code></td><td>Post-market surveillance</td><td><code>scripts/pms_report.py</code></td><td>Apache-2.0</td><td>NMPA Order No.1 &amp; No.29 · MDR Art.87</td></tr><tr><td><code>cybersecurity-medical</code></td><td>Cybersecurity</td><td><code>scripts/cyber_check.py</code></td><td>Apache-2.0</td><td>IEC 81001-5-1 · SBOM · STRIDE</td></tr></tbody></table>
+<h2>Portal (1)</h2>
+<table><thead><tr><th>Repository</th><th>What it does</th><th>Entry</th><th>Licence</th></tr></thead><tbody><tr><td><code>medical-ai-toolkit</code></td><td>Routing table, machine-discoverable manifests, self-test harness, documentation</td><td><code>scripts/discover.py</code></td><td>CC-BY-4.0</td></tr></tbody></table>
+<h2>Trying any module</h2>
+<p>Every module follows the same three commands:</p>
+<pre><code>git clone https://github.com/stevenzhao07/&lt;repository&gt;.git
+cd &lt;repository&gt;
+python &lt;entry&gt; --demo</code></pre>
+<p><code>--help</code> lists the real options; <code>--json</code> (where supported) emits machine-readable output.</p>
+<h2>Where the chain joins</h2>
+<p>The 11 lifecycle modules are ordered: <strong>design controls → risk management → software lifecycle → classification → clinical evaluation → biocompatibility → sterilisation → production → UDI → post-market surveillance → cybersecurity.</strong> Each stage's output is the next stage's input in practice, but the modules do not call each other — they share a contract, not a call graph. That keeps each one auditable in isolation, which matters more here than convenience.</p>
+<hr>
+<h2>中文</h2>
+<p>每个仓库都是一个独立模块。没有 monorepo、没有共享构建、彼此没有依赖：单个模块可以被单独克隆、运行与审计。它们共享的是 <a href="./lgd-contract.html"><code>lgd-skeleton/1.0</code> 契约</a>与这张路由表。</p>
+<p>（各仓「做什么 / 入口 / 许可 / 主线标准」见上方英文两张表；字段一一对应。）</p>
+<p><strong>第一层 —— AI 治理（9）</strong>：<code>samd-ra-toolkit</code>（SaMD 注册与质量体系映射）、<code>ai-governance-checklist</code>（治理自检 + 模型卡/数据卡模板）、<code>ai-a3-laws</code>（权限–自主–追责运行时约束）、<code>ai-model-passport</code>（模型身份、溯源与指纹验证）、<code>fhir-ortho-toolkit</code>（FHIR R4 UDI 轮廓与资源构造器）、<code>omop-ortho-toolkit</code>（OMOP CDM v5.4 概念集与 ETL 形状）、<code>ml-validation-toolkit</code>（性能/校准/亚组公平性，不依赖 scikit-learn）、<code>delivery-guard</code>（17 道交付门禁 + 双 SHA-256 权属台账）、<code>multilingual-ifu</code>（IFU 14 个语言版本 + 结构完整性校验）。</p>
+<p><strong>第二层 —— 器械生命周期（11）</strong>：<code>design-controls-toolkit</code>（设计控制）、<code>iso14971-risk-file</code>（风险管理）、<code>iec62304-software</code>（软件生命周期）、<code>device-regulatory-map</code>（分类与路径映射）、<code>clinical-evaluation</code>（临床评价）、<code>biocompatibility-iso10993</code>（生物相容性）、<code>sterilization-validation</code>（灭菌与清洁）、<code>manufacturing-gmp</code>（生产质量）、<code>udi-assignment</code>（UDI 赋码）、<code>pms-vigilance</code>（上市后警戒）、<code>cybersecurity-medical</code>（网络安全）。</p>
+<p><strong>门户（1）</strong>：<code>medical-ai-toolkit</code> —— 路由表、机器可发现清单、自检框架、文档。</p>
+<p><strong>试任一模块</strong>（三条命令，全矩阵一致）：</p>
+<pre><code>git clone https://github.com/stevenzhao07/&lt;仓库名&gt;.git
+cd &lt;仓库名&gt;
+python &lt;入口&gt; --demo</code></pre>
+<p><code>--help</code> 列出真实选项；支持 <code>--json</code> 的模块可输出机器可读格式。</p>
+<p><strong>链条如何衔接</strong>：11 个生命周期模块是有序的 —— <strong>设计控制 → 风险管理 → 软件生命周期 → 分类 → 临床评价 → 生物相容性 → 灭菌 → 生产 → UDI → 上市后警戒 → 网络安全</strong>。实践中上一阶段的产出是下一阶段的输入，但模块之间<strong>不互相调用</strong> —— 它们共享的是契约，不是调用图。这让每个模块都能被独立审计，在此场景下比省事更重要。</p>
+</main>
+<footer>medical-ai-toolkit · <a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a> · Licence CC BY 4.0 · Contributed by Xinghua Zhao (@stevenzhao07) · Affiliation: MedXpert</footer>
+</body>
+</html>

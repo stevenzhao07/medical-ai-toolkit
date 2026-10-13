@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation · medical-ai-toolkit</title>
+<style>
+:root{--bg:#fff;--bg-soft:#f7f9fc;--ink:#0d1b2a;--ink-2:#3e5062;--ink-3:#6b7f92;
+--line:#e3e9f0;--brand:#2f6df6;--brand-2:#7aa8ff;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:860px;margin:0 auto;padding:0 20px;display:flex;gap:14px;align-items:center;height:54px;flex-wrap:wrap}
+.nav .brand{font-weight:700}.nav .sp{flex:1}.nav a{font-size:13.5px;color:var(--ink-2)}
+.nav a.on{color:var(--brand);font-weight:600}
+main{max-width:860px;margin:0 auto;padding:34px 20px 80px}
+h1{font-size:30px;line-height:1.25;margin:0 0 18px;letter-spacing:-.01em}
+h2{font-size:22px;margin:44px 0 12px;padding-top:10px;border-top:1px solid var(--line)}
+h2:first-of-type{border-top:none;padding-top:0}
+h3{font-size:17px;margin:26px 0 8px}
+p{margin:12px 0;color:var(--ink-2)}
+ul,ol{color:var(--ink-2);padding-left:24px}li{margin:5px 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:#0d1b2a;color:#e6edf6;border-radius:10px;padding:15px 17px;overflow:auto;font-size:13px;line-height:1.6}
+pre code{background:none;border:none;color:inherit;padding:0;font-size:inherit}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+blockquote{margin:16px 0;border-left:3px solid var(--brand-2);background:var(--bg-soft);padding:12px 16px;border-radius:0 8px 8px 0;color:var(--ink-2)}
+hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+footer{border-top:1px solid var(--line);padding:22px 20px 60px;max-width:860px;margin:0 auto;font-size:13px;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="nav"><div class="in"><a class="brand" href="../index.html">medical-ai-toolkit</a><span class="sp"></span><a href="./index.html" class="on">Documentation</a><a href="./lgd-contract.html">Contract</a><a href="./matrix.html">Matrix</a><a href="./contributing.html">Contributing</a><a href="./verification-policy.html">Verification</a><a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a></div></div>
+<main>
+<h1>Documentation</h1>
+<p>The <a href="../index.html">portal README</a> is the front page. This directory holds the material that would make it unreadable if it lived there.</p>
+<table><thead><tr><th>Document</th><th>Question it answers</th></tr></thead><tbody><tr><td><a href="./lgd-contract.html">lgd-contract.md</a></td><td>What exactly is the module contract? Which fields are required, what does each one mean, and how do <code>router.py</code> and <code>harness.py</code> use them?</td></tr><tr><td><a href="./matrix.html">matrix.md</a></td><td>What does each of the 21 repositories do, what is its entry point, and which standards does it reference?</td></tr><tr><td><a href="./contributing.html">contributing.md</a></td><td>How do I report a fix, contribute a module, or claim maintainership of one of the 21?</td></tr><tr><td><a href="./verification-policy.html">verification-policy.md</a></td><td>How are factual claims sourced? What does <code>TO_BE_VERIFIED</code> mean? How do I report an error?</td></tr></tbody></table>
+<p>For a worked non-medical module, see <a href="https://github.com/stevenzhao07/medical-ai-toolkit/tree/main/examples/domains"><code>examples/domains/</code></a> — two domains, one contract, no change to the core.</p>
+<hr>
+<h2>中文</h2>
+<p><a href="../index.html">门户 README</a> 是首页。本目录承载那些放进 README 就会让它读不下去的内容。</p>
+<table><thead><tr><th>文档</th><th>回答什么问题</th></tr></thead><tbody><tr><td><a href="./lgd-contract.html">lgd-contract.md</a></td><td>模块契约到底是什么？哪些字段必填、各自什么含义、<code>router.py</code> 与 <code>harness.py</code> 如何使用它们？</td></tr><tr><td><a href="./matrix.html">matrix.md</a></td><td>21 个仓库各做什么、入口是什么、引用了哪些标准？</td></tr><tr><td><a href="./contributing.html">contributing.md</a></td><td>怎么提交修复、贡献模块，或认领 21 个中的一个作为维护者？</td></tr><tr><td><a href="./verification-policy.html">verification-policy.md</a></td><td>事实性断言如何溯源？<code>TO_BE_VERIFIED</code> 是什么意思？发现错误怎么报？</td></tr></tbody></table>
+<p>非医疗的完整示例模块见 <a href="https://github.com/stevenzhao07/medical-ai-toolkit/tree/main/examples/domains"><code>examples/domains/</code></a> —— 两个领域，一份契约，内核零改动。</p>
+</main>
+<footer>medical-ai-toolkit · <a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a> · Licence CC BY 4.0 · Contributed by Xinghua Zhao (@stevenzhao07) · Affiliation: MedXpert</footer>
+</body>
+</html>
