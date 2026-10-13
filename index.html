@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>medical-ai-toolkit — a 21-repository toolkit for the medical-device AI lifecycle</title>
+<meta name="description" content="Entry point for a 21-repository open toolkit covering the full lifecycle of medical-device AI, built on LGD — a plugin framework where every capability is a declarative module. Zero-dependency, offline-auditable, machine-discoverable.">
+<style>
+  :root{
+    --bg:#ffffff; --bg-soft:#f7f9fc; --ink:#0d1b2a; --ink-2:#3e5062; --ink-3:#6b7f92;
+    --line:#e3e9f0; --brand:#2f6df6; --brand-2:#7aa8ff; --glow1:#e8f0ff; --glow2:#f3e9ff;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  code{font-family:var(--mono);font-size:.9em;background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+  pre{background:#0d1b2a;color:#e6edf6;border-radius:10px;padding:16px 18px;overflow:auto;font-size:13px;line-height:1.6}
+  pre code{background:none;border:none;color:inherit;padding:0}
+  h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+  h2{font-size:26px;margin:56px 0 14px;padding-top:8px}
+  h3{font-size:18px;margin:30px 0 10px}
+  p{color:var(--ink-2)}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0}
+  th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+  th{color:var(--ink-3);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;gap:18px;height:56px}
+  .nav .brand{font-weight:700;letter-spacing:-.02em}
+  .nav .sp{flex:1}
+  .nav a{font-size:14px;color:var(--ink-2)}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:520px;
+    background:radial-gradient(600px 300px at 25% 30%,var(--glow1),transparent 70%),
+               radial-gradient(600px 300px at 78% 10%,var(--glow2),transparent 70%);z-index:0}
+  .hero .wrap{position:relative;z-index:1;padding:64px 24px 52px}
+  .hero h1{font-size:40px;margin:0 0 14px;max-width:20em}
+  .hero .lede{font-size:18px;color:var(--ink-2);max-width:46em;margin:0 0 22px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+  .badge{font-size:12px;color:var(--ink-2);border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 11px}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;font-size:14px;border:1px solid var(--brand);background:var(--brand);color:#fff}
+  .btn:hover{text-decoration:none;filter:brightness(1.06)}
+  .btn.ghost{background:#fff;color:var(--brand)}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fff;transition:.15s}
+  .card:hover{border-color:var(--brand-2);box-shadow:0 6px 24px rgba(47,109,246,.08)}
+  .card h4{margin:0 0 6px;font-size:15px}
+  .card p{margin:0;font-size:13.5px;color:var(--ink-3)}
+  .card .repo{font-family:var(--mono);font-size:13px;color:var(--brand);word-break:break-all}
+  .layer{margin:10px 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  .note{border-left:3px solid var(--brand-2);background:var(--bg-soft);padding:14px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--ink-2)}
+  .langbar{display:flex;gap:6px;margin:0 0 8px}
+  .langbar span{font-size:12px;color:var(--ink-3)}
+  .divider{margin:72px 0 0;border-top:2px solid var(--ink);position:relative}
+  .divider::after{content:"中文";position:absolute;top:-12px;left:0;background:var(--bg);padding-right:10px;font-weight:700;font-size:14px;color:var(--ink)}
+  .divider-en::after{content:"English"}
+  footer{margin-top:64px;border-top:1px solid var(--line);padding:28px 0 60px;font-size:13px;color:var(--ink-3)}
+  .disc{font-size:13px;color:var(--ink-3);border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--bg-soft)}
+  svg.diagram{width:100%;height:auto;display:block;margin:16px 0 6px}
+  @media (max-width:640px){.hero h1{font-size:30px}.hero .lede{font-size:16px}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <span class="brand">medical-ai-toolkit</span>
+  <span class="sp"></span>
+  <a href="#en">English</a>
+  <a href="#zh">中文</a>
+  <a href="#participate">Participate</a>
+  <a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a>
+</div></nav>
+
+<!-- ============================ ENGLISH ============================ -->
+<section class="hero" id="en">
+  <div class="wrap">
+    <h1>A 21-repository open toolkit for the full lifecycle of medical-device AI.</h1>
+    <p class="lede">Built on <strong>LGD</strong> — a plugin framework in which every capability is a declarative, independently loadable module. Medical devices are the reference domain; the skeleton itself is industry-neutral. Zero third-party dependencies, offline-auditable, and discoverable by AI coding agents as well as people.</p>
+    <div class="badges">
+      <span class="badge">License: CC BY 4.0</span>
+      <span class="badge">Python 3.8+</span>
+      <span class="badge">No third-party dependencies</span>
+      <span class="badge">21 repositories</span>
+      <span class="badge">Offline-auditable</span>
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://github.com/stevenzhao07/medical-ai-toolkit">Open the repository</a>
+      <a class="btn ghost" href="#en-quickstart">Quick start</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<h2 id="en-what">What this is</h2>
+<p>This site is the portal for 21 repositories published under <a href="https://github.com/stevenzhao07">@stevenzhao07</a>. It carries no product code of its own; it is the index, the routing table, and the methodology entry point. Contributed by <strong>Xinghua Zhao</strong> · Affiliation: MedXpert (medical-device RA &amp; regulatory consultancy) · pure technical input, no commercial promotion.</p>
+<table>
+  <tr><th>Part</th><th>Count</th><th>Covers</th></tr>
+  <tr><td>AI-governance layer</td><td>9</td><td>Regulatory/quality mapping, AI governance checks, model passports, runtime constraints, interoperability, multilingual labelling, engineering validation</td></tr>
+  <tr><td>Device-lifecycle layer</td><td>11</td><td>Design controls through post-market surveillance for the device as a physical product</td></tr>
+  <tr><td>This portal</td><td>1</td><td>Routing, machine-discoverable manifests, self-test harness</td></tr>
+</table>
+<p>Every module is a <strong>zero-dependency Python CLI</strong> that runs on the standard library alone — no cloud service, no <code>scikit-learn</code>, no network access. That is deliberate: compliance artefacts must be auditable offline and reproducible years later.</p>
+
+<h2 id="en-lgd">LGD: the framework underneath</h2>
+<p>LGD is a governance framework organised around one idea: <strong>the core stays industry-neutral, and every domain capability is a plugin loaded on demand.</strong></p>
+
+<svg class="diagram" viewBox="0 0 900 380" role="img" aria-label="LGD architecture: industry-neutral core routing to the medical-device domain and to any other domain">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b7f92"/>
+    </marker>
+    <style>
+      .bx{fill:#fff;stroke:#d6e0ea;stroke-width:1.6;rx:10}
+      .core{fill:#eef4ff;stroke:#9dc0ff}
+      .dom{fill:#f6f0ff;stroke:#c9b3f5}
+      .ot{fill:#fbfcfe;stroke:#d6e0ea;stroke-dasharray:5 5}
+      .t{font-family:-apple-system,Segoe UI,Roboto,sans-serif;fill:#0d1b2a;font-size:14px}
+      .ts{font-family:-apple-system,Segoe UI,Roboto,sans-serif;fill:#6b7f92;font-size:12px}
+      .tm{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#2f6df6;font-size:12.5px}
+      .ln{stroke:#9aa9b8;stroke-width:1.6;fill:none;marker-end:url(#ar)}
+      .lnd{stroke:#9aa9b8;stroke-width:1.6;fill:none;stroke-dasharray:5 5;marker-end:url(#ar)}
+    </style>
+  </defs>
+  <rect x="24" y="24" width="330" height="150" rx="12" fill="#eef4ff" stroke="#9dc0ff"/>
+  <text x="44" y="50" class="t" font-weight="700">LGD core — industry-neutral</text>
+  <text x="44" y="70" class="ts">no domain hard-coding</text>
+  <rect class="bx" x="44" y="84" width="126" height="34" rx="8"/><text x="56" y="105" class="tm">router.py</text>
+  <rect class="bx" x="186" y="84" width="146" height="34" rx="8"/><text x="198" y="105" class="tm">harness.py</text>
+  <rect class="bx" x="44" y="126" width="288" height="34" rx="8"/><text x="56" y="147" class="tm">config/ · industry · organisation · locale</text>
+
+  <rect x="546" y="24" width="330" height="150" rx="12" fill="#f6f0ff" stroke="#c9b3f5"/>
+  <text x="566" y="50" class="t" font-weight="700">domain: medical-device</text>
+  <text x="566" y="70" class="ts">reference domain · 21 repositories</text>
+  <rect class="bx" x="566" y="84" width="140" height="34" rx="8"/><text x="578" y="105" class="ts">AI governance — 9</text>
+  <rect class="bx" x="718" y="84" width="140" height="34" rx="8"/><text x="730" y="105" class="ts">device lifecycle — 11</text>
+  <rect class="bx" x="566" y="126" width="292" height="34" rx="8"/><text x="578" y="147" class="ts">shared contract · one routing table</text>
+
+  <path class="ln" d="M356,99 L542,99"/>
+
+  <rect x="24" y="238" width="852" height="112" rx="12" class="ot"/>
+  <text x="46" y="266" class="t" font-weight="700">domain: any other industry</text>
+  <text x="46" y="288" class="ts">Finance, legal, industrial safety — fork the skeleton, keep router.py and harness.py, add your own domains/ modules.</text>
+  <text x="46" y="310" class="ts">The reusable parts are the ordering, the gates and the audit trail — not the domain content.</text>
+  <path class="lnd" d="M200,176 L200,236"/>
+</svg>
+
+<table>
+  <tr><th>Property</th><th>In practice</th></tr>
+  <tr><td>Everything is a plugin</td><td>A capability is described by a declarative <code>module.json</code> (id, triggers, provides, entry, dependencies). Adding one does not touch the core.</td></tr>
+  <tr><td>Load on demand</td><td><code>router.py</code> reads metadata only, and loads a module's full text only when its triggers match — roughly 20 tokens per module at rest.</td></tr>
+  <tr><td>Nestable</td><td>A module may itself route to sub-modules. This portal is exactly that: a module made of modules.</td></tr>
+  <tr><td>Configurable, not forked</td><td>Industry, organisation and locale live in <code>config/</code>. Adopters adapt through configuration and their own private plugins instead of patching the core.</td></tr>
+</table>
+
+<h2 id="en-medical">The medical-device reference domain</h2>
+<p class="layer">Layer 1 — AI governance (9 repositories)</p>
+<div class="grid g3">
+  <div class="card"><h4>Regulatory &amp; quality system</h4><p class="repo">samd-ra-toolkit</p><p>NMPA · EU MDR · FDA · PMDA cross-jurisdiction mapping; IEC 62304; ISO 14971.</p></div>
+  <div class="card"><h4>AI governance</h4><p class="repo">ai-governance-checklist · ai-a3-laws · ai-model-passport</p><p>Model/data cards; authority–autonomy–accountability constraints; model identity and provenance.</p></div>
+  <div class="card"><h4>Data interoperability</h4><p class="repo">fhir-ortho-toolkit · omop-ortho-toolkit</p><p>HL7 FHIR R4 (UDI profiles); OHDSI OMOP CDM v5.4.</p></div>
+  <div class="card"><h4>Engineering validation</h4><p class="repo">ml-validation-toolkit · delivery-guard</p><p>Performance, calibration, fairness; 17 pre-delivery gates and dual SHA-256 provenance.</p></div>
+  <div class="card"><h4>Multilingual localisation</h4><p class="repo">multilingual-ifu</p><p>IFU template in 14 language versions (zh master + 13 foreign).</p></div>
+</div>
+
+<p class="layer">Layer 2 — device lifecycle (11 repositories)</p>
+<div class="grid g3">
+  <div class="card"><h4>Design controls</h4><p class="repo">design-controls-toolkit</p><p>ISO 13485 §7.3 / 21 CFR 820.30 / IEC 62366-1.</p></div>
+  <div class="card"><h4>Risk management</h4><p class="repo">iso14971-risk-file</p><p>ISO 14971 / TR 24971.</p></div>
+  <div class="card"><h4>Software lifecycle</h4><p class="repo">iec62304-software</p><p>IEC 62304 (class A/B/C, SOUP).</p></div>
+  <div class="card"><h4>Classification &amp; route mapping</h4><p class="repo">device-regulatory-map</p><p>NMPA / EU MDR / FDA / PMDA.</p></div>
+  <div class="card"><h4>Clinical evaluation</h4><p class="repo">clinical-evaluation</p><p>MDR Art.61 · MDCG · CER + PMCF.</p></div>
+  <div class="card"><h4>Biocompatibility</h4><p class="repo">biocompatibility-iso10993</p><p>ISO 10993-1 endpoint matrix.</p></div>
+  <div class="card"><h4>Sterilisation &amp; cleaning</h4><p class="repo">sterilization-validation</p><p>ISO 11135 / 11137 / 17665; endotoxin limits.</p></div>
+  <div class="card"><h4>Production quality</h4><p class="repo">manufacturing-gmp</p><p>GMP 2025 revision / IQ·OQ·PQ.</p></div>
+  <div class="card"><h4>UDI assignment</h4><p class="repo">udi-assignment</p><p>GS1 / HIBCC / ICCBBA / 21 CFR 830 / EUDAMED.</p></div>
+  <div class="card"><h4>Post-market surveillance</h4><p class="repo">pms-vigilance</p><p>NMPA Order No.1 &amp; No.29 / MDR Art.87; recall timelines.</p></div>
+  <div class="card"><h4>Cybersecurity</h4><p class="repo">cybersecurity-medical</p><p>IEC 81001-5-1 / SBOM / STRIDE.</p></div>
+</div>
+<p>Together they form one unbroken chain: <strong>design controls → risk management → software lifecycle → classification → clinical evaluation → biocompatibility → sterilisation → production → UDI → post-market surveillance → cybersecurity.</strong> Repository links: <a href="https://github.com/stevenzhao07?tab=repositories">github.com/stevenzhao07</a>.</p>
+
+<h2 id="en-why">Why this exists</h2>
+<table>
+  <tr><th>Gap observed</th><th>What this toolkit does</th></tr>
+  <tr><td>Lifecycle tools exist in isolation, forcing teams to stitch them by hand</td><td>21 modules share one contract and one routing table, so stages hand off without glue code</td></tr>
+  <tr><td>Regulatory content assumes US/EU only</td><td>Chinese regulation (NMPA orders, GMP revision, recall timelines) sits alongside MDR/FDA/PMDA</td></tr>
+  <tr><td>Readable by humans, invisible to AI agents</td><td>Each module ships <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>llms.txt</code> and A2A agent cards, so coding agents discover and call modules without being told</td></tr>
+</table>
+<div class="note"><strong>On verifiability.</strong> Regulations change, so every factual assertion in these modules states its source; anything that could not be confirmed against a primary text is marked <code>TO_BE_VERIFIED</code> rather than filled with a plausible number. If you find a value that is wrong or out of date, that is a reportable bug, not a nitpick.</div>
+
+<h2 id="en-quickstart">Quick start</h2>
+<pre><code>git clone https://github.com/stevenzhao07/medical-ai-toolkit.git
+cd medical-ai-toolkit
+python scripts/discover.py --demo                 # print the routing table for all 21 repositories
+python harness.py --module medical-ai-toolkit     # run the 6-dimension self-test</code></pre>
+<p>Requirements: Python 3.8+. No third-party packages. No network access.</p>
+
+<h2 id="participate">How to participate</h2>
+<div class="grid g2">
+  <div class="card"><h4>1 · Report an error</h4><p>Regulatory values, standard numbers, clause references and dates are all fair game. Open an issue with the source that contradicts us — here, correction is the highest-value contribution.</p></div>
+  <div class="card"><h4>2 · Try it</h4><p>Run a module on your own device or dataset and tell us where it stopped being useful.</p></div>
+  <div class="card"><h4>3 · Contribute</h4><p>Modules and fixes both welcome. Branch convention, AI-attribution trailer and reading order are in AI_PARTICIPATION.md.</p></div>
+  <div class="card"><h4>4 · Own a module</h4><p>Want to maintain one of the 21 repositories long-term? Say which one and what you would change. Handing a module to an outside maintainer is an outcome we want.</p></div>
+</div>
+<div class="note"><strong>Other industries are explicitly welcome.</strong> LGD is not a medical framework that happens to be medical: the core is domain-neutral and the medical matrix is the worked example. Keep <code>router.py</code> and <code>harness.py</code>, add your own <code>domains/</code> modules, and touch nothing medical. Proposals in that direction are as welcome as medical contributions. <a href="https://github.com/stevenzhao07/medical-ai-toolkit/issues">Open an issue →</a></div>
+
+<h2>License &amp; disclaimer</h2>
+<div class="disc">Licence: <strong>CC BY 4.0</strong>. Individual modules carry CC0, CC BY 4.0 or Apache-2.0 as stated in their own repositories.<br><br>
+This toolkit provides structured templates and calculations. It is <strong>not</strong> regulatory advice, clinical advice or a compliance conclusion; it does not reproduce regulatory texts; it is not a medical device or a SaMD product. Decisions on registration, clinical evaluation, sterilisation, risk analysis and software classification must be made by qualified personnel against the current official text of the applicable jurisdiction (NMPA / FDA / EU MDR / PMDA).</div>
+
+</div>
+
+<!-- ============================ 中文 ============================ -->
+<div class="wrap"><div class="divider divider-en"></div></div>
+
+<section class="hero" id="zh">
+  <div class="wrap">
+    <h1>覆盖医疗器械 AI 全生命周期的 21 个开源仓库工具集</h1>
+    <p class="lede">构建于 <strong>LGD</strong> —— 一套「内核与行业无关、领域能力皆插件、按需加载」的治理框架。医疗器械是参考示例领域，骨架本身与行业无关。零第三方依赖，可离线审计；人和 AI 编码代理都能发现并调用。</p>
+    <div class="badges">
+      <span class="badge">许可：CC BY 4.0</span>
+      <span class="badge">Python 3.8+</span>
+      <span class="badge">无第三方依赖</span>
+      <span class="badge">21 个仓库</span>
+      <span class="badge">可离线审计</span>
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://github.com/stevenzhao07/medical-ai-toolkit">打开仓库</a>
+      <a class="btn ghost" href="#zh-quickstart">快速开始</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<h2 id="zh-what">这是什么</h2>
+<p>本站点是 <a href="https://github.com/stevenzhao07">@stevenzhao07</a> 名下 21 个仓库的门户。它本身不含产品代码，只承担三件事：索引、路由表、方法论入口。贡献者 <strong>Xinghua Zhao</strong> · 关联 MedXpert（医疗器械法规咨询）· 纯技术贡献，不含商业推广。</p>
+<table>
+  <tr><th>部分</th><th>数量</th><th>覆盖内容</th></tr>
+  <tr><td>AI 治理层</td><td>9</td><td>法规与质量体系映射、AI 治理自检、模型护照、运行时约束、数据互操作、多语种标签、工程验证</td></tr>
+  <tr><td>器械生命周期层</td><td>11</td><td>从设计控制到上市后警戒的器械实体生命周期</td></tr>
+  <tr><td>本门户</td><td>1</td><td>路由、机器可发现清单、自检测试框架</td></tr>
+</table>
+<p>每个模块都是<strong>零依赖 Python 命令行工具</strong>，仅用标准库即可运行 —— 不需要云服务、不需要 <code>scikit-learn</code>、不需要联网。这是刻意的取舍：合规产物必须能在离线环境审计，并在多年后仍可复现。</p>
+
+<h2 id="zh-lgd">LGD：底下的那套框架</h2>
+<p>LGD 是一套以「<strong>内核与行业无关、领域能力皆插件、按需加载</strong>」为组织原则的治理框架。</p>
+<table>
+  <tr><th>性质</th><th>具体含义</th></tr>
+  <tr><td>一切即插件</td><td>一个能力由声明式 <code>module.json</code> 描述（id、触发词、提供能力、入口、依赖）；新增模块不触碰内核。</td></tr>
+  <tr><td>按需加载</td><td><code>router.py</code> 静止时只读元数据，命中触发词才载入模块全文 —— 每个模块常驻开销约 20 token。</td></tr>
+  <tr><td>可嵌套</td><td>模块本身可以再作为入口去路由子模块。本门户正是如此：由模块组成的模块。</td></tr>
+  <tr><td>配置化，而非改码</td><td>行业、机构、语区都放在 <code>config/</code>。采用方通过配置与自有私有插件适配，而不是改内核源码。</td></tr>
+</table>
+<div class="note">为什么长成这样：同一套骨架，既能编排一次欧盟 MDR 临床评价，也能编排一次财务内控复核或法律合规流程 —— 可复用的是<strong>顺序、门禁与审计轨迹</strong>，不是领域内容本身。</div>
+
+<h2 id="zh-medical">医疗领域：参考实现</h2>
+<p class="layer">第一层 —— AI 治理（9 仓）</p>
+<div class="grid g3">
+  <div class="card"><h4>法规与质量体系</h4><p class="repo">samd-ra-toolkit</p><p>NMPA · EU MDR · FDA · PMDA 跨辖区映射；IEC 62304；ISO 14971。</p></div>
+  <div class="card"><h4>AI 治理</h4><p class="repo">ai-governance-checklist · ai-a3-laws · ai-model-passport</p><p>模型卡/数据卡；权限–自主–追责三约束；模型身份与溯源。</p></div>
+  <div class="card"><h4>数据互操作</h4><p class="repo">fhir-ortho-toolkit · omop-ortho-toolkit</p><p>HL7 FHIR R4（UDI 轮廓）；OHDSI OMOP CDM v5.4。</p></div>
+  <div class="card"><h4>工程验证</h4><p class="repo">ml-validation-toolkit · delivery-guard</p><p>性能/校准/公平性；17 道交付门禁 + 双 SHA-256 权属台账。</p></div>
+  <div class="card"><h4>多语种本地化</h4><p class="repo">multilingual-ifu</p><p>IFU 模板 14 个语言版本（zh 母版 + 13 外语）。</p></div>
+</div>
+
+<p class="layer">第二层 —— 器械生命周期（11 仓）</p>
+<div class="grid g3">
+  <div class="card"><h4>设计控制</h4><p class="repo">design-controls-toolkit</p><p>ISO 13485 §7.3 / 21 CFR 820.30 / IEC 62366-1。</p></div>
+  <div class="card"><h4>风险管理</h4><p class="repo">iso14971-risk-file</p><p>ISO 14971 / TR 24971。</p></div>
+  <div class="card"><h4>软件生命周期</h4><p class="repo">iec62304-software</p><p>IEC 62304（A/B/C 分级、SOUP）。</p></div>
+  <div class="card"><h4>分类与路径映射</h4><p class="repo">device-regulatory-map</p><p>NMPA / EU MDR / FDA / PMDA。</p></div>
+  <div class="card"><h4>临床评价</h4><p class="repo">clinical-evaluation</p><p>MDR Art.61 · MDCG · CER + PMCF。</p></div>
+  <div class="card"><h4>生物相容性</h4><p class="repo">biocompatibility-iso10993</p><p>ISO 10993-1 终点矩阵。</p></div>
+  <div class="card"><h4>灭菌与清洁</h4><p class="repo">sterilization-validation</p><p>ISO 11135 / 11137 / 17665；内毒素限值。</p></div>
+  <div class="card"><h4>生产质量</h4><p class="repo">manufacturing-gmp</p><p>GMP 2025 修订版 / IQ·OQ·PQ。</p></div>
+  <div class="card"><h4>UDI 赋码</h4><p class="repo">udi-assignment</p><p>GS1 / HIBCC / ICCBBA / 21 CFR 830 / EUDAMED。</p></div>
+  <div class="card"><h4>上市后警戒</h4><p class="repo">pms-vigilance</p><p>NMPA 令第 1 号 / 第 29 号 / MDR Art.87；召回时限。</p></div>
+  <div class="card"><h4>网络安全</h4><p class="repo">cybersecurity-medical</p><p>IEC 81001-5-1 / SBOM / STRIDE。</p></div>
+</div>
+<p>两层连成一条不断链的路径：<strong>设计控制 → 风险管理 → 软件生命周期 → 分类 → 临床评价 → 生物相容性 → 灭菌 → 生产 → UDI → 上市后警戒 → 网络安全。</strong>仓库入口：<a href="https://github.com/stevenzhao07?tab=repositories">github.com/stevenzhao07</a>。</p>
+
+<h2 id="zh-why">为什么做这件事</h2>
+<table>
+  <tr><th>观察到的缺口</th><th>本工具的做法</th></tr>
+  <tr><td>生命周期工具彼此孤立，团队得手工拼接</td><td>21 个模块共用一份契约与一张路由表，阶段之间无需胶水代码</td></tr>
+  <tr><td>法规内容默认只讲美欧</td><td>中国的法规（NMPA 令、GMP 修订、召回时限）与 MDR/FDA/PMDA 并列覆盖</td></tr>
+  <tr><td>人读得懂、AI 代理看不见</td><td>每个模块都带 <code>AGENTS.md</code>、<code>CLAUDE.md</code>、<code>llms.txt</code> 与 A2A 代理卡，编码代理无需被告知即可发现并调用</td></tr>
+</table>
+<div class="note"><strong>关于可核实性。</strong> 法规与标准一直在变，因此这些模块里的每条事实性断言都标出来源；凡是无法对照一手文本确认的，标注 <code>TO_BE_VERIFIED</code>，而不是填一个看起来合理的数字。若你发现某个值有错或过期，那是一个可报的缺陷，不是吹毛求疵。</div>
+
+<h2 id="zh-quickstart">快速开始</h2>
+<pre><code>git clone https://github.com/stevenzhao07/medical-ai-toolkit.git
+cd medical-ai-toolkit
+python scripts/discover.py --demo                 # 打印 21 仓路由表
+python harness.py --module medical-ai-toolkit     # 跑 6 维自检</code></pre>
+<p>环境要求：Python 3.8+，无第三方依赖，无需联网。</p>
+
+<h2 id="zh-participate">如何参与</h2>
+<div class="grid g2">
+  <div class="card"><h4>1 · 挑错</h4><p>法规数值、标准号、条款引用、日期，全都欢迎质疑。请提 Issue 并附上与你所指相矛盾的来源 —— 在这里，纠错是价值最高的贡献。</p></div>
+  <div class="card"><h4>2 · 试用</h4><p>用你自己的器械或数据跑一个模块，告诉我们它在哪里开始不好用。</p></div>
+  <div class="card"><h4>3 · 贡献</h4><p>模块与修复都欢迎。分支命名、AI 署名 trailer、推荐阅读顺序见 AI_PARTICIPATION.md。</p></div>
+  <div class="card"><h4>4 · 认领模块</h4><p>愿意长期维护 21 仓中的某一个？说明你想接手哪个、打算改什么。把模块交给外部维护者，是我们想要的结果。</p></div>
+</div>
+<div class="note"><strong>其他行业同样欢迎，且是明确欢迎。</strong> LGD 不是"碰巧偏医疗"的医疗框架：内核与行业无关，医疗矩阵只是那个已经做出来的样例。保留 <code>router.py</code> 与 <code>harness.py</code>，直接加自己的 <code>domains/</code> 模块，完全不碰医疗部分。这个方向的提案与医疗贡献一视同仁。<a href="https://github.com/stevenzhao07/medical-ai-toolkit/issues">提 Issue →</a></div>
+
+<h2>许可与免责声明</h2>
+<div class="disc">许可：<strong>CC BY 4.0</strong>。各子模块许可在其仓库内声明（CC0 / CC BY 4.0 / Apache-2.0 混合）。<br><br>
+本工具只提供结构化模板与计算能力，<strong>不构成法规建议、临床建议或合规结论</strong>；不复制法规全文；也不是医疗器械或 SaMD 产品。注册、临床评价、灭菌、风险分析、软件分级等决策，须由合资格人员依据目标辖区（NMPA / FDA / EU MDR / PMDA）最新官方文本作出。</div>
+
+</div>
+
+<footer><div class="wrap">
+  medical-ai-toolkit · <a href="https://github.com/stevenzhao07/medical-ai-toolkit">GitHub</a> · Licence CC BY 4.0 · Contributed by Xinghua Zhao (@stevenzhao07) · Affiliation: MedXpert
+</div></footer>
+
+</body>
+</html>
