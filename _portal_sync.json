@@ -1,0 +1,26 @@
+{
+  "generated_by": "manifest.py",
+  "algorithm": "sha256",
+  "note": "门户副本哈希台账；scripts/check_portal_sync.py 校验一致性（CI 门禁）",
+  "files": {
+    ".devcontainer/devcontainer.json": "0763a5ea3fc026107a43a30e86c3fba906d84989614ce414febf7a7b8fb7224b",
+    ".github/workflows/harness.yml": "84d34827e82069e774701b6e7ee8ddf1cd22b17ea4c885c4ae9e770d871bf193",
+    ".well-known/agent-card.json": "9d95bd564ef394d902530f0705b6a46c900dfba9cfe2a82b0165290f4c2b9af1",
+    ".well-known/agent.json": "9d95bd564ef394d902530f0705b6a46c900dfba9cfe2a82b0165290f4c2b9af1",
+    "AGENTS.md": "b50095f55b406904bc88939595ad0916a0d203c4e8ceff9df923c7756e490d42",
+    "AI_PARTICIPATION.md": "7d3474870e34c053ecafc4890b8f508a974d6043b120208572b44961ad228ea2",
+    "gold_set.json": "fb9e77419f576c5b3da38c5ae4689ec60f2ddca785c073737497bd6cc4b27e07",
+    "harness.py": "2eccb0873f9180c8812a2e8264d327484e0343d315a28c84ea72e5c098a270ef",
+    "idea_scaffold.py": "a865069d60cb5cd5a58a23143035702bb4fd02759609e24690f4d92ae77d774d",
+    "lifecycle_modules.py": "2d0cd81968c2857adbdc4c49155614d460016bcc00c3fab244ed892fd3d50112",
+    "llms-full.txt": "8a09c603779cac2e781affe62ff9a8d92f7e55b0c061a07b0bedd38d28a53702",
+    "llms.txt": "b65f8b061d4cbc7a6369c952b18cbcc9b382682a293e73e66d3d066a7794a868",
+    "router.py": "8638c3f5ce767cd377275e6ff68f5afc803872b1dfbf69a374a584fbfacd1d4c",
+    "run_all.py": "85a523221f1f5ef899e2c3be05dc435fec18dd7947bafc490b6817de9add7e96",
+    "scaffold.py": "b9d406781a0770e0e6593c7cb8d41622fd7d84e3a4fd9b2d8469358e94ad57ba",
+    "scripts/check_portal.py": "ac1ded449faa04cd163a7e0ce962f1627706b9dcafc64c1a4bba1d1b80096cf9",
+    "scripts/check_portal_sync.py": "c1844bd7f9daf38fdfb4439fc86fe4421f8193f86d23d9ae094c493133aea38b",
+    "skeleton.json": "dd025e1e99de84631faa6264f4a40b208972a1e5339415a3385ffad435641c0c",
+    "teamai.manifest.json": "68d0e28a426673f0c8053e74dce9f74f52f760883f66f07af1ac72f9759dfb31"
+  }
+}

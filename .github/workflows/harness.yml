@@ -1,0 +1,29 @@
+name: harness
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # 门户独立克隆态无 repos/：harness --all 明确 SKIP（返回 0）。
+      # 真门禁 = 门户自身 6 维自测（含 gold 语义回归）+ 生成物自洽 + 路由冒烟。
+      - name: Self-test 6-dimension harness (门户自身质量门禁)
+        run: python harness.py --module medical-ai-toolkit
+      - name: Portal consistency (skeleton/agent-card/teamai/llms 四向一致)
+        run: python scripts/check_portal.py
+      - name: Portal copy hash sync (工具副本未被篡改/漏同步)
+        run: python scripts/check_portal_sync.py
+      - name: Routing smoke (discover 路由发现)
+        run: python scripts/discover.py --demo

@@ -1,0 +1,649 @@
+{
+  "protocolVersion": "1.0",
+  "name": "LGD Skeleton — MedXpert medical-device RA modules",
+  "description": "Aggregated, pluggable medical-AI / medical-device regulatory modules (governance / A3 Laws / AI passport / SaMD RA / multilingual IFU / FHIR / OMOP / ML validation). Discovered via lgd-skeleton/1.0, zero-dependency CLI.",
+  "version": "1.0.0",
+  "url": "https://github.com/stevenzhao07/medical-ai-toolkit",
+  "documentationUrl": "https://github.com/stevenzhao07/medical-ai-toolkit/blob/main/AI_PARTICIPATION.md",
+  "provider": {
+    "organization": "MedXpert (美达信医疗科技)",
+    "url": "https://github.com/stevenzhao07"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/plain",
+    "application/json",
+    "text/markdown"
+  ],
+  "securitySchemes": {},
+  "supportedInterfaces": [
+    {
+      "url": "https://github.com/stevenzhao07/medical-ai-toolkit",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "skills": [
+    {
+      "id": "ai-a3-laws",
+      "name": "A³ Laws 运行时约束库（自主系统的三条安全边界）",
+      "description": "把「立法者（A³ Laws）」理念工程化为可部署的运行时约束库：对每一次自主决策做三定律校验——A1 权限边界（Authority）、A2 自主边界（人类监督）、A3 追责边界（可归因日志）。返回违规清单，可嵌入门禁或 Agent 循环。（对应『运行时约束』能力缺口。）",
+      "tags": [
+        "a3-laws",
+        "runtime",
+        "constraint",
+        "autonomy",
+        "human-oversight",
+        "accountability",
+        "自主系统"
+      ],
+      "examples": [
+        "运行时约束",
+        "自主边界",
+        "人类监督"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "ai-governance-checklist",
+      "name": "医疗 AI 治理聚合仓（模型卡/数据卡/人类监督检查单）",
+      "description": "医疗 AI 治理的聚合开源仓：模型卡 / 数据卡模板 + 人类监督（human-in-the-loop）检查单 + 公平性测试骨架 + OWASP AI Exchange 医疗章节输入。把「人机共存」理念落到治理清单。",
+      "tags": [
+        "ai-governance",
+        "model-card",
+        "data-card",
+        "human-oversight",
+        "fairness",
+        "治理",
+        "checklist"
+      ],
+      "examples": [
+        "AI治理",
+        "模型卡",
+        "人类监督",
+        "公平性"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "ai-model-passport",
+      "name": "AI 护照身份档案参考实现（身份/溯源/追责）",
+      "description": "把「护照官（AI 护照制度）」理念做成可部署的参考实现：为每一个 AI 系统签发一份机器可读的『AI 护照』JSON（身份、模型卡引用、训练数据、预期用途、风险分级、符合性声明、签发哈希），支持签发与验证。（对应『AI 护照系统』能力缺口。）",
+      "tags": [
+        "ai-passport",
+        "passport",
+        "identity",
+        "provenance",
+        "traceability",
+        "AI护照"
+      ],
+      "examples": [
+        "AI护照",
+        "身份档案",
+        "溯源追责"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "biocompatibility-iso10993",
+      "name": "生物学评价终点矩阵（ISO 10993-1 按接触类型）",
+      "description": "ISO 10993-1:2018 生物学评价终点判定矩阵：按接触性质（表面/外部接入/植入）× 接触组织（皮肤/粘膜/损伤皮肤/组织/骨/血液/神经）× 接触时限（有限 ≤24h / 24h–30d / >30d）输出需评终点（细胞毒性/致敏/刺激/急性/亚慢性/慢性/遗传毒性/致癌/生殖/植入/血液相容性/降解），并给出化学表征（ISO 10993-18）与 Gap 分析清单。",
+      "tags": [
+        "iso10993",
+        "biocompatibility",
+        "生物相容性",
+        "细胞毒性",
+        "致敏",
+        "化学表征",
+        "endpoint-matrix",
+        "gap-analysis"
+      ],
+      "examples": [
+        "生物相容性评价",
+        "终点选择",
+        "10993 矩阵"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "clinical-evaluation",
+      "name": "临床评价与 PMCF 规划器（CER 路径/同品种比对）",
+      "description": "临床评价（CER）路径规划与 PMCF 计划生成：同品种比对（EU MDR Annex XIV + MEDDEV 2.7.1 rev.4）、临床试验路径、NMPA 临床评价指导原则路径、FDA 510(k) 实质等效；PMCF 计划模板（终点/人群/随访/统计）与 PSUR/CER 更新触发条件。",
+      "tags": [
+        "cer",
+        "clinical-evaluation",
+        "pmcf",
+        "临床评价",
+        "同品种",
+        "psur"
+      ],
+      "examples": [
+        "临床评价路径",
+        "同品种比对",
+        "PMCF 计划"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "cybersecurity-medical",
+      "name": "医疗器械网络安全工具箱（IEC 81001-5-1 + SBOM）",
+      "description": "医疗器械网络安全合规工具：IEC 81001-5-1 安全开发生命周期检查单、FDA 预市网络安全指南（2023）要点清单、威胁建模提示（STRIDE 医疗适配）、SBOM（SPDX/CycloneDX）检查与组件漏洞关注项、安全更新与沟通计划模板。",
+      "tags": [
+        "cybersecurity",
+        "iec81001",
+        "sbom",
+        "spdx",
+        "cyclonedx",
+        "网络安全",
+        "威胁建模"
+      ],
+      "examples": [
+        "网络安全自查",
+        "SBOM 检查",
+        "威胁建模"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "delivery-guard",
+      "name": "医疗 AI / 医疗器械交付物门禁（17 道门禁 + 双 SHA-256 指纹权属台账）",
+      "description": "MedXpert 把AI 交付治理理念工程化落地的可插拔模块：交付前按 17 道门禁校验，并计算双 SHA-256 指纹写入权属台账（provenance ledger），形成可审计的在先发表证据。",
+      "tags": [
+        "delivery",
+        "gate",
+        "门禁",
+        "provenance",
+        "sha256",
+        "ledger",
+        "release",
+        "发布前校验",
+        "compliance-check",
+        "权属台账"
+      ],
+      "examples": [
+        "门禁",
+        "交付校验",
+        "权属台账",
+        "指纹存证"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "design-controls-toolkit",
+      "name": "医疗器械设计控制工具包（DHF/DMR/设计转换/人因挂点）",
+      "description": "把 ISO 13485 §7.3 设计开发控制与 21 CFR 820.30 设计控制落成可运行的自检清单生成器：设计输入/输出、评审、验证(V&V)、确认、设计转换、变更控制、DHF/DMR 索引，含 IEC 62366-1 人因工程挂点。适用于 II/III 类器械与 SaMD 的设计阶段质量体系搭建。",
+      "tags": [
+        "design-controls",
+        "dhf",
+        "dmr",
+        "设计控制",
+        "设计转换",
+        "iso13485",
+        "820.30",
+        "human-factors"
+      ],
+      "examples": [
+        "设计控制自查",
+        "DHF 建立",
+        "设计验证确认",
+        "人因工程"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "device-regulatory-map",
+      "name": "通用器械跨辖区监管映射（分类/路径/时限）",
+      "description": "非软件类医疗器械的跨辖区监管映射：分类规则（NMPA《医疗器械分类规则》+ 分类目录、EU MDR Annex VIII 22 条分类规则、FDA 21 CFR 862–892 专科分类 + 860 程序、PMDA 药机法 Ⅰ–Ⅳ）、注册路径（注册/备案/510(k)/De Novo/PMA/THP）、代表机构要求（MAH/EC REP/US Agent）与典型周期经验值。",
+      "tags": [
+        "regulatory",
+        "classification",
+        "分类规则",
+        "nmpa",
+        "mdr",
+        "fda",
+        "pmda",
+        "mdsap",
+        "注册"
+      ],
+      "examples": [
+        "器械分类",
+        "注册路径",
+        "辖区对比"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "fhir-ortho-toolkit",
+      "name": "医疗器械 UDI 的 HL7 FHIR R4 轮廓（骨科植入物示例）",
+      "description": "骨科植入物唯一标识（UDI）的 HL7 FHIR R4 轮廓参考实现：Device（含 UDI carrier）、Patient、Procedure（THA/TKA）、Observation 的资源构造器与示例。定位为规范（spec）仓，投 HL7 社区。",
+      "tags": [
+        "fhir",
+        "ortho",
+        "udi",
+        "hl7",
+        "device",
+        "骨科",
+        "互操作"
+      ],
+      "examples": [
+        "FHIR轮廓",
+        "骨科UDI",
+        "互操作"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "iec62304-software",
+      "name": "医疗器械软件生命周期（IEC 62304 安全分级/过程映射）",
+      "description": "IEC 62304:2006+A1:2015 医疗器械软件生命周期工具：软件安全等级 A/B/C 判定器（基于伤害可能性×严重度）、软件开发生命周期过程清单（策划/需求/架构/单元/集成/系统测试/发布/维护）、与 Agile/CI 实践的映射建议、SOUP 第三方组件管理检查点。",
+      "tags": [
+        "iec62304",
+        "software-lifecycle",
+        "软件安全等级",
+        "soup",
+        "医疗软件",
+        "agile"
+      ],
+      "examples": [
+        "软件安全分级",
+        "62304 自查",
+        "SOUP 管理"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "iso14971-risk-file",
+      "name": "风险管理文件生成器（ISO 14971 风险分析/评价/控制）",
+      "description": "按 ISO 14971:2019（+ ISO/TR 24971 应用指南）生成风险管理文件骨架：危害登记表、5×5 概率×严重度风险矩阵、可接受性准则、风险控制措施跟踪、剩余风险与受益-风险分析。把「风险管理贯穿生命周期」落成一条命令。",
+      "tags": [
+        "iso14971",
+        "risk-management",
+        "风险管理",
+        "风险矩阵",
+        "剩余风险",
+        "benefit-risk"
+      ],
+      "examples": [
+        "风险管理文件",
+        "风险分析",
+        "风险评价矩阵",
+        "剩余风险"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "manufacturing-gmp",
+      "name": "生产质量管理与过程确认（GMP 条款对照 + IQ/OQ/PQ）",
+      "description": "医疗器械生产质量管理规范（GMP）自查工具：2014 版条款框架清单 + 版本差异对照（载入两版条款 JSON 自动 diff）+ 过程确认 IQ/OQ/PQ 检查单生成。服务「2025 修订版 vs 2014 版 GMP 差异研究」与生产现场体系自查。",
+      "tags": [
+        "gmp",
+        "生产质量管理",
+        "过程确认",
+        "iq",
+        "oq",
+        "pq",
+        "iso13485",
+        "生产"
+      ],
+      "examples": [
+        "GMP 自查",
+        "版本差异对照",
+        "过程确认方案"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "medical-ai-toolkit",
+      "name": "MedXpert 医疗 AI 落地 · 可插拔总入口与方法论门户",
+      "description": "lgd-skeleton/1.0 总入口：提供医疗 AI 从合规到临床落地的五层方法论导航，并自动路由发现 20 个子模块（工具矩阵共 21 仓：AI 治理 9 + 器械全生命周期 11 + 门户 1）。",
+      "tags": [
+        "medai",
+        "landing",
+        "portal",
+        "医疗AI",
+        "导航",
+        "方法论文档"
+      ],
+      "examples": [
+        "总入口",
+        "导航",
+        "方法论"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "ml-validation-toolkit",
+      "name": "医疗 AI 模型验证包（性能/校准/公平性，零依赖）",
+      "description": "医疗 AI 模型的验证工具包：给定 y_true / y_pred（可选 subgroup），计算 AUC、Accuracy、Precision/Recall/F1、Brier 校准误差，以及子组公平性缺口（人口均等等差 / 机会均等等差）。仅 Python 标准库实现，便于离线审计。",
+      "tags": [
+        "ml-validation",
+        "auc",
+        "calibration",
+        "fairness",
+        "model-validation",
+        "验证",
+        "公平性"
+      ],
+      "examples": [
+        "模型验证",
+        "公平性测试",
+        "校准"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "multilingual-ifu",
+      "name": "医疗器械 IFU 多语种对照语料（骨科植入物示例 × 13 语种）",
+      "description": "MedXpert 把骨科植入物/器械使用说明（IFU）做成中→英/德/日/阿/法/西/意/葡/俄/韩/泰/印尼/越 13 外语对照的开源语料库，每段严格对齐 7 段结构（产品标识/预期用途/禁忌症/警告/清洁灭菌/追溯/不良事件）。13 外语覆盖是本模块的主要差异化方向（多数同类项目仅英文）。",
+      "tags": [
+        "ifu",
+        "multilingual",
+        "多语种",
+        "骨科",
+        "orthopedics",
+        "labeling",
+        "翻译",
+        "本地化"
+      ],
+      "examples": [
+        "多语种IFU",
+        "标签本地化",
+        "骨科翻译"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "omop-ortho-toolkit",
+      "name": "手术登记 → OMOP CDM ETL 提案（骨科示例，框架通用）",
+      "description": "把骨科手术登记（关节置换 TKA/THA、植入物）映射到 OHDSI OMOP CDM 的 ETL 提案与示例：源代码（CPT/SNOMED）→ OMOP 概念集，产出概念集 SQL 骨架。投 OHDSI CDM WG。",
+      "tags": [
+        "omop",
+        "ohdsi",
+        "cdm",
+        "etl",
+        "ortho",
+        "登记",
+        "概念集"
+      ],
+      "examples": [
+        "OMOP映射",
+        "骨科登记",
+        "ETL"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "pms-vigilance",
+      "name": "上市后监督与警戒工具（报告时限/召回分级/PSUR）",
+      "description": "上市后监督（PMS）与警戒（Vigilance）时限计算与合规工具：NMPA 不良事件报告（死亡 7 日/严重伤害 20 日/群体 12 小时）、EU MDR Art.87（2/10/15 天）、FDA MDR（30 日/5 工作日/806 召回 10 工作日）、召回分级时限表（NMPA 一级 1 日起/FDA Class I–III）、PSUR/定期风险评价周期。输入获知日期，输出各辖区截止日。",
+      "tags": [
+        "pms",
+        "vigilance",
+        "不良事件",
+        "警戒",
+        "召回",
+        "psur",
+        "pmcf",
+        "mdr",
+        "fsca"
+      ],
+      "examples": [
+        "不良事件报告时限",
+        "召回分级",
+        "PSUR 周期",
+        "FSCA"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "samd-ra-toolkit",
+      "name": "SaMD / AIaMD 法规质量体系工具包（跨辖区映射）",
+      "description": "Software as a Medical Device（SaMD / AIaMD）的注册与质量体系工具包：SaMD 判定树 + IEC 62304 / ISO 14971(AI) / EU AI Act 映射 + PCCP 模板骨架 + AI-CER 骨架 + **跨辖区差异表（NMPA / EU MDR / FDA / PMDA）**。（对应『跨辖区监管映射模板』能力缺口。）",
+      "tags": [
+        "samd",
+        "aiamd",
+        "NMPA",
+        "FDA",
+        "MDR",
+        "PMDA",
+        "regulatory",
+        "SaMD判定",
+        "监管映射"
+      ],
+      "examples": [
+        "SaMD路径",
+        "跨辖区监管",
+        "法规映射"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "sterilization-validation",
+      "name": "灭菌与清洁验证计算器（EO/湿热/辐照/清洁/内毒素）",
+      "description": "医疗器械灭菌与清洁验证的常用计算器：EO 灭菌 BI 存活分数与过度杀灭法判据、湿热灭菌 F0 累积、辐照灭菌 ISO 11137 Method 1 VDmax 剂量设定、清洁验证残留限值（PDE/单位面积法/10 ppm 经验法）、细菌内毒素限值（K/M 法）。覆盖骨科植入物清洁验证/内毒素检验的真实工程场景。",
+      "tags": [
+        "sterilization",
+        "eo",
+        "f0",
+        "iso11137",
+        "iso17665",
+        "iso11135",
+        "cleaning-validation",
+        "endotoxin",
+        "灭菌验证",
+        "清洁验证",
+        "内毒素"
+      ],
+      "examples": [
+        "灭菌验证计算",
+        "F0 计算",
+        "清洁验证限值",
+        "内毒素限值"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    },
+    {
+      "id": "udi-assignment",
+      "name": "UDI 赋码工具（GS1 DI/PI + 辖区数据库字段）",
+      "description": "医疗器械唯一标识（UDI）赋码参考实现：GS1 GTIN-14 校验位计算（mod-10）、DI/PI 拆分（生产日期/批号/序列号/有效期）、HIBCC/ICCBBA 体系说明、FDA GUDID / NMPA 器械 UDI 数据库 / EUDAMED 三侧必填字段对照。补 fhir-ortho-toolkit（数据侧）与 multilingual-ifu（标签侧）之间的赋码缺口。",
+      "tags": [
+        "udi",
+        "gs1",
+        "gtin",
+        "hibcc",
+        "iccbba",
+        "gudid",
+        "eudamed",
+        "唯一标识"
+      ],
+      "examples": [
+        "UDI 赋码",
+        "GTIN 校验位",
+        "DI/PI 拆分",
+        "UDI 数据库字段"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json",
+        "text/markdown"
+      ]
+    }
+  ],
+  "_meta": {
+    "discoveryOnly": true,
+    "schema": "lgd-skeleton/1.0",
+    "note": "Static capability catalog. No live A2A JSON-RPC endpoint exposed; streaming/pushNotifications/stateTransitionHistory are false. Enable GitHub Pages on the landing repo for a stable hosted card. Spec: A2A 1.0 (Linux Foundation, 2026-03)."
+  }
+}

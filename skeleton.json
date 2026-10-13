@@ -1,0 +1,722 @@
+{
+  "schema": "lgd-skeleton/1.0",
+  "root": "medical-ai-toolkit",
+  "generated_by": "lgd-skeleton/1.0 manifest.py",
+  "generated_at": "2026-10-13T01:29:59.362072+00:00",
+  "count": 21,
+  "routing": {
+    "ai-a3-laws": "repos/ai-a3-laws",
+    "ai-governance-checklist": "repos/ai-governance-checklist",
+    "ai-model-passport": "repos/ai-model-passport",
+    "biocompatibility-iso10993": "repos/biocompatibility-iso10993",
+    "clinical-evaluation": "repos/clinical-evaluation",
+    "cybersecurity-medical": "repos/cybersecurity-medical",
+    "delivery-guard": "repos/delivery-guard",
+    "design-controls-toolkit": "repos/design-controls-toolkit",
+    "device-regulatory-map": "repos/device-regulatory-map",
+    "fhir-ortho-toolkit": "repos/fhir-ortho-toolkit",
+    "iec62304-software": "repos/iec62304-software",
+    "iso14971-risk-file": "repos/iso14971-risk-file",
+    "manufacturing-gmp": "repos/manufacturing-gmp",
+    "medical-ai-toolkit": "repos/medical-ai-toolkit",
+    "ml-validation-toolkit": "repos/ml-validation-toolkit",
+    "multilingual-ifu": "repos/multilingual-ifu",
+    "omop-ortho-toolkit": "repos/omop-ortho-toolkit",
+    "pms-vigilance": "repos/pms-vigilance",
+    "samd-ra-toolkit": "repos/samd-ra-toolkit",
+    "sterilization-validation": "repos/sterilization-validation",
+    "udi-assignment": "repos/udi-assignment"
+  },
+  "modules": [
+    {
+      "id": "ai-a3-laws",
+      "title": "A³ Laws 运行时约束库（自主系统的三条安全边界）",
+      "description": "把「立法者（A³ Laws）」理念工程化为可部署的运行时约束库：对每一次自主决策做三定律校验——A1 权限边界（Authority）、A2 自主边界（人类监督）、A3 追责边界（可归因日志）。返回违规清单，可嵌入门禁或 Agent 循环。（对应『运行时约束』能力缺口。）",
+      "entry": "scripts/a3_laws.py",
+      "keywords": [
+        "a3-laws",
+        "runtime",
+        "constraint",
+        "autonomy",
+        "human-oversight",
+        "accountability",
+        "自主系统"
+      ],
+      "intents": [
+        "运行时约束",
+        "自主边界",
+        "人类监督"
+      ],
+      "provides": [
+        "ai-a3-laws",
+        "a3",
+        "runtime-constraint",
+        "autonomy-guard"
+      ],
+      "needs_backends": [],
+      "license": "CC0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/ai-a3-laws",
+      "path": "repos/ai-a3-laws"
+    },
+    {
+      "id": "ai-governance-checklist",
+      "title": "医疗 AI 治理聚合仓（模型卡/数据卡/人类监督检查单）",
+      "description": "医疗 AI 治理的聚合开源仓：模型卡 / 数据卡模板 + 人类监督（human-in-the-loop）检查单 + 公平性测试骨架 + OWASP AI Exchange 医疗章节输入。把「人机共存」理念落到治理清单。",
+      "entry": "scripts/gov_checklist.py",
+      "keywords": [
+        "ai-governance",
+        "model-card",
+        "data-card",
+        "human-oversight",
+        "fairness",
+        "治理",
+        "checklist"
+      ],
+      "intents": [
+        "AI治理",
+        "模型卡",
+        "人类监督",
+        "公平性"
+      ],
+      "provides": [
+        "ai-governance-checklist",
+        "governance",
+        "model-card",
+        "checklist"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/ai-governance-checklist",
+      "path": "repos/ai-governance-checklist"
+    },
+    {
+      "id": "ai-model-passport",
+      "title": "AI 护照身份档案参考实现（身份/溯源/追责）",
+      "description": "把「护照官（AI 护照制度）」理念做成可部署的参考实现：为每一个 AI 系统签发一份机器可读的『AI 护照』JSON（身份、模型卡引用、训练数据、预期用途、风险分级、符合性声明、签发哈希），支持签发与验证。（对应『AI 护照系统』能力缺口。）",
+      "entry": "scripts/ai_passport.py",
+      "keywords": [
+        "ai-passport",
+        "passport",
+        "identity",
+        "provenance",
+        "traceability",
+        "AI护照"
+      ],
+      "intents": [
+        "AI护照",
+        "身份档案",
+        "溯源追责"
+      ],
+      "provides": [
+        "ai-model-passport",
+        "passport",
+        "ai-identity",
+        "provenance"
+      ],
+      "needs_backends": [],
+      "license": "CC0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/ai-model-passport",
+      "path": "repos/ai-model-passport"
+    },
+    {
+      "id": "biocompatibility-iso10993",
+      "title": "生物学评价终点矩阵（ISO 10993-1 按接触类型）",
+      "description": "ISO 10993-1:2018 生物学评价终点判定矩阵：按接触性质（表面/外部接入/植入）× 接触组织（皮肤/粘膜/损伤皮肤/组织/骨/血液/神经）× 接触时限（有限 ≤24h / 24h–30d / >30d）输出需评终点（细胞毒性/致敏/刺激/急性/亚慢性/慢性/遗传毒性/致癌/生殖/植入/血液相容性/降解），并给出化学表征（ISO 10993-18）与 Gap 分析清单。",
+      "entry": "scripts/biocompat.py",
+      "keywords": [
+        "iso10993",
+        "biocompatibility",
+        "生物相容性",
+        "细胞毒性",
+        "致敏",
+        "化学表征",
+        "endpoint-matrix",
+        "gap-analysis"
+      ],
+      "intents": [
+        "生物相容性评价",
+        "终点选择",
+        "10993 矩阵"
+      ],
+      "provides": [
+        "biocompatibility-iso10993",
+        "endpoint-matrix",
+        "gap-analysis"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/biocompatibility-iso10993",
+      "path": "repos/biocompatibility-iso10993"
+    },
+    {
+      "id": "clinical-evaluation",
+      "title": "临床评价与 PMCF 规划器（CER 路径/同品种比对）",
+      "description": "临床评价（CER）路径规划与 PMCF 计划生成：同品种比对（EU MDR Annex XIV + MEDDEV 2.7.1 rev.4）、临床试验路径、NMPA 临床评价指导原则路径、FDA 510(k) 实质等效；PMCF 计划模板（终点/人群/随访/统计）与 PSUR/CER 更新触发条件。",
+      "entry": "scripts/cer_planner.py",
+      "keywords": [
+        "cer",
+        "clinical-evaluation",
+        "pmcf",
+        "临床评价",
+        "同品种",
+        "psur"
+      ],
+      "intents": [
+        "临床评价路径",
+        "同品种比对",
+        "PMCF 计划"
+      ],
+      "provides": [
+        "clinical-evaluation",
+        "cer-path",
+        "pmcf-plan",
+        "equivalence"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/clinical-evaluation",
+      "path": "repos/clinical-evaluation"
+    },
+    {
+      "id": "cybersecurity-medical",
+      "title": "医疗器械网络安全工具箱（IEC 81001-5-1 + SBOM）",
+      "description": "医疗器械网络安全合规工具：IEC 81001-5-1 安全开发生命周期检查单、FDA 预市网络安全指南（2023）要点清单、威胁建模提示（STRIDE 医疗适配）、SBOM（SPDX/CycloneDX）检查与组件漏洞关注项、安全更新与沟通计划模板。",
+      "entry": "scripts/cyber_check.py",
+      "keywords": [
+        "cybersecurity",
+        "iec81001",
+        "sbom",
+        "spdx",
+        "cyclonedx",
+        "网络安全",
+        "威胁建模"
+      ],
+      "intents": [
+        "网络安全自查",
+        "SBOM 检查",
+        "威胁建模"
+      ],
+      "provides": [
+        "cybersecurity-medical",
+        "cyber-checklist",
+        "sbom-check",
+        "threat-model"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/cybersecurity-medical",
+      "path": "repos/cybersecurity-medical"
+    },
+    {
+      "id": "delivery-guard",
+      "title": "医疗 AI / 医疗器械交付物门禁（17 道门禁 + 双 SHA-256 指纹权属台账）",
+      "description": "MedXpert 把AI 交付治理理念工程化落地的可插拔模块：交付前按 17 道门禁校验，并计算双 SHA-256 指纹写入权属台账（provenance ledger），形成可审计的在先发表证据。",
+      "entry": "scripts/delivery_guard.py",
+      "keywords": [
+        "delivery",
+        "gate",
+        "门禁",
+        "provenance",
+        "sha256",
+        "ledger",
+        "release",
+        "发布前校验",
+        "compliance-check",
+        "权属台账"
+      ],
+      "intents": [
+        "门禁",
+        "交付校验",
+        "权属台账",
+        "指纹存证"
+      ],
+      "provides": [
+        "delivery-guard",
+        "gate",
+        "provenance",
+        "dual-sha"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/delivery-guard",
+      "path": "repos/delivery-guard"
+    },
+    {
+      "id": "design-controls-toolkit",
+      "title": "医疗器械设计控制工具包（DHF/DMR/设计转换/人因挂点）",
+      "description": "把 ISO 13485 §7.3 设计开发控制与 21 CFR 820.30 设计控制落成可运行的自检清单生成器：设计输入/输出、评审、验证(V&V)、确认、设计转换、变更控制、DHF/DMR 索引，含 IEC 62366-1 人因工程挂点。适用于 II/III 类器械与 SaMD 的设计阶段质量体系搭建。",
+      "entry": "scripts/design_controls.py",
+      "keywords": [
+        "design-controls",
+        "dhf",
+        "dmr",
+        "设计控制",
+        "设计转换",
+        "iso13485",
+        "820.30",
+        "human-factors"
+      ],
+      "intents": [
+        "设计控制自查",
+        "DHF 建立",
+        "设计验证确认",
+        "人因工程"
+      ],
+      "provides": [
+        "design-controls-toolkit",
+        "design-controls",
+        "dhf-checklist",
+        "v&v-plan"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/design-controls-toolkit",
+      "path": "repos/design-controls-toolkit"
+    },
+    {
+      "id": "device-regulatory-map",
+      "title": "通用器械跨辖区监管映射（分类/路径/时限）",
+      "description": "非软件类医疗器械的跨辖区监管映射：分类规则（NMPA《医疗器械分类规则》+ 分类目录、EU MDR Annex VIII 22 条分类规则、FDA 21 CFR 862–892 专科分类 + 860 程序、PMDA 药机法 Ⅰ–Ⅳ）、注册路径（注册/备案/510(k)/De Novo/PMA/THP）、代表机构要求（MAH/EC REP/US Agent）与典型周期经验值。",
+      "entry": "scripts/device_reg_map.py",
+      "keywords": [
+        "regulatory",
+        "classification",
+        "分类规则",
+        "nmpa",
+        "mdr",
+        "fda",
+        "pmda",
+        "mdsap",
+        "注册"
+      ],
+      "intents": [
+        "器械分类",
+        "注册路径",
+        "辖区对比"
+      ],
+      "provides": [
+        "device-regulatory-map",
+        "classification-rules",
+        "pathway-map"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/device-regulatory-map",
+      "path": "repos/device-regulatory-map"
+    },
+    {
+      "id": "fhir-ortho-toolkit",
+      "title": "医疗器械 UDI 的 HL7 FHIR R4 轮廓（骨科植入物示例）",
+      "description": "骨科植入物唯一标识（UDI）的 HL7 FHIR R4 轮廓参考实现：Device（含 UDI carrier）、Patient、Procedure（THA/TKA）、Observation 的资源构造器与示例。定位为规范（spec）仓，投 HL7 社区。",
+      "entry": "scripts/fhir_ortho.py",
+      "keywords": [
+        "fhir",
+        "ortho",
+        "udi",
+        "hl7",
+        "device",
+        "骨科",
+        "互操作"
+      ],
+      "intents": [
+        "FHIR轮廓",
+        "骨科UDI",
+        "互操作"
+      ],
+      "provides": [
+        "fhir-ortho-toolkit",
+        "fhir",
+        "udi",
+        "ortho-profile"
+      ],
+      "needs_backends": [],
+      "license": "CC0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/fhir-ortho-toolkit",
+      "path": "repos/fhir-ortho-toolkit"
+    },
+    {
+      "id": "iec62304-software",
+      "title": "医疗器械软件生命周期（IEC 62304 安全分级/过程映射）",
+      "description": "IEC 62304:2006+A1:2015 医疗器械软件生命周期工具：软件安全等级 A/B/C 判定器（基于伤害可能性×严重度）、软件开发生命周期过程清单（策划/需求/架构/单元/集成/系统测试/发布/维护）、与 Agile/CI 实践的映射建议、SOUP 第三方组件管理检查点。",
+      "entry": "scripts/sw_lifecycle.py",
+      "keywords": [
+        "iec62304",
+        "software-lifecycle",
+        "软件安全等级",
+        "soup",
+        "医疗软件",
+        "agile"
+      ],
+      "intents": [
+        "软件安全分级",
+        "62304 自查",
+        "SOUP 管理"
+      ],
+      "provides": [
+        "iec62304-software",
+        "safety-class",
+        "sw-checklist",
+        "soup-register"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/iec62304-software",
+      "path": "repos/iec62304-software"
+    },
+    {
+      "id": "iso14971-risk-file",
+      "title": "风险管理文件生成器（ISO 14971 风险分析/评价/控制）",
+      "description": "按 ISO 14971:2019（+ ISO/TR 24971 应用指南）生成风险管理文件骨架：危害登记表、5×5 概率×严重度风险矩阵、可接受性准则、风险控制措施跟踪、剩余风险与受益-风险分析。把「风险管理贯穿生命周期」落成一条命令。",
+      "entry": "scripts/risk_file.py",
+      "keywords": [
+        "iso14971",
+        "risk-management",
+        "风险管理",
+        "风险矩阵",
+        "剩余风险",
+        "benefit-risk"
+      ],
+      "intents": [
+        "风险管理文件",
+        "风险分析",
+        "风险评价矩阵",
+        "剩余风险"
+      ],
+      "provides": [
+        "iso14971-risk-file",
+        "risk-matrix",
+        "risk-report",
+        "fmea-lite"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/iso14971-risk-file",
+      "path": "repos/iso14971-risk-file"
+    },
+    {
+      "id": "manufacturing-gmp",
+      "title": "生产质量管理与过程确认（GMP 条款对照 + IQ/OQ/PQ）",
+      "description": "医疗器械生产质量管理规范（GMP）自查工具：2014 版条款框架清单 + 版本差异对照（载入两版条款 JSON 自动 diff）+ 过程确认 IQ/OQ/PQ 检查单生成。服务「2025 修订版 vs 2014 版 GMP 差异研究」与生产现场体系自查。",
+      "entry": "scripts/gmp_toolkit.py",
+      "keywords": [
+        "gmp",
+        "生产质量管理",
+        "过程确认",
+        "iq",
+        "oq",
+        "pq",
+        "iso13485",
+        "生产"
+      ],
+      "intents": [
+        "GMP 自查",
+        "版本差异对照",
+        "过程确认方案"
+      ],
+      "provides": [
+        "manufacturing-gmp",
+        "gmp-checklist",
+        "version-diff",
+        "iq-oq-pq"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/manufacturing-gmp",
+      "path": "repos/manufacturing-gmp"
+    },
+    {
+      "id": "medical-ai-toolkit",
+      "title": "MedXpert 医疗 AI 落地 · 可插拔总入口与方法论门户",
+      "description": "lgd-skeleton/1.0 总入口：提供医疗 AI 从合规到临床落地的五层方法论导航，并自动路由发现 20 个子模块（工具矩阵共 21 仓：AI 治理 9 + 器械全生命周期 11 + 门户 1）。",
+      "entry": "scripts/discover.py",
+      "keywords": [
+        "medai",
+        "landing",
+        "portal",
+        "医疗AI",
+        "导航",
+        "方法论文档"
+      ],
+      "intents": [
+        "总入口",
+        "导航",
+        "方法论"
+      ],
+      "provides": [
+        "medical-ai-toolkit",
+        "portal",
+        "skeleton",
+        "router"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": false,
+      "nested": false,
+      "url": "https://github.com/stevenzhao07/medical-ai-toolkit",
+      "path": "repos/medical-ai-toolkit"
+    },
+    {
+      "id": "ml-validation-toolkit",
+      "title": "医疗 AI 模型验证包（性能/校准/公平性，零依赖）",
+      "description": "医疗 AI 模型的验证工具包：给定 y_true / y_pred（可选 subgroup），计算 AUC、Accuracy、Precision/Recall/F1、Brier 校准误差，以及子组公平性缺口（人口均等等差 / 机会均等等差）。仅 Python 标准库实现，便于离线审计。",
+      "entry": "scripts/ml_validation.py",
+      "keywords": [
+        "ml-validation",
+        "auc",
+        "calibration",
+        "fairness",
+        "model-validation",
+        "验证",
+        "公平性"
+      ],
+      "intents": [
+        "模型验证",
+        "公平性测试",
+        "校准"
+      ],
+      "provides": [
+        "ml-validation-toolkit",
+        "ml-validation",
+        "fairness",
+        "calibration"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/ml-validation-toolkit",
+      "path": "repos/ml-validation-toolkit"
+    },
+    {
+      "id": "multilingual-ifu",
+      "title": "医疗器械 IFU 多语种对照语料（骨科植入物示例 × 13 语种）",
+      "description": "MedXpert 把骨科植入物/器械使用说明（IFU）做成中→英/德/日/阿/法/西/意/葡/俄/韩/泰/印尼/越 13 外语对照的开源语料库，每段严格对齐 7 段结构（产品标识/预期用途/禁忌症/警告/清洁灭菌/追溯/不良事件）。13 外语覆盖是本模块的主要差异化方向（多数同类项目仅英文）。",
+      "entry": "scripts/ifu_index.py",
+      "keywords": [
+        "ifu",
+        "multilingual",
+        "多语种",
+        "骨科",
+        "orthopedics",
+        "labeling",
+        "翻译",
+        "本地化"
+      ],
+      "intents": [
+        "多语种IFU",
+        "标签本地化",
+        "骨科翻译"
+      ],
+      "provides": [
+        "multilingual-ifu",
+        "ifu",
+        "multilingual",
+        "ortho-i18n"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/multilingual-ifu",
+      "path": "repos/multilingual-ifu"
+    },
+    {
+      "id": "omop-ortho-toolkit",
+      "title": "手术登记 → OMOP CDM ETL 提案（骨科示例，框架通用）",
+      "description": "把骨科手术登记（关节置换 TKA/THA、植入物）映射到 OHDSI OMOP CDM 的 ETL 提案与示例：源代码（CPT/SNOMED）→ OMOP 概念集，产出概念集 SQL 骨架。投 OHDSI CDM WG。",
+      "entry": "scripts/omop_ortho.py",
+      "keywords": [
+        "omop",
+        "ohdsi",
+        "cdm",
+        "etl",
+        "ortho",
+        "登记",
+        "概念集"
+      ],
+      "intents": [
+        "OMOP映射",
+        "骨科登记",
+        "ETL"
+      ],
+      "provides": [
+        "omop-ortho-toolkit",
+        "omop",
+        "etl",
+        "concept-set"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/omop-ortho-toolkit",
+      "path": "repos/omop-ortho-toolkit"
+    },
+    {
+      "id": "pms-vigilance",
+      "title": "上市后监督与警戒工具（报告时限/召回分级/PSUR）",
+      "description": "上市后监督（PMS）与警戒（Vigilance）时限计算与合规工具：NMPA 不良事件报告（死亡 7 日/严重伤害 20 日/群体 12 小时）、EU MDR Art.87（2/10/15 天）、FDA MDR（30 日/5 工作日/806 召回 10 工作日）、召回分级时限表（NMPA 一级 1 日起/FDA Class I–III）、PSUR/定期风险评价周期。输入获知日期，输出各辖区截止日。",
+      "entry": "scripts/pms_report.py",
+      "keywords": [
+        "pms",
+        "vigilance",
+        "不良事件",
+        "警戒",
+        "召回",
+        "psur",
+        "pmcf",
+        "mdr",
+        "fsca"
+      ],
+      "intents": [
+        "不良事件报告时限",
+        "召回分级",
+        "PSUR 周期",
+        "FSCA"
+      ],
+      "provides": [
+        "pms-vigilance",
+        "report-deadline",
+        "recall-levels",
+        "psur-cycle"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/pms-vigilance",
+      "path": "repos/pms-vigilance"
+    },
+    {
+      "id": "samd-ra-toolkit",
+      "title": "SaMD / AIaMD 法规质量体系工具包（跨辖区映射）",
+      "description": "Software as a Medical Device（SaMD / AIaMD）的注册与质量体系工具包：SaMD 判定树 + IEC 62304 / ISO 14971(AI) / EU AI Act 映射 + PCCP 模板骨架 + AI-CER 骨架 + **跨辖区差异表（NMPA / EU MDR / FDA / PMDA）**。（对应『跨辖区监管映射模板』能力缺口。）",
+      "entry": "scripts/samd_map.py",
+      "keywords": [
+        "samd",
+        "aiamd",
+        "NMPA",
+        "FDA",
+        "MDR",
+        "PMDA",
+        "regulatory",
+        "SaMD判定",
+        "监管映射"
+      ],
+      "intents": [
+        "SaMD路径",
+        "跨辖区监管",
+        "法规映射"
+      ],
+      "provides": [
+        "samd-ra-toolkit",
+        "samd",
+        "ra-kit",
+        "regulatory-map"
+      ],
+      "needs_backends": [],
+      "license": "CC-BY-4.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/samd-ra-toolkit",
+      "path": "repos/samd-ra-toolkit"
+    },
+    {
+      "id": "sterilization-validation",
+      "title": "灭菌与清洁验证计算器（EO/湿热/辐照/清洁/内毒素）",
+      "description": "医疗器械灭菌与清洁验证的常用计算器：EO 灭菌 BI 存活分数与过度杀灭法判据、湿热灭菌 F0 累积、辐照灭菌 ISO 11137 Method 1 VDmax 剂量设定、清洁验证残留限值（PDE/单位面积法/10 ppm 经验法）、细菌内毒素限值（K/M 法）。覆盖骨科植入物清洁验证/内毒素检验的真实工程场景。",
+      "entry": "scripts/sterilization_val.py",
+      "keywords": [
+        "sterilization",
+        "eo",
+        "f0",
+        "iso11137",
+        "iso17665",
+        "iso11135",
+        "cleaning-validation",
+        "endotoxin",
+        "灭菌验证",
+        "清洁验证",
+        "内毒素"
+      ],
+      "intents": [
+        "灭菌验证计算",
+        "F0 计算",
+        "清洁验证限值",
+        "内毒素限值"
+      ],
+      "provides": [
+        "sterilization-validation",
+        "f0-calc",
+        "cleaning-limit",
+        "endotoxin-limit"
+      ],
+      "needs_backends": [],
+      "license": "Apache-2.0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/sterilization-validation",
+      "path": "repos/sterilization-validation"
+    },
+    {
+      "id": "udi-assignment",
+      "title": "UDI 赋码工具（GS1 DI/PI + 辖区数据库字段）",
+      "description": "医疗器械唯一标识（UDI）赋码参考实现：GS1 GTIN-14 校验位计算（mod-10）、DI/PI 拆分（生产日期/批号/序列号/有效期）、HIBCC/ICCBBA 体系说明、FDA GUDID / NMPA 器械 UDI 数据库 / EUDAMED 三侧必填字段对照。补 fhir-ortho-toolkit（数据侧）与 multilingual-ifu（标签侧）之间的赋码缺口。",
+      "entry": "scripts/udi_assign.py",
+      "keywords": [
+        "udi",
+        "gs1",
+        "gtin",
+        "hibcc",
+        "iccbba",
+        "gudid",
+        "eudamed",
+        "唯一标识"
+      ],
+      "intents": [
+        "UDI 赋码",
+        "GTIN 校验位",
+        "DI/PI 拆分",
+        "UDI 数据库字段"
+      ],
+      "provides": [
+        "udi-assignment",
+        "gtin-check-digit",
+        "di-pi-split",
+        "udi-db-fields"
+      ],
+      "needs_backends": [],
+      "license": "CC0",
+      "lazy": true,
+      "nested": true,
+      "url": "https://github.com/stevenzhao07/udi-assignment",
+      "path": "repos/udi-assignment"
+    }
+  ]
+}

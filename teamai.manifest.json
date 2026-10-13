@@ -1,0 +1,163 @@
+{
+  "adapter": "lgd-skeleton/1.0 -> TeamAI (Tencent/teamai-cli, MIT)",
+  "teamaiCli": "npm install -g teamai-cli  # v0.24.0-beta.2+ (2026-09), MIT, Node 20+",
+  "note": "本文件是 lgd-skeleton 对 TeamAI 的适配描述（非 TeamAI 原生 teamai.yaml）。生成 teamai/ 布局后，建共享仓（官方建议命名 TeamAi-<org>，资产进 main 分支 .teamai/ 目录），成员运行 `teamai init https://github.com/<org>/TeamAi-<org>` 即可把全部模块同步为各 AI 编码 Agent（Claude Code / Codex / Cursor / CodeBuddy / WorkBuddy 等，以官方覆盖表为准）的 skills/rules。",
+  "mapping": {
+    "skills": {
+      "ai-a3-laws": "teamai/skills/ai-a3-laws/SKILL.md",
+      "ai-governance-checklist": "teamai/skills/ai-governance-checklist/SKILL.md",
+      "ai-model-passport": "teamai/skills/ai-model-passport/SKILL.md",
+      "biocompatibility-iso10993": "teamai/skills/biocompatibility-iso10993/SKILL.md",
+      "clinical-evaluation": "teamai/skills/clinical-evaluation/SKILL.md",
+      "cybersecurity-medical": "teamai/skills/cybersecurity-medical/SKILL.md",
+      "delivery-guard": "teamai/skills/delivery-guard/SKILL.md",
+      "design-controls-toolkit": "teamai/skills/design-controls-toolkit/SKILL.md",
+      "device-regulatory-map": "teamai/skills/device-regulatory-map/SKILL.md",
+      "fhir-ortho-toolkit": "teamai/skills/fhir-ortho-toolkit/SKILL.md",
+      "iec62304-software": "teamai/skills/iec62304-software/SKILL.md",
+      "iso14971-risk-file": "teamai/skills/iso14971-risk-file/SKILL.md",
+      "manufacturing-gmp": "teamai/skills/manufacturing-gmp/SKILL.md",
+      "medical-ai-toolkit": "teamai/skills/medical-ai-toolkit/SKILL.md",
+      "ml-validation-toolkit": "teamai/skills/ml-validation-toolkit/SKILL.md",
+      "multilingual-ifu": "teamai/skills/multilingual-ifu/SKILL.md",
+      "omop-ortho-toolkit": "teamai/skills/omop-ortho-toolkit/SKILL.md",
+      "pms-vigilance": "teamai/skills/pms-vigilance/SKILL.md",
+      "samd-ra-toolkit": "teamai/skills/samd-ra-toolkit/SKILL.md",
+      "sterilization-validation": "teamai/skills/sterilization-validation/SKILL.md",
+      "udi-assignment": "teamai/skills/udi-assignment/SKILL.md"
+    },
+    "rules": [
+      "teamai/rules/lgd-skeleton.md"
+    ],
+    "culture": "teamai/culture.md",
+    "docs": "teamai/docs/README.md"
+  },
+  "modules": [
+    {
+      "id": "ai-a3-laws",
+      "entry": "scripts/a3_laws.py",
+      "demo": "python scripts/a3_laws.py --demo",
+      "url": "https://github.com/stevenzhao07/ai-a3-laws"
+    },
+    {
+      "id": "ai-governance-checklist",
+      "entry": "scripts/gov_checklist.py",
+      "demo": "python scripts/gov_checklist.py --demo",
+      "url": "https://github.com/stevenzhao07/ai-governance-checklist"
+    },
+    {
+      "id": "ai-model-passport",
+      "entry": "scripts/ai_passport.py",
+      "demo": "python scripts/ai_passport.py --demo",
+      "url": "https://github.com/stevenzhao07/ai-model-passport"
+    },
+    {
+      "id": "biocompatibility-iso10993",
+      "entry": "scripts/biocompat.py",
+      "demo": "python scripts/biocompat.py --demo",
+      "url": "https://github.com/stevenzhao07/biocompatibility-iso10993"
+    },
+    {
+      "id": "clinical-evaluation",
+      "entry": "scripts/cer_planner.py",
+      "demo": "python scripts/cer_planner.py --demo",
+      "url": "https://github.com/stevenzhao07/clinical-evaluation"
+    },
+    {
+      "id": "cybersecurity-medical",
+      "entry": "scripts/cyber_check.py",
+      "demo": "python scripts/cyber_check.py --demo",
+      "url": "https://github.com/stevenzhao07/cybersecurity-medical"
+    },
+    {
+      "id": "delivery-guard",
+      "entry": "scripts/delivery_guard.py",
+      "demo": "python scripts/delivery_guard.py --demo",
+      "url": "https://github.com/stevenzhao07/delivery-guard"
+    },
+    {
+      "id": "design-controls-toolkit",
+      "entry": "scripts/design_controls.py",
+      "demo": "python scripts/design_controls.py --demo",
+      "url": "https://github.com/stevenzhao07/design-controls-toolkit"
+    },
+    {
+      "id": "device-regulatory-map",
+      "entry": "scripts/device_reg_map.py",
+      "demo": "python scripts/device_reg_map.py --demo",
+      "url": "https://github.com/stevenzhao07/device-regulatory-map"
+    },
+    {
+      "id": "fhir-ortho-toolkit",
+      "entry": "scripts/fhir_ortho.py",
+      "demo": "python scripts/fhir_ortho.py --demo",
+      "url": "https://github.com/stevenzhao07/fhir-ortho-toolkit"
+    },
+    {
+      "id": "iec62304-software",
+      "entry": "scripts/sw_lifecycle.py",
+      "demo": "python scripts/sw_lifecycle.py --demo",
+      "url": "https://github.com/stevenzhao07/iec62304-software"
+    },
+    {
+      "id": "iso14971-risk-file",
+      "entry": "scripts/risk_file.py",
+      "demo": "python scripts/risk_file.py --demo",
+      "url": "https://github.com/stevenzhao07/iso14971-risk-file"
+    },
+    {
+      "id": "manufacturing-gmp",
+      "entry": "scripts/gmp_toolkit.py",
+      "demo": "python scripts/gmp_toolkit.py --demo",
+      "url": "https://github.com/stevenzhao07/manufacturing-gmp"
+    },
+    {
+      "id": "medical-ai-toolkit",
+      "entry": "scripts/discover.py",
+      "demo": "python scripts/discover.py --demo",
+      "url": "https://github.com/stevenzhao07/medical-ai-toolkit"
+    },
+    {
+      "id": "ml-validation-toolkit",
+      "entry": "scripts/ml_validation.py",
+      "demo": "python scripts/ml_validation.py --demo",
+      "url": "https://github.com/stevenzhao07/ml-validation-toolkit"
+    },
+    {
+      "id": "multilingual-ifu",
+      "entry": "scripts/ifu_index.py",
+      "demo": "python scripts/ifu_index.py --demo",
+      "url": "https://github.com/stevenzhao07/multilingual-ifu"
+    },
+    {
+      "id": "omop-ortho-toolkit",
+      "entry": "scripts/omop_ortho.py",
+      "demo": "python scripts/omop_ortho.py --demo",
+      "url": "https://github.com/stevenzhao07/omop-ortho-toolkit"
+    },
+    {
+      "id": "pms-vigilance",
+      "entry": "scripts/pms_report.py",
+      "demo": "python scripts/pms_report.py --demo",
+      "url": "https://github.com/stevenzhao07/pms-vigilance"
+    },
+    {
+      "id": "samd-ra-toolkit",
+      "entry": "scripts/samd_map.py",
+      "demo": "python scripts/samd_map.py --demo",
+      "url": "https://github.com/stevenzhao07/samd-ra-toolkit"
+    },
+    {
+      "id": "sterilization-validation",
+      "entry": "scripts/sterilization_val.py",
+      "demo": "python scripts/sterilization_val.py --demo",
+      "url": "https://github.com/stevenzhao07/sterilization-validation"
+    },
+    {
+      "id": "udi-assignment",
+      "entry": "scripts/udi_assign.py",
+      "demo": "python scripts/udi_assign.py --demo",
+      "url": "https://github.com/stevenzhao07/udi-assignment"
+    }
+  ]
+}

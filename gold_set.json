@@ -1,0 +1,3017 @@
+{
+  "schema": "lgd-skeleton/gold-set/1.0",
+  "generated_at": "2026-10-12T10:29:20.827030+00:00",
+  "owner": "@stevenzhao07",
+  "description": "医疗产业全生命周期开源工具箱 eval gold set（语义回归集）：21 模块覆盖 AI 治理层 + 器械本体全生命周期（设计/风险/软件/注册/临床/生物相容/灭菌清洁/生产/UDI/PMS/网络安全）。第三轮：P0 领域修复断言对齐（CPT/CFR/LOINC/URI/通告号/门禁计数/外语数/必填字段）+ 6 条防回潮回归。由 harness.py gold 维度执行，作为 CI 质量门禁。 第四轮（2026-10-12）：外人+压力测试错误路径回归（畸形 JSON/缺文件/二进制/非法日期/除零/未知枚举 → 友好 [error] + rc=2），新增 18 条防回潮断言 + a3-12（--json 通过路径），gold 共 218 条。",
+  "runner": "python harness.py --all   # 触发 gold 维度",
+  "fields": {
+    "id": "任务唯一标识",
+    "intent": "人类/AI 视角的任务描述（测试什么）",
+    "cmd": "入口命令尾（相对模块仓根），由 sys.executable 前缀",
+    "expect": "stdout+stderr 必须包含的子串（全匹配）",
+    "regex": "stdout+stderr 必须匹配的正则",
+    "expect_rc": "允许的退出码列表（缺省=[0]，即缺省必须成功退出；见 harness.py 金规1）",
+    "setup_cmds": "任务前执行的命令列表（如生成临时文件）",
+    "cleanup": "任务后删除的相对路径（文件或目录）"
+  },
+  "modules": {
+    "ai-governance-checklist": {
+      "cwd": "repos/ai-governance-checklist",
+      "tasks": [
+        {
+          "id": "gov-01",
+          "intent": "七大治理域全部出现",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "model-card",
+            "data-card",
+            "human-oversight",
+            "fairness",
+            "security",
+            "provenance",
+            "monitoring"
+          ]
+        },
+        {
+          "id": "gov-02",
+          "intent": "清单标题正确",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "医疗 AI 治理自检清单"
+          ]
+        },
+        {
+          "id": "gov-03",
+          "intent": "模型卡要求声明预期用途",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "model-card",
+            "已声明模型预期用途"
+          ]
+        },
+        {
+          "id": "gov-04",
+          "intent": "人在回路 human-in-the-loop 要求",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "human-oversight",
+            "human-in-the-loop"
+          ]
+        },
+        {
+          "id": "gov-05",
+          "intent": "公平性要求子组差异阈值",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "fairness",
+            "子组性能差异"
+          ]
+        },
+        {
+          "id": "gov-06",
+          "intent": "安全要求威胁建模",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "security",
+            "威胁建模"
+          ]
+        },
+        {
+          "id": "gov-07",
+          "intent": "溯源要求 AI 护照",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "provenance",
+            "AI 护照"
+          ]
+        },
+        {
+          "id": "gov-08",
+          "intent": "监测要求 PMS/PMCF 闭环",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "monitoring",
+            "PMS/PMCF"
+          ]
+        },
+        {
+          "id": "gov-09",
+          "intent": "数据卡要求来源与授权",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "data-card",
+            "数据来源、授权与许可"
+          ]
+        },
+        {
+          "id": "gov-10",
+          "intent": "--help 可用",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--help"
+          ],
+          "expect": [
+            "--demo"
+          ]
+        },
+        {
+          "id": "gov-11",
+          "intent": "含贡献来源披露",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "ai-governance-checklist"
+          ]
+        },
+        {
+          "id": "gov-12",
+          "intent": "含 CC BY 4.0 披露",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "CC BY 4.0"
+          ]
+        },
+        {
+          "id": "gov-13",
+          "intent": "模型卡含局限/失效模式",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "失效模式"
+          ]
+        },
+        {
+          "id": "gov-14",
+          "intent": "数据卡含敏感属性/隐私",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "敏感属性"
+          ]
+        },
+        {
+          "id": "gov-15",
+          "intent": "监测含漂移指标",
+          "cmd": [
+            "scripts/gov_checklist.py",
+            "--demo"
+          ],
+          "expect": [
+            "漂移"
+          ]
+        }
+      ]
+    },
+    "ml-validation-toolkit": {
+      "cwd": "repos/ml-validation-toolkit",
+      "tasks": [
+        {
+          "id": "ml-01",
+          "intent": "总体指标全字段输出",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "auc",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1",
+            "brier"
+          ]
+        },
+        {
+          "id": "ml-02",
+          "intent": "公平性两类差值输出",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "人口均等等差",
+            "机会均等等差"
+          ]
+        },
+        {
+          "id": "ml-03",
+          "intent": "演示节标题正确",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "演示总体指标",
+            "演示公平性"
+          ]
+        },
+        {
+          "id": "ml-04",
+          "intent": "auc 为浮点",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "regex": [
+            "auc:\\s*[0-9.]+"
+          ]
+        },
+        {
+          "id": "ml-05",
+          "intent": "演示 auc=1.0000（确定性）",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "auc: 1.0000"
+          ]
+        },
+        {
+          "id": "ml-06",
+          "intent": "演示 accuracy=1.0000",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "accuracy: 1.0000"
+          ]
+        },
+        {
+          "id": "ml-07",
+          "intent": "演示 precision=1.0000",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "precision: 1.0000"
+          ]
+        },
+        {
+          "id": "ml-08",
+          "intent": "演示 recall=1.0000",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "recall: 1.0000"
+          ]
+        },
+        {
+          "id": "ml-09",
+          "intent": "演示 f1=1.0000",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "f1: 1.0000"
+          ]
+        },
+        {
+          "id": "ml-10",
+          "intent": "机会均等等差=0.0000",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "机会均等等差: 0.0000"
+          ]
+        },
+        {
+          "id": "ml-11",
+          "intent": "人口均等等差=0.2000",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--demo"
+          ],
+          "expect": [
+            "人口均等等差: 0.2000"
+          ]
+        },
+        {
+          "id": "ml-12",
+          "intent": "--data+--subgroup 真实数据路径可跑",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--data",
+            "_gold_sample.csv",
+            "--subgroup",
+            "group"
+          ],
+          "setup_cmds": [
+            [
+              "scripts/_mk_gold_csv.py"
+            ]
+          ],
+          "expect": [
+            "总体指标",
+            "auc"
+          ],
+          "cleanup": [
+            "_gold_sample.csv"
+          ]
+        },
+        {
+          "id": "ml-13",
+          "intent": "--help 暴露 data/subgroup",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--help"
+          ],
+          "expect": [
+            "--data",
+            "--subgroup"
+          ]
+        },
+        {
+          "id": "ml-e1",
+          "intent": "数据文件不存在友好拒绝（原裸 traceback）",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--data",
+            "no_such.csv"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "ml-e2",
+          "intent": "二进制文件友好拒绝",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--data",
+            "_x_bin.dat"
+          ],
+          "setup_cmds": [
+            [
+              "-c",
+              "open('_x_bin.dat','wb').write(bytes(range(256)))"
+            ]
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ],
+          "cleanup": [
+            "_x_bin.dat"
+          ]
+        },
+        {
+          "id": "ml-e3",
+          "intent": "缺 y_true/y_pred 列友好拒绝",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--data",
+            "_x_bad.csv"
+          ],
+          "setup_cmds": [
+            [
+              "-c",
+              "open('_x_bad.csv','w').write('a,b')"
+            ]
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ],
+          "cleanup": [
+            "_x_bad.csv"
+          ]
+        },
+        {
+          "id": "ml-e4",
+          "intent": "子组列不存在友好拒绝",
+          "cmd": [
+            "scripts/ml_validation.py",
+            "--data",
+            "sample.csv",
+            "--subgroup",
+            "nope"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        }
+      ]
+    },
+    "fhir-ortho-toolkit": {
+      "cwd": "repos/fhir-ortho-toolkit",
+      "tasks": [
+        {
+          "id": "fh-01",
+          "intent": "Device demo 输出合法 UDI 轮廓",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "resourceType",
+            "Device",
+            "udiCarrier",
+            "carrierHRF",
+            "deviceIdentifier",
+            "status"
+          ]
+        },
+        {
+          "id": "fh-02",
+          "intent": "jurisdiction 指向 nmpa-udi（uri 类型）",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "nmpa-udi"
+          ]
+        },
+        {
+          "id": "fh-03",
+          "intent": "jurisdiction 为自声明 URI（NMPA 无规范 URI，不虚构 hl7.org）",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--demo"
+          ],
+          "regex": [
+            "\"jurisdiction\"\\s*:\\s*\"http://example\\.org/fhir/NamingSystem/nmpa-udi\""
+          ]
+        },
+        {
+          "id": "fh-04",
+          "intent": "Device demo 输出合法 UDI 轮廓（type 用 text，不硬写未核实 SNOMED）",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Device"
+          ],
+          "expect": [
+            "Device",
+            "udiCarrier",
+            "全膝关节置换植入物"
+          ]
+        },
+        {
+          "id": "fh-05",
+          "intent": "--resource Patient 结构正确",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Patient"
+          ],
+          "expect": [
+            "Patient",
+            "gender",
+            "birthDate"
+          ]
+        },
+        {
+          "id": "fh-06",
+          "intent": "--resource Procedure 含 CPT 27447",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Procedure"
+          ],
+          "expect": [
+            "Procedure",
+            "27447",
+            "Total knee arthroplasty"
+          ]
+        },
+        {
+          "id": "fh-07",
+          "intent": "--resource Observation 用正确 LOINC 100207-0（修复项）",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Observation"
+          ],
+          "expect": [
+            "Observation",
+            "100207-0",
+            "Knee Society Score"
+          ]
+        },
+        {
+          "id": "fh-08",
+          "intent": "Observation 不得残留 TODO 占位",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Observation"
+          ],
+          "regex": [
+            "loinc\\.org"
+          ],
+          "not_contains": [
+            "\"code\": \"TODO\""
+          ]
+        },
+        {
+          "id": "fh-09",
+          "intent": "--help 暴露 resource/demo",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--help"
+          ],
+          "expect": [
+            "--resource",
+            "--demo",
+            "Observation"
+          ]
+        },
+        {
+          "id": "fh-10",
+          "intent": "Device 含规范 gs1-di issuer（FHIR NamingSystem）",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Device"
+          ],
+          "expect": [
+            "http://hl7.org/fhir/NamingSystem/gs1-di"
+          ]
+        },
+        {
+          "id": "fh-11",
+          "intent": "Device 含 carrierAIDC/entryType",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "carrierAIDC",
+            "entryType"
+          ]
+        },
+        {
+          "id": "fh-12",
+          "intent": "Procedure 引用 Device/patient",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Procedure"
+          ],
+          "expect": [
+            "usedReference",
+            "Device/ortho-implant-001"
+          ]
+        },
+        {
+          "id": "fh-13",
+          "intent": "Observation 含 valueInteger 分数",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Observation"
+          ],
+          "expect": [
+            "valueInteger"
+          ]
+        },
+        {
+          "id": "fh-14",
+          "intent": "Patient id 为 patient-001",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Patient"
+          ],
+          "expect": [
+            "patient-001"
+          ]
+        },
+        {
+          "id": "fh-15",
+          "intent": "Device status 为 active",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "\"status\": \"active\""
+          ]
+        },
+        {
+          "id": "fh-16",
+          "intent": "Procedure 含已核实 SNOMED 609588000（膝关节置换手术概念）",
+          "cmd": [
+            "scripts/fhir_ortho.py",
+            "--resource",
+            "Procedure"
+          ],
+          "expect": [
+            "609588000",
+            "Prosthetic total arthroplasty of knee joint"
+          ]
+        }
+      ]
+    },
+    "medical-ai-toolkit": {
+      "cwd": "repos/medical-ai-toolkit",
+      "tasks": [
+        {
+          "id": "land-01",
+          "intent": "路由表列出全部 9 子模块",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "ai-a3-laws",
+            "ai-governance-checklist",
+            "ai-model-passport",
+            "delivery-guard",
+            "fhir-ortho-toolkit",
+            "ml-validation-toolkit",
+            "multilingual-ifu",
+            "omop-ortho-toolkit",
+            "samd-ra-toolkit"
+          ]
+        },
+        {
+          "id": "land-02",
+          "intent": "标出总入口与骨架版本",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "总入口",
+            "lgd-skeleton/1.0"
+          ]
+        },
+        {
+          "id": "land-03",
+          "intent": "链接指向 stevenzhao07",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07"
+          ]
+        },
+        {
+          "id": "land-04",
+          "intent": "标注各模块许可",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "CC0",
+            "CC-BY-4.0",
+            "Apache-2.0"
+          ]
+        },
+        {
+          "id": "land-05",
+          "intent": "标题含模块数 20",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "20 个"
+          ]
+        },
+        {
+          "id": "land-06",
+          "intent": "--help 可用",
+          "cmd": [
+            "scripts/discover.py",
+            "--help"
+          ],
+          "expect": [
+            "--demo"
+          ]
+        },
+        {
+          "id": "land-07",
+          "intent": "指出入口脚本路径",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "scripts/a3_laws.py",
+            "scripts/samd_map.py"
+          ]
+        },
+        {
+          "id": "land-08",
+          "intent": "指出 ifu/omop 入口",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "scripts/ifu_index.py",
+            "scripts/omop_ortho.py"
+          ]
+        },
+        {
+          "id": "land-09",
+          "intent": "含 fhir/ml 入口",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "scripts/fhir_ortho.py",
+            "scripts/ml_validation.py"
+          ]
+        },
+        {
+          "id": "land-10",
+          "intent": "含 ai_passport/gov 入口",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "scripts/ai_passport.py",
+            "scripts/gov_checklist.py"
+          ]
+        },
+        {
+          "id": "land-11",
+          "intent": "链接列出 ai-a3-laws 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/ai-a3-laws"
+          ]
+        },
+        {
+          "id": "land-12",
+          "intent": "链接列出 ai-governance-checklist 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/ai-governance-checklist"
+          ]
+        },
+        {
+          "id": "land-13",
+          "intent": "链接列出 ai-model-passport 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/ai-model-passport"
+          ]
+        },
+        {
+          "id": "land-14",
+          "intent": "链接列出 delivery-guard 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/delivery-guard"
+          ]
+        },
+        {
+          "id": "land-15",
+          "intent": "链接列出 fhir-ortho-toolkit 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/fhir-ortho-toolkit"
+          ]
+        },
+        {
+          "id": "land-16",
+          "intent": "链接列出 ml-validation-toolkit 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/ml-validation-toolkit"
+          ]
+        },
+        {
+          "id": "land-17",
+          "intent": "链接列出 multilingual-ifu 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/multilingual-ifu"
+          ]
+        },
+        {
+          "id": "land-18",
+          "intent": "链接列出 omop-ortho-toolkit 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/omop-ortho-toolkit"
+          ]
+        },
+        {
+          "id": "land-19",
+          "intent": "链接列出 samd-ra-toolkit 仓",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "github.com/stevenzhao07/samd-ra-toolkit"
+          ]
+        },
+        {
+          "id": "land-20",
+          "intent": "landing 自举为总入口",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "medical-ai-toolkit"
+          ]
+        },
+        {
+          "id": "land-21",
+          "intent": "全生命周期模块已入路由（闭环证明）",
+          "cmd": [
+            "scripts/discover.py",
+            "--demo"
+          ],
+          "expect": [
+            "design-controls-toolkit",
+            "sterilization-validation",
+            "pms-vigilance",
+            "biocompatibility-iso10993",
+            "cybersecurity-medical"
+          ]
+        }
+      ]
+    },
+    "omop-ortho-toolkit": {
+      "cwd": "repos/omop-ortho-toolkit",
+      "tasks": [
+        {
+          "id": "om-01",
+          "intent": "映射表含 TKA/CPT4/待校验标注",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "Total knee arthroplasty",
+            "CPT4",
+            "TO_BE_VALIDATED"
+          ]
+        },
+        {
+          "id": "om-02",
+          "intent": "--list 列出 THA 27130",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--list"
+          ],
+          "expect": [
+            "Total hip arthroplasty",
+            "27130"
+          ]
+        },
+        {
+          "id": "om-03",
+          "intent": "--emit-sql 产出 concept_set SQL",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql"
+          ],
+          "expect": [
+            "concept_set_ortho",
+            "INSERT INTO",
+            "TODO"
+          ]
+        },
+        {
+          "id": "om-04",
+          "intent": "SQL 覆盖 27447/29862",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql"
+          ],
+          "expect": [
+            "27447",
+            "29862"
+          ]
+        },
+        {
+          "id": "om-05",
+          "intent": "SQL 含 target schema 占位",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql"
+          ],
+          "expect": [
+            "@target_database_schema"
+          ]
+        },
+        {
+          "id": "om-06",
+          "intent": "--emit-sql --out 写文件并回显",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql",
+            "--out",
+            "_gold.sql"
+          ],
+          "expect": [
+            "[ok] 已写"
+          ],
+          "cleanup": [
+            "_gold.sql"
+          ]
+        },
+        {
+          "id": "om-07",
+          "intent": "映射含 Diagnostic knee arthroscopy",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "Diagnostic knee arthroscopy"
+          ]
+        },
+        {
+          "id": "om-08",
+          "intent": "映射含 Revision TKA/THA",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "Revision TKA",
+            "Revision THA"
+          ]
+        },
+        {
+          "id": "om-09",
+          "intent": "--help 暴露 emit-sql",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--help"
+          ],
+          "expect": [
+            "--emit-sql",
+            "--demo"
+          ]
+        },
+        {
+          "id": "om-10",
+          "intent": "诚实标注 concept_id 待校验",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "OMOP concept_id(待校验)"
+          ]
+        },
+        {
+          "id": "om-11",
+          "intent": "SQL 含 concept_set_name 列",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql"
+          ],
+          "expect": [
+            "concept_set_name"
+          ]
+        },
+        {
+          "id": "om-12",
+          "intent": "映射表含 vocabulary 列头",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "vocabulary"
+          ]
+        },
+        {
+          "id": "om-13",
+          "intent": "SQL 用 VALUES 插入",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql"
+          ],
+          "expect": [
+            "VALUES"
+          ]
+        },
+        {
+          "id": "om-14",
+          "intent": "映射含 27438 源码",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--demo"
+          ],
+          "expect": [
+            "27438"
+          ]
+        },
+        {
+          "id": "om-15",
+          "intent": "SQL 诚实标注 OMOP CDM v5.4 无 concept_set 标准表（一手核实 DDL）",
+          "cmd": [
+            "scripts/omop_ortho.py",
+            "--emit-sql"
+          ],
+          "expect": [
+            "OMOP CDM v5.4 无 concept_set",
+            "cohort 是患者集合，非概念集",
+            "本地 ETL 辅助表"
+          ]
+        }
+      ]
+    },
+    "ai-model-passport": {
+      "cwd": "repos/ai-model-passport",
+      "tasks": [
+        {
+          "id": "pp-01",
+          "intent": "护照含全部核心字段",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "passport_id",
+            "hash",
+            "issuer",
+            "risk_class"
+          ]
+        },
+        {
+          "id": "pp-02",
+          "intent": "签发后自验证 PASS",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "自验证",
+            "PASS"
+          ]
+        },
+        {
+          "id": "pp-03",
+          "intent": "指纹为合法 SHA-256（64 位 hex）",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "regex": [
+            "\"hash\"\\s*:\\s*\"[0-9a-f]{64}\""
+          ]
+        },
+        {
+          "id": "pp-04",
+          "intent": "passport_id 含模型名",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "pp-ortho-ai-demo"
+          ]
+        },
+        {
+          "id": "pp-05",
+          "intent": "含 intended_use 与 issued_at",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "intended_use",
+            "issued_at"
+          ]
+        },
+        {
+          "id": "pp-06",
+          "intent": "demo 风险等级 II",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "\"risk_class\": \"II\""
+          ]
+        },
+        {
+          "id": "pp-07",
+          "intent": "issue 子命令签发并回显",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "issue",
+            "--name",
+            "goldtest",
+            "--risk-class",
+            "III",
+            "--intended-use",
+            "gold 测试签发"
+          ],
+          "expect": [
+            "[issued]",
+            "risk_class=III"
+          ],
+          "cleanup": [
+            "passport.json"
+          ]
+        },
+        {
+          "id": "pp-08",
+          "intent": "issue→verify 闭环（链式 setup+cleanup）",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "verify",
+            "_gold_pp.json"
+          ],
+          "setup_cmds": [
+            [
+              "scripts/ai_passport.py",
+              "issue",
+              "--name",
+              "gold",
+              "--risk-class",
+              "II",
+              "--intended-use",
+              "gold 测试验证",
+              "--out",
+              "_gold_pp.json"
+            ]
+          ],
+          "expect": [
+            "[PASS]",
+            "指纹一致"
+          ],
+          "cleanup": [
+            "_gold_pp.json"
+          ]
+        },
+        {
+          "id": "pp-09",
+          "intent": "--help 暴露 issue/verify/demo",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--help"
+          ],
+          "expect": [
+            "issue",
+            "verify",
+            "--demo"
+          ]
+        },
+        {
+          "id": "pp-10",
+          "intent": "含 conformance_claims/training_data_refs 字段",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "conformance_claims",
+            "training_data_refs"
+          ]
+        },
+        {
+          "id": "pp-11",
+          "intent": "issue 可指定低风险 I",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "issue",
+            "--name",
+            "g1",
+            "--risk-class",
+            "I",
+            "--intended-use",
+            "gold 低风险签发"
+          ],
+          "expect": [
+            "risk_class=I"
+          ],
+          "cleanup": [
+            "passport.json"
+          ]
+        },
+        {
+          "id": "pp-12",
+          "intent": "含 issuer 署名",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "@stevenzhao07/MedXpert"
+          ]
+        },
+        {
+          "id": "pp-13",
+          "intent": "含 issued_at 时间戳",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "--demo"
+          ],
+          "expect": [
+            "issued_at"
+          ]
+        },
+        {
+          "id": "pp-14",
+          "intent": "issue 缺 --intended-use 被拒（预期用途必填，rc=2）",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "issue",
+            "--name",
+            "x",
+            "--risk-class",
+            "II"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "--intended-use"
+          ]
+        },
+        {
+          "id": "pp-e1",
+          "intent": "verify 不存在文件友好拒绝",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "verify",
+            "no_such.json"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "pp-e2",
+          "intent": "verify 坏 JSON 友好拒绝",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "verify",
+            "_x_bad.json"
+          ],
+          "setup_cmds": [
+            [
+              "-c",
+              "open('_x_bad.json','w').write('{bad')"
+            ]
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ],
+          "cleanup": [
+            "_x_bad.json"
+          ]
+        },
+        {
+          "id": "pp-e3",
+          "intent": "issue 空 intended_use 拒绝（必填实质校验）",
+          "cmd": [
+            "scripts/ai_passport.py",
+            "issue",
+            "--name",
+            "x",
+            "--risk-class",
+            "II",
+            "--intended-use",
+            ""
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        }
+      ]
+    },
+    "multilingual-ifu": {
+      "cwd": "repos/multilingual-ifu",
+      "tasks": [
+        {
+          "id": "ifu-01",
+          "intent": "7 段对齐结构齐全",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "产品标识",
+            "预期用途",
+            "禁忌症",
+            "警告",
+            "清洁灭菌",
+            "追溯",
+            "不良事件"
+          ]
+        },
+        {
+          "id": "ifu-02",
+          "intent": "zh 母版标注",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "zh",
+            "母版"
+          ]
+        },
+        {
+          "id": "ifu-03",
+          "intent": "13 外语覆盖（业界实践，无法规强制集合）",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "en/de/ja/ar",
+            "13 外语"
+          ]
+        },
+        {
+          "id": "ifu-04",
+          "intent": "标出 7 段对齐结构",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "7 段对齐结构"
+          ]
+        },
+        {
+          "id": "ifu-05",
+          "intent": "标题含骨科 IFU 多语种",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "骨科 IFU 多语种语料"
+          ]
+        },
+        {
+          "id": "ifu-06",
+          "intent": "含俄语/葡语等小语种",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "ru",
+            "pt"
+          ]
+        },
+        {
+          "id": "ifu-07",
+          "intent": "含泰/越/印尼语种",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "th",
+            "vi",
+            "id"
+          ]
+        },
+        {
+          "id": "ifu-08",
+          "intent": "含校验用法提示",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "--lang-dir",
+            "--out"
+          ]
+        },
+        {
+          "id": "ifu-09",
+          "intent": "--help 暴露 demo/lang-dir",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--help"
+          ],
+          "expect": [
+            "--demo",
+            "--lang-dir"
+          ]
+        },
+        {
+          "id": "ifu-10",
+          "intent": "真实语料扫描：全部合规",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--lang-dir",
+            "_gold_lang",
+            "--out",
+            "_gold_index.json"
+          ],
+          "setup_cmds": [
+            [
+              "scripts/_mk_gold_ifu.py"
+            ]
+          ],
+          "expect": [
+            "语种数",
+            "全部合规"
+          ],
+          "cleanup": [
+            "_gold_lang",
+            "_gold_index.json"
+          ]
+        },
+        {
+          "id": "ifu-11",
+          "intent": "扫描产出 index.json 索引",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--lang-dir",
+            "_gold_lang",
+            "--out",
+            "_gold_index.json"
+          ],
+          "setup_cmds": [
+            [
+              "scripts/_mk_gold_ifu.py"
+            ]
+          ],
+          "expect": [
+            "索引已写"
+          ],
+          "cleanup": [
+            "_gold_lang",
+            "_gold_index.json"
+          ]
+        },
+        {
+          "id": "ifu-12",
+          "intent": "含西语/意语/韩语语种",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "es",
+            "it",
+            "ko"
+          ]
+        },
+        {
+          "id": "ifu-13",
+          "intent": "含法/德语种",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "fr",
+            "de"
+          ]
+        },
+        {
+          "id": "ifu-14",
+          "intent": "含日语语种",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "ja"
+          ]
+        },
+        {
+          "id": "ifu-15",
+          "intent": "推荐追加段引用 ASTM F2503 / EU MDR Article 18（已核实锚点）",
+          "cmd": [
+            "scripts/ifu_index.py",
+            "--demo"
+          ],
+          "expect": [
+            "ASTM F2503",
+            "EU MDR Article 18",
+            "23.4(u)"
+          ]
+        }
+      ]
+    },
+    "samd-ra-toolkit": {
+      "cwd": "repos/samd-ra-toolkit",
+      "tasks": [
+        {
+          "id": "samd-01",
+          "intent": "四辖区全部出现",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--demo"
+          ],
+          "expect": [
+            "NMPA",
+            "EU",
+            "FDA",
+            "PMDA"
+          ]
+        },
+        {
+          "id": "samd-02",
+          "intent": "NMPA 机构与路径正确",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "NMPA"
+          ],
+          "expect": [
+            "国家药监局",
+            "NMPA",
+            "注册申报"
+          ]
+        },
+        {
+          "id": "samd-03",
+          "intent": "EU 用 MDCG/NB+AI Office（修复项）",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "EU"
+          ],
+          "expect": [
+            "MDCG",
+            "AI Office",
+            "EMA 管药品不管器械"
+          ]
+        },
+        {
+          "id": "samd-04",
+          "intent": "FDA 用 CDRH+PCCP+510(k)",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "FDA"
+          ],
+          "expect": [
+            "CDRH",
+            "PCCP",
+            "510(k)"
+          ]
+        },
+        {
+          "id": "samd-05",
+          "intent": "PMDA 用 MHLW+Ⅰ–Ⅳ+上市许可",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "PMDA"
+          ],
+          "expect": [
+            "MHLW",
+            "Ⅰ–Ⅳ",
+            "上市许可"
+          ]
+        },
+        {
+          "id": "samd-06",
+          "intent": "风险 III 建议为高风险",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--risk-class",
+            "III"
+          ],
+          "expect": [
+            "高风险",
+            "III"
+          ]
+        },
+        {
+          "id": "samd-07",
+          "intent": "风险刻度声明为内部统一（修复项）",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--demo"
+          ],
+          "expect": [
+            "内部统一风险刻度"
+          ]
+        },
+        {
+          "id": "samd-08",
+          "intent": "EU 覆盖 AI Act",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--demo"
+          ],
+          "expect": [
+            "AI Act"
+          ]
+        },
+        {
+          "id": "samd-09",
+          "intent": "--help 暴露 jurisdiction/risk-class",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--help"
+          ],
+          "expect": [
+            "--jurisdiction",
+            "--risk-class"
+          ]
+        },
+        {
+          "id": "samd-10",
+          "intent": "NMPA 典型审评时长",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--demo"
+          ],
+          "expect": [
+            "审评 12–24 月"
+          ]
+        },
+        {
+          "id": "samd-11",
+          "intent": "EU 引用 MDR 2017/745",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "EU"
+          ],
+          "expect": [
+            "EU MDR 2017/745"
+          ]
+        },
+        {
+          "id": "samd-12",
+          "intent": "FDA 引用 21 CFR 860 分类程序（861=性能标准制定程序，正名）",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "FDA"
+          ],
+          "expect": [
+            "21 CFR 860"
+          ]
+        },
+        {
+          "id": "samd-13",
+          "intent": "风险 I 建议为最低风险",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--risk-class",
+            "I"
+          ],
+          "expect": [
+            "最低风险"
+          ]
+        },
+        {
+          "id": "samd-14",
+          "intent": "风险 IV 建议为最高风险",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--risk-class",
+            "IV"
+          ],
+          "expect": [
+            "最高风险"
+          ]
+        },
+        {
+          "id": "samd-15",
+          "intent": "NMPA 引用 AI 注册审查指导原则",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "NMPA"
+          ],
+          "expect": [
+            "人工智能医疗器械注册审查指导原则"
+          ]
+        },
+        {
+          "id": "samd-16",
+          "intent": "PMDA 引用审查指南",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "PMDA"
+          ],
+          "expect": [
+            "审查指南"
+          ]
+        },
+        {
+          "id": "samd-17",
+          "intent": "风险 II 提及变更控制",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--risk-class",
+            "II"
+          ],
+          "expect": [
+            "变更控制"
+          ]
+        },
+        {
+          "id": "samd-18",
+          "intent": "NMPA 引用 AI 指导原则通告号（2022年第8号/2021年第47号）",
+          "cmd": [
+            "scripts/samd_map.py",
+            "--jurisdiction",
+            "NMPA"
+          ],
+          "expect": [
+            "2022年第8号",
+            "2021年第47号"
+          ]
+        }
+      ]
+    },
+    "delivery-guard": {
+      "cwd": "repos/delivery-guard",
+      "tasks": [
+        {
+          "id": "dg-01",
+          "intent": "--demo 展示门禁 PASS 与通过数（合并占位门禁后 17 道；演示样本在临时目录无 LICENSE，license_present 判负 → 16/17）",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "[PASS]",
+            "16/17"
+          ]
+        },
+        {
+          "id": "dg-02",
+          "intent": "门禁表含 license_present",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "license_present"
+          ]
+        },
+        {
+          "id": "dg-03",
+          "intent": "门禁表含 dual_fingerprint",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "dual_fingerprint"
+          ]
+        },
+        {
+          "id": "dg-04",
+          "intent": "门禁表含 provenance",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "provenance"
+          ]
+        },
+        {
+          "id": "dg-05",
+          "intent": "门禁表含 no_hardcoded_secret",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "no_hardcoded_secret"
+          ]
+        },
+        {
+          "id": "dg-06",
+          "intent": "门禁表含 no_self_standard_claim（ITU 红线）",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "no_self_standard_claim"
+          ]
+        },
+        {
+          "id": "dg-07",
+          "intent": "门禁表含 no_commercial_marketing",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "no_commercial_marketing"
+          ]
+        },
+        {
+          "id": "dg-08",
+          "intent": "零依赖 .py 触发 requirements 门禁豁免（修复项）（注：门禁扫自身源码会命中文档化模式文本——PII/营销/自称/TODO 关键词在脚本注释里被自指数，rc 可能为 1；断言只看豁免信息与双指纹输出是否存在）",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "scripts/delivery_guard.py"
+          ],
+          "expect": [
+            "零依赖",
+            "requirements.txt 门禁豁免"
+          ],
+          "expect_rc": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "dg-09",
+          "intent": "运行于 .py 产物输出字节+内容双指纹（注：门禁扫自身源码会命中文档化模式文本——PII/营销/自称/TODO 关键词在脚本注释里被自指数，rc 可能为 1；断言只看豁免信息与双指纹输出是否存在）",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "scripts/delivery_guard.py"
+          ],
+          "expect": [
+            "字节指纹",
+            "内容指纹"
+          ],
+          "expect_rc": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "dg-10",
+          "intent": "--demo 打印演示门禁汇总",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "演示门禁"
+          ]
+        },
+        {
+          "id": "dg-11",
+          "intent": "--help 暴露 demo/ledger/artifact",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--help"
+          ],
+          "expect": [
+            "--demo",
+            "--ledger"
+          ]
+        },
+        {
+          "id": "dg-12",
+          "intent": "门禁含 no_pii",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "no_pii"
+          ]
+        },
+        {
+          "id": "dg-13",
+          "intent": "门禁含 affiliation_disclosed",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "affiliation_disclosed"
+          ]
+        },
+        {
+          "id": "dg-14",
+          "intent": "门禁含 human_oversight_declared",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "human_oversight_declared"
+          ]
+        },
+        {
+          "id": "dg-15",
+          "intent": "门禁含 no_todo_leak",
+          "cmd": [
+            "scripts/delivery_guard.py",
+            "--demo"
+          ],
+          "expect": [
+            "no_todo_leak"
+          ]
+        }
+      ]
+    },
+    "ai-a3-laws": {
+      "cwd": "repos/ai-a3-laws",
+      "tasks": [
+        {
+          "id": "a3-01",
+          "intent": "跑 --demo 看到授权判决 PASS/BLOCK 生效",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "[PASS]",
+            "[BLOCK]"
+          ]
+        },
+        {
+          "id": "a3-02",
+          "intent": "三定律 A1/A2/A3 全部出现",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "A1",
+            "A2",
+            "A3"
+          ]
+        },
+        {
+          "id": "a3-03",
+          "intent": "A1 授权范围约束（authority_scope）参与判决",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "authority_scope"
+          ]
+        },
+        {
+          "id": "a3-04",
+          "intent": "A2 人类监督约束（human_review）",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "human_review"
+          ]
+        },
+        {
+          "id": "a3-05",
+          "intent": "A3 可追责标识（actor_id）",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "actor_id",
+            "agent-1"
+          ]
+        },
+        {
+          "id": "a3-06",
+          "intent": "覆盖 read/prescribe/operate 三类动作",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "read",
+            "prescribe",
+            "operate"
+          ]
+        },
+        {
+          "id": "a3-07",
+          "intent": "违规动作被标注定律号 <A1><A2><A3>",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "<A1>",
+            "<A2>",
+            "<A3>"
+          ]
+        },
+        {
+          "id": "a3-08",
+          "intent": "每条判决带 decision_id",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "decision_id"
+          ]
+        },
+        {
+          "id": "a3-09",
+          "intent": "prescribe 越权被 BLOCK",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "动作 'prescribe' 超出授权范围"
+          ]
+        },
+        {
+          "id": "a3-10",
+          "intent": "高风险 operate 缺人类监督被 BLOCK",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "高风险动作 'operate' 缺少人类监督"
+          ]
+        },
+        {
+          "id": "a3-11",
+          "intent": "缺 actor_id 被 A3 判缺可追责标识",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "缺少可追责标识"
+          ]
+        },
+        {
+          "id": "a3-12",
+          "intent": "--help 可用且提到 demo",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--help"
+          ],
+          "expect": [
+            "--demo"
+          ]
+        },
+        {
+          "id": "a3-13",
+          "intent": "--help 暴露 demo/json 两种模式",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--help"
+          ],
+          "expect": [
+            "--demo",
+            "--json"
+          ]
+        },
+        {
+          "id": "a3-14",
+          "intent": "判决结构含 actor_id 字段",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "actor_id"
+          ]
+        },
+        {
+          "id": "a3-15",
+          "intent": "示例 actor 为 agent-1",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--demo"
+          ],
+          "expect": [
+            "agent-1"
+          ]
+        },
+        {
+          "id": "a3-16",
+          "intent": "--json 越权动作触发 A1 阻断",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "{\"action\":\"delete\",\"authority_scope\":[\"read\"],\"actor_id\":\"a\",\"decision_id\":\"d\"}"
+          ],
+          "expect_rc": [
+            1
+          ],
+          "expect": [
+            "<A1>",
+            "超出授权范围"
+          ]
+        },
+        {
+          "id": "a3-17",
+          "intent": "--json 高风险缺人类监督触发 A2 阻断",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "{\"action\":\"operate\",\"authority_scope\":[\"operate\"],\"decision_id\":\"d\"}"
+          ],
+          "expect_rc": [
+            1
+          ],
+          "expect": [
+            "<A2>",
+            "人类监督"
+          ]
+        },
+        {
+          "id": "a3-18",
+          "intent": "--json 缺 decision_id 触发 A3 阻断",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "{\"action\":\"operate\",\"authority_scope\":[\"operate\"],\"actor_id\":\"a\"}"
+          ],
+          "expect_rc": [
+            1
+          ],
+          "expect": [
+            "<A3>",
+            "缺少可追责标识"
+          ]
+        },
+        {
+          "id": "a3-19",
+          "intent": "train 动作（模型生命周期高风险）缺人类监督被 A2 BLOCK",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "{\"action\":\"train\",\"authority_scope\":[\"train\"],\"actor_id\":\"a\",\"decision_id\":\"d\"}"
+          ],
+          "expect_rc": [
+            1
+          ],
+          "expect": [
+            "<A2>",
+            "人类监督"
+          ]
+        },
+        {
+          "id": "a3-e1",
+          "intent": "畸形 --json 友好拒绝（防回潮：原裸 traceback）",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "{bad"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "a3-e2",
+          "intent": "--json 非对象（数组）友好拒绝",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "[1,2,3]"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "a3-12",
+          "intent": "合法决策 --json 校验通过 → 单行 PASS 确认（原静默无输出）",
+          "cmd": [
+            "scripts/a3_laws.py",
+            "--json",
+            "{\"action\":\"prescribe\",\"authority_scope\":[\"prescribe\"],\"actor_id\":\"agent-1\",\"decision_id\":\"d-1\",\"human_review\":true}"
+          ],
+          "expect": [
+            "[PASS]"
+          ]
+        }
+      ]
+    },
+    "sterilization-validation": {
+      "cwd": "repos/sterilization-validation",
+      "tasks": [
+        {
+          "id": "st-01",
+          "intent": "演示覆盖 EO/F0/辐照估算/清洁/内毒素五大模型",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--demo"
+          ],
+          "expect": [
+            "EO 灭菌（BI 存活）",
+            "F0(min)",
+            "估算剂量(kGy)",
+            "PDE(mg/日)",
+            "内毒素限值(EU/mL)"
+          ]
+        },
+        {
+          "id": "st-02",
+          "intent": "EO 杀灭判据（SAL 绝对口径 N≤1e-6）",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--eo",
+            "--n0",
+            "100000",
+            "--d",
+            "2.8",
+            "--t",
+            "4"
+          ],
+          "expect": [
+            "EO 灭菌（BI 存活）",
+            "SAL 判据(N≤1e-6)",
+            "BLOCK（N="
+          ]
+        },
+        {
+          "id": "st-03",
+          "intent": "湿热 F0 逐段累积",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--f0",
+            "121.5:10,118:5"
+          ],
+          "expect": [
+            "湿热灭菌 F0",
+            "F0(min)"
+          ]
+        },
+        {
+          "id": "st-04",
+          "intent": "内毒素静脉途径限值 K/M=10",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--endotoxin",
+            "--route",
+            "iv",
+            "--m",
+            "0.5"
+          ],
+          "expect": [
+            "内毒素限值(EU/mL): 10.0"
+          ]
+        },
+        {
+          "id": "st-05",
+          "intent": "清洁验证 PDE 法单位面积限值",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--clean",
+            "--noael",
+            "10",
+            "--body",
+            "70",
+            "--sf",
+            "100",
+            "--mdd",
+            "50",
+            "--area",
+            "250"
+          ],
+          "expect": [
+            "PDE(mg/日)",
+            "擦拭限值(µg/cm²/日)"
+          ]
+        },
+        {
+          "id": "st-e1",
+          "intent": "--f0 非法格式友好拒绝",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--f0",
+            "abc"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "st-e2",
+          "intent": "EO 全 0 参数（除零）友好拒绝",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--eo",
+            "--n0",
+            "0",
+            "--d",
+            "0",
+            "--t",
+            "0"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "st-e3",
+          "intent": "辐照除零参数友好拒绝",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--dose",
+            "--bioburden",
+            "0",
+            "--d10",
+            "0"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "st-e4",
+          "intent": "内毒素未知给药途径友好拒绝",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--endotoxin",
+            "--route",
+            "bogus",
+            "--m",
+            "1"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "st-e5",
+          "intent": "内毒素 M≤0 友好拒绝",
+          "cmd": [
+            "scripts/sterilization_val.py",
+            "--endotoxin",
+            "--route",
+            "iv",
+            "--m",
+            "-1"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        }
+      ]
+    },
+    "pms-vigilance": {
+      "cwd": "repos/pms-vigilance",
+      "tasks": [
+        {
+          "id": "pms-01",
+          "intent": "演示含三辖区时限与法规出处",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--demo"
+          ],
+          "expect": [
+            "法规出处",
+            "MDR Art. 87(5)",
+            "总局令第29号"
+          ]
+        },
+        {
+          "id": "pms-02",
+          "intent": "NMPA 死亡事件 7 日截止计算",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--aware",
+            "2026-10-01",
+            "--jurisdiction",
+            "CN",
+            "--event",
+            "death"
+          ],
+          "expect": [
+            "2026-10-08",
+            "医疗器械不良事件监测和再评价管理办法"
+          ]
+        },
+        {
+          "id": "pms-03",
+          "intent": "召回一级时限表",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--recall",
+            "--level",
+            "1"
+          ],
+          "expect": [
+            "1 级召回",
+            "通知已知使用单位(日): 1"
+          ]
+        },
+        {
+          "id": "pms-04",
+          "intent": "PSUR/定期风险评价周期",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--psur"
+          ],
+          "expect": [
+            "每满一年后 60 日内",
+            "至少每两年"
+          ]
+        },
+        {
+          "id": "pms-05",
+          "intent": "事件类型清单",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--list-events"
+          ],
+          "expect": [
+            "CN: death",
+            "EU: public_health_threat"
+          ]
+        },
+        {
+          "id": "pms-e1",
+          "intent": "--aware 非法日期友好拒绝（原裸 traceback）",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--aware",
+            "abc",
+            "--jurisdiction",
+            "CN",
+            "--event",
+            "death"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        },
+        {
+          "id": "pms-e2",
+          "intent": "未知辖区友好拒绝",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--aware",
+            "2026-10-01",
+            "--jurisdiction",
+            "MARS",
+            "--event",
+            "death"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]",
+            "未知辖区"
+          ]
+        },
+        {
+          "id": "pms-e3",
+          "intent": "辖区不支持的事件类型友好拒绝",
+          "cmd": [
+            "scripts/pms_report.py",
+            "--aware",
+            "2026-10-01",
+            "--jurisdiction",
+            "CN",
+            "--event",
+            "bogus"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "[error]"
+          ]
+        }
+      ]
+    },
+    "iso14971-risk-file": {
+      "cwd": "repos/iso14971-risk-file",
+      "tasks": [
+        {
+          "id": "rf-01",
+          "intent": "演示含风险矩阵判据",
+          "cmd": [
+            "scripts/risk_file.py",
+            "--demo"
+          ],
+          "expect": [
+            "ISO 14971 风险管理文件生成器",
+            "不可接受"
+          ]
+        },
+        {
+          "id": "rf-02",
+          "intent": "报告骨架含四章结构",
+          "cmd": [
+            "scripts/risk_file.py",
+            "--report"
+          ],
+          "expect": [
+            "风险管理文件（ISO 14971 骨架）",
+            "综合剩余风险与受益-风险结论"
+          ]
+        },
+        {
+          "id": "rf-03",
+          "intent": "--help 暴露 add/control/report",
+          "cmd": [
+            "scripts/risk_file.py",
+            "--help"
+          ],
+          "expect": [
+            "add",
+            "control",
+            "--report"
+          ]
+        },
+        {
+          "id": "rf-e1",
+          "intent": "control 不存在的风险 ID 友好拒绝（原裸 traceback）",
+          "cmd": [
+            "scripts/risk_file.py",
+            "control",
+            "--id",
+            "R-999",
+            "--measure",
+            "m"
+          ],
+          "expect_rc": [
+            2
+          ],
+          "expect": [
+            "未找到风险"
+          ]
+        }
+      ]
+    },
+    "design-controls-toolkit": {
+      "cwd": "repos/design-controls-toolkit",
+      "tasks": [
+        {
+          "id": "dc-01",
+          "intent": "演示含设计控制全阶段与人因挂点",
+          "cmd": [
+            "scripts/design_controls.py",
+            "--demo"
+          ],
+          "expect": [
+            "设计控制清单生成器",
+            "共 16 项",
+            "依据:"
+          ]
+        },
+        {
+          "id": "dc-02",
+          "intent": "按阶段过滤输出验证项",
+          "cmd": [
+            "scripts/design_controls.py",
+            "--stage",
+            "验证"
+          ],
+          "expect": [
+            "设计控制自查清单（验证）",
+            "设计验证"
+          ]
+        },
+        {
+          "id": "dc-03",
+          "intent": "--help 暴露 stage",
+          "cmd": [
+            "scripts/design_controls.py",
+            "--help"
+          ],
+          "expect": [
+            "--stage",
+            "--demo"
+          ]
+        }
+      ]
+    },
+    "manufacturing-gmp": {
+      "cwd": "repos/manufacturing-gmp",
+      "tasks": [
+        {
+          "id": "gm-01",
+          "intent": "演示含 GMP 框架与 IQ/OQ/PQ，2025 差异诚实占位",
+          "cmd": [
+            "scripts/gmp_toolkit.py",
+            "--demo"
+          ],
+          "expect": [
+            "GMP 生产质量管理工具",
+            "TO_BE_VERIFIED",
+            "IQ/OQ/PQ"
+          ]
+        },
+        {
+          "id": "gm-02",
+          "intent": "IQ/OQ/PQ 检查单含三次成功惯例提示",
+          "cmd": [
+            "scripts/gmp_toolkit.py",
+            "--pq"
+          ],
+          "expect": [
+            "过程确认（IQ/OQ/PQ）检查单",
+            "三次成功"
+          ]
+        },
+        {
+          "id": "gm-03",
+          "intent": "章节框架含厂房与设施",
+          "cmd": [
+            "scripts/gmp_toolkit.py",
+            "--chapters"
+          ],
+          "expect": [
+            "厂房与设施",
+            "设计开发"
+          ]
+        }
+      ]
+    },
+    "udi-assignment": {
+      "cwd": "repos/udi-assignment",
+      "tasks": [
+        {
+          "id": "udi-01",
+          "intent": "GTIN-13 校验位计算（mod-10）",
+          "cmd": [
+            "scripts/udi_assign.py",
+            "--gtin",
+            "0987654321098"
+          ],
+          "expect": [
+            "校验位 = 2"
+          ]
+        },
+        {
+          "id": "udi-02",
+          "intent": "carrierHRF 生成 DI/PI",
+          "cmd": [
+            "scripts/udi_assign.py",
+            "--carrier",
+            "--di",
+            "09876543210987",
+            "--lot",
+            "A1"
+          ],
+          "expect": [
+            "carrierHRF: (01)09876543210987(10)A1"
+          ]
+        },
+        {
+          "id": "udi-03",
+          "intent": "三侧 UDI 数据库字段对照",
+          "cmd": [
+            "scripts/udi_assign.py",
+            "--fields"
+          ],
+          "expect": [
+            "Primary DI",
+            "产品标识（DI）",
+            "Basic UDI-DI"
+          ]
+        },
+        {
+          "id": "udi-04",
+          "intent": "演示含赋码演示",
+          "cmd": [
+            "scripts/udi_assign.py",
+            "--demo"
+          ],
+          "expect": [
+            "UDI 赋码工具",
+            "TO_BE_VERIFIED"
+          ]
+        }
+      ]
+    },
+    "iec62304-software": {
+      "cwd": "repos/iec62304-software",
+      "tasks": [
+        {
+          "id": "sw-01",
+          "intent": "演示含 A/B/C 分级判据",
+          "cmd": [
+            "scripts/sw_lifecycle.py",
+            "--demo"
+          ],
+          "expect": [
+            "IEC 62304",
+            "Class C",
+            "Class A"
+          ]
+        },
+        {
+          "id": "sw-02",
+          "intent": "S5×P3 → Class C",
+          "cmd": [
+            "scripts/sw_lifecycle.py",
+            "--classify",
+            "--severity",
+            "5",
+            "--probability",
+            "3"
+          ],
+          "expect": [
+            "Class: C",
+            "S5"
+          ]
+        },
+        {
+          "id": "sw-03",
+          "intent": "生命周期过程清单含 SOUP",
+          "cmd": [
+            "scripts/sw_lifecycle.py",
+            "--processes"
+          ],
+          "expect": [
+            "IEC 62304 软件生命周期过程清单",
+            "SOUP"
+          ]
+        }
+      ]
+    },
+    "device-regulatory-map": {
+      "cwd": "repos/device-regulatory-map",
+      "tasks": [
+        {
+          "id": "dr-01",
+          "intent": "演示含四辖区分类规则",
+          "cmd": [
+            "scripts/device_reg_map.py",
+            "--demo"
+          ],
+          "expect": [
+            "Annex VIII",
+            "21 CFR 860",
+            "分类目录"
+          ]
+        },
+        {
+          "id": "dr-02",
+          "intent": "FDA 路径 510(k)/PMA",
+          "cmd": [
+            "scripts/device_reg_map.py",
+            "--jurisdiction",
+            "FDA"
+          ],
+          "expect": [
+            "510(k)",
+            "PMA",
+            "US Agent"
+          ]
+        },
+        {
+          "id": "dr-03",
+          "intent": "PMDA 承認申請路径",
+          "cmd": [
+            "scripts/device_reg_map.py",
+            "--jurisdiction",
+            "PMDA"
+          ],
+          "expect": [
+            "承認申請",
+            "MAH"
+          ]
+        }
+      ]
+    },
+    "clinical-evaluation": {
+      "cwd": "repos/clinical-evaluation",
+      "tasks": [
+        {
+          "id": "ce-01",
+          "intent": "演示含同品种路径依据",
+          "cmd": [
+            "scripts/cer_planner.py",
+            "--demo"
+          ],
+          "expect": [
+            "临床评价路径规划器",
+            "MEDDEV 2.7.1 rev.4"
+          ]
+        },
+        {
+          "id": "ce-02",
+          "intent": "PMCF 计划骨架",
+          "cmd": [
+            "scripts/cer_planner.py",
+            "--pmcf"
+          ],
+          "expect": [
+            "PMCF 计划骨架",
+            "同品种比对要素清单"
+          ]
+        },
+        {
+          "id": "ce-03",
+          "intent": "CN 路径规划",
+          "cmd": [
+            "scripts/cer_planner.py",
+            "--plan",
+            "--jurisdiction",
+            "CN"
+          ],
+          "expect": [
+            "建议路径",
+            "同品种比对"
+          ]
+        }
+      ]
+    },
+    "biocompatibility-iso10993": {
+      "cwd": "repos/biocompatibility-iso10993",
+      "tasks": [
+        {
+          "id": "bc-01",
+          "intent": "演示含终点矩阵与 Gap 提示",
+          "cmd": [
+            "scripts/biocompat.py",
+            "--demo"
+          ],
+          "expect": [
+            "ISO 10993-1 终点矩阵",
+            "implant × bone × permanent",
+            "化学表征"
+          ]
+        },
+        {
+          "id": "bc-02",
+          "intent": "永久骨植入含致癌性终点",
+          "cmd": [
+            "scripts/biocompat.py",
+            "--nature",
+            "implant",
+            "--tissue",
+            "bone",
+            "--duration",
+            "permanent"
+          ],
+          "expect": [
+            "implant × bone × permanent",
+            "致癌性"
+          ]
+        },
+        {
+          "id": "bc-03",
+          "intent": "组织可选值含血液通路",
+          "cmd": [
+            "scripts/biocompat.py",
+            "--tissues"
+          ],
+          "expect": [
+            "blood_path",
+            "breached_surface"
+          ]
+        }
+      ]
+    },
+    "cybersecurity-medical": {
+      "cwd": "repos/cybersecurity-medical",
+      "tasks": [
+        {
+          "id": "cs-01",
+          "intent": "演示含 81001-5-1 与 STRIDE",
+          "cmd": [
+            "scripts/cyber_check.py",
+            "--demo"
+          ],
+          "expect": [
+            "医疗器械网络安全工具箱",
+            "81001-5-1",
+            "STRIDE"
+          ]
+        },
+        {
+          "id": "cs-02",
+          "intent": "检查单含漏洞监测项",
+          "cmd": [
+            "scripts/cyber_check.py",
+            "--checklist"
+          ],
+          "expect": [
+            "漏洞监测",
+            "安全更新机制"
+          ]
+        },
+        {
+          "id": "cs-03",
+          "intent": "STRIDE 医疗适配六项",
+          "cmd": [
+            "scripts/cyber_check.py",
+            "--stride"
+          ],
+          "expect": [
+            "S 欺骗",
+            "E 权限提升"
+          ]
+        }
+      ]
+    }
+  }
+}

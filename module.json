@@ -1,0 +1,42 @@
+{
+  "id": "medical-ai-toolkit",
+  "title": "MedXpert 医疗 AI 落地 · 可插拔总入口与方法论门户",
+  "description": "lgd-skeleton/1.0 总入口：提供医疗 AI 从合规到临床落地的五层方法论导航，并自动路由发现 20 个子模块（工具矩阵共 21 仓：AI 治理 9 + 器械全生命周期 11 + 门户 1）。",
+  "triggers": {
+    "keywords": [
+      "medai",
+      "landing",
+      "portal",
+      "医疗AI",
+      "导航",
+      "方法论文档"
+    ],
+    "file_patterns": [
+      "skeleton.json",
+      "discover.py"
+    ],
+    "intents": [
+      "总入口",
+      "导航",
+      "方法论"
+    ]
+  },
+  "provides": [
+    "medical-ai-toolkit",
+    "portal",
+    "skeleton",
+    "router"
+  ],
+  "skills": [],
+  "needs_backends": [],
+  "license": "CC-BY-4.0",
+  "upstream": null,
+  "cost": "low",
+  "lazy": false,
+  "nested": false,
+  "entry": "scripts/discover.py",
+  "deps": [],
+  "generated_by": "lgd-skeleton/1.0 (manual port from rea scaffold)",
+  "idea": "医疗 AI 落地五层闭环的可插拔总入口与方法论门户",
+  "extension_note": "新增能力只需在主体代码注册表加一行，无需改主流程。"
+}

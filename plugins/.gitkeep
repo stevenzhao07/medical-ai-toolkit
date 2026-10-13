@@ -1,0 +1,3 @@
+# 扩展点（plugins/）
+# 新增子模块：在 skeleton.json 的 modules 列表加一项 + 在 repos/ 下放带 module.json 的仓库即可，
+# discover.py 自动纳入路由表，无需改主流程。

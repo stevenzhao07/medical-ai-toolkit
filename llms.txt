@@ -1,0 +1,102 @@
+MedXpert 医疗 AI 开源矩阵（lgd-skeleton/1.0 可插拔模块）
+========================================================
+
+> 把「医疗 AI 信任」方法论（治理守护者 XCGS / 立法者 A³ Laws / 护照官 AI 护照 / 人机共存）工程化落地的可插拔模块总入口。纯技术贡献，@stevenzhao07 署名，MedXpert 仅作 affiliation。
+
+## Modules
+
+- [ai-a3-laws](https://github.com/stevenzhao07/ai-a3-laws) — 把「立法者（A³ Laws）」理念工程化为可部署的运行时约束库：对每一次自主决策做三定律校验——A1 权限边界（Authority）、A2 自主边界（人类监督）、A3 追责边界（可归因日志）。返回违规清单，可嵌入门禁或 Agent 循…
+  - 入口: `python scripts/a3_laws.py --demo`
+  - 提供: ai-a3-laws, a3, runtime-constraint, autonomy-guard
+- [ai-governance-checklist](https://github.com/stevenzhao07/ai-governance-checklist) — 医疗 AI 治理的聚合开源仓：模型卡 / 数据卡模板 + 人类监督（human-in-the-loop）检查单 + 公平性测试骨架 + OWASP AI Exchange 医疗章节输入。把「人机共存」理念落到治理清单。
+  - 入口: `python scripts/gov_checklist.py --demo`
+  - 提供: ai-governance-checklist, governance, model-card, checklist
+- [ai-model-passport](https://github.com/stevenzhao07/ai-model-passport) — 把「护照官（AI 护照制度）」理念做成可部署的参考实现：为每一个 AI 系统签发一份机器可读的『AI 护照』JSON（身份、模型卡引用、训练数据、预期用途、风险分级、符合性声明、签发哈希），支持签发与验证。（对应『AI 护照系统』能力…
+  - 入口: `python scripts/ai_passport.py --demo`
+  - 提供: ai-model-passport, passport, ai-identity, provenance
+- [biocompatibility-iso10993](https://github.com/stevenzhao07/biocompatibility-iso10993) — ISO 10993-1:2018 生物学评价终点判定矩阵：按接触性质（表面/外部接入/植入）× 接触组织（皮肤/粘膜/损伤皮肤/组织/骨/血液/神经）× 接触时限（有限 ≤24h / 24h–30d / >30d）输出需评终点（细胞毒…
+  - 入口: `python scripts/biocompat.py --demo`
+  - 提供: biocompatibility-iso10993, endpoint-matrix, gap-analysis
+- [clinical-evaluation](https://github.com/stevenzhao07/clinical-evaluation) — 临床评价（CER）路径规划与 PMCF 计划生成：同品种比对（EU MDR Annex XIV + MEDDEV 2.7.1 rev.4）、临床试验路径、NMPA 临床评价指导原则路径、FDA 510(k) 实质等效；PMCF 计划模…
+  - 入口: `python scripts/cer_planner.py --demo`
+  - 提供: clinical-evaluation, cer-path, pmcf-plan, equivalence
+- [cybersecurity-medical](https://github.com/stevenzhao07/cybersecurity-medical) — 医疗器械网络安全合规工具：IEC 81001-5-1 安全开发生命周期检查单、FDA 预市网络安全指南（2023）要点清单、威胁建模提示（STRIDE 医疗适配）、SBOM（SPDX/CycloneDX）检查与组件漏洞关注项、安全更新…
+  - 入口: `python scripts/cyber_check.py --demo`
+  - 提供: cybersecurity-medical, cyber-checklist, sbom-check, threat-model
+- [delivery-guard](https://github.com/stevenzhao07/delivery-guard) — MedXpert 把AI 交付治理理念工程化落地的可插拔模块：交付前按 17 道门禁校验，并计算双 SHA-256 指纹写入权属台账（provenance ledger），形成可审计的在先发表证据。
+  - 入口: `python scripts/delivery_guard.py --demo`
+  - 提供: delivery-guard, gate, provenance, dual-sha
+- [design-controls-toolkit](https://github.com/stevenzhao07/design-controls-toolkit) — 把 ISO 13485 §7.3 设计开发控制与 21 CFR 820.30 设计控制落成可运行的自检清单生成器：设计输入/输出、评审、验证(V&V)、确认、设计转换、变更控制、DHF/DMR 索引，含 IEC 62366-1 人因工…
+  - 入口: `python scripts/design_controls.py --demo`
+  - 提供: design-controls-toolkit, design-controls, dhf-checklist, v&v-plan
+- [device-regulatory-map](https://github.com/stevenzhao07/device-regulatory-map) — 非软件类医疗器械的跨辖区监管映射：分类规则（NMPA《医疗器械分类规则》+ 分类目录、EU MDR Annex VIII 22 条分类规则、FDA 21 CFR 862–892 专科分类 + 860 程序、PMDA 药机法 Ⅰ–Ⅳ）、…
+  - 入口: `python scripts/device_reg_map.py --demo`
+  - 提供: device-regulatory-map, classification-rules, pathway-map
+- [fhir-ortho-toolkit](https://github.com/stevenzhao07/fhir-ortho-toolkit) — 骨科植入物唯一标识（UDI）的 HL7 FHIR R4 轮廓参考实现：Device（含 UDI carrier）、Patient、Procedure（THA/TKA）、Observation 的资源构造器与示例。定位为规范（spec）…
+  - 入口: `python scripts/fhir_ortho.py --demo`
+  - 提供: fhir-ortho-toolkit, fhir, udi, ortho-profile
+- [iec62304-software](https://github.com/stevenzhao07/iec62304-software) — IEC 62304:2006+A1:2015 医疗器械软件生命周期工具：软件安全等级 A/B/C 判定器（基于伤害可能性×严重度）、软件开发生命周期过程清单（策划/需求/架构/单元/集成/系统测试/发布/维护）、与 Agile/CI …
+  - 入口: `python scripts/sw_lifecycle.py --demo`
+  - 提供: iec62304-software, safety-class, sw-checklist, soup-register
+- [iso14971-risk-file](https://github.com/stevenzhao07/iso14971-risk-file) — 按 ISO 14971:2019（+ ISO/TR 24971 应用指南）生成风险管理文件骨架：危害登记表、5×5 概率×严重度风险矩阵、可接受性准则、风险控制措施跟踪、剩余风险与受益-风险分析。把「风险管理贯穿生命周期」落成一条命令。
+  - 入口: `python scripts/risk_file.py --demo`
+  - 提供: iso14971-risk-file, risk-matrix, risk-report, fmea-lite
+- [manufacturing-gmp](https://github.com/stevenzhao07/manufacturing-gmp) — 医疗器械生产质量管理规范（GMP）自查工具：2014 版条款框架清单 + 版本差异对照（载入两版条款 JSON 自动 diff）+ 过程确认 IQ/OQ/PQ 检查单生成。服务「2025 修订版 vs 2014 版 GMP 差异研究」…
+  - 入口: `python scripts/gmp_toolkit.py --demo`
+  - 提供: manufacturing-gmp, gmp-checklist, version-diff, iq-oq-pq
+- [medical-ai-toolkit](https://github.com/stevenzhao07/medical-ai-toolkit) — lgd-skeleton/1.0 总入口：提供医疗 AI 从合规到临床落地的五层方法论导航，并自动路由发现 20 个子模块（工具矩阵共 21 仓：AI 治理 9 + 器械全生命周期 11 + 门户 1）。
+  - 入口: `python scripts/discover.py --demo`
+  - 提供: medical-ai-toolkit, portal, skeleton, router
+- [ml-validation-toolkit](https://github.com/stevenzhao07/ml-validation-toolkit) — 医疗 AI 模型的验证工具包：给定 y_true / y_pred（可选 subgroup），计算 AUC、Accuracy、Precision/Recall/F1、Brier 校准误差，以及子组公平性缺口（人口均等等差 / 机会均等…
+  - 入口: `python scripts/ml_validation.py --demo`
+  - 提供: ml-validation-toolkit, ml-validation, fairness, calibration
+- [multilingual-ifu](https://github.com/stevenzhao07/multilingual-ifu) — MedXpert 把骨科植入物/器械使用说明（IFU）做成中→英/德/日/阿/法/西/意/葡/俄/韩/泰/印尼/越 13 外语对照的开源语料库，每段严格对齐 7 段结构（产品标识/预期用途/禁忌症/警告/清洁灭菌/追溯/不良事件）。1…
+  - 入口: `python scripts/ifu_index.py --demo`
+  - 提供: multilingual-ifu, ifu, multilingual, ortho-i18n
+- [omop-ortho-toolkit](https://github.com/stevenzhao07/omop-ortho-toolkit) — 把骨科手术登记（关节置换 TKA/THA、植入物）映射到 OHDSI OMOP CDM 的 ETL 提案与示例：源代码（CPT/SNOMED）→ OMOP 概念集，产出概念集 SQL 骨架。投 OHDSI CDM WG。
+  - 入口: `python scripts/omop_ortho.py --demo`
+  - 提供: omop-ortho-toolkit, omop, etl, concept-set
+- [pms-vigilance](https://github.com/stevenzhao07/pms-vigilance) — 上市后监督（PMS）与警戒（Vigilance）时限计算与合规工具：NMPA 不良事件报告（死亡 7 日/严重伤害 20 日/群体 12 小时）、EU MDR Art.87（2/10/15 天）、FDA MDR（30 日/5 工作日/…
+  - 入口: `python scripts/pms_report.py --demo`
+  - 提供: pms-vigilance, report-deadline, recall-levels, psur-cycle
+- [samd-ra-toolkit](https://github.com/stevenzhao07/samd-ra-toolkit) — Software as a Medical Device（SaMD / AIaMD）的注册与质量体系工具包：SaMD 判定树 + IEC 62304 / ISO 14971(AI) / EU AI Act 映射 + PCCP 模板骨架…
+  - 入口: `python scripts/samd_map.py --demo`
+  - 提供: samd-ra-toolkit, samd, ra-kit, regulatory-map
+- [sterilization-validation](https://github.com/stevenzhao07/sterilization-validation) — 医疗器械灭菌与清洁验证的常用计算器：EO 灭菌 BI 存活分数与过度杀灭法判据、湿热灭菌 F0 累积、辐照灭菌 ISO 11137 Method 1 VDmax 剂量设定、清洁验证残留限值（PDE/单位面积法/10 ppm 经验法）、…
+  - 入口: `python scripts/sterilization_val.py --demo`
+  - 提供: sterilization-validation, f0-calc, cleaning-limit, endotoxin-limit
+- [udi-assignment](https://github.com/stevenzhao07/udi-assignment) — 医疗器械唯一标识（UDI）赋码参考实现：GS1 GTIN-14 校验位计算（mod-10）、DI/PI 拆分（生产日期/批号/序列号/有效期）、HIBCC/ICCBBA 体系说明、FDA GUDID / NMPA 器械 UDI 数据库…
+  - 入口: `python scripts/udi_assign.py --demo`
+  - 提供: udi-assignment, gtin-check-digit, di-pi-split, udi-db-fields
+
+## How to use
+
+```bash
+# 克隆任一模块即可跑 demo
+git clone https://github.com/stevenzhao07/ai-a3-laws.git && cd ai-a3-laws
+python scripts/a3_laws.py --demo
+
+# AI 按任务描述自动选模块
+python router.py "骨科 IFU 多语种对照"
+
+# 说想法即自动搭建
+python idea_scaffold.py "新增骨科 UDI 校验插件"
+
+# 一键本地全跑（冒烟 + 完整 6 维质量门禁含 gold 语义回归）
+python run_all.py --gold
+
+# 全模块自动测试（6 维度）
+python harness.py --all
+```
+
+## Standards we follow
+
+- AGENTS.md（AAIF / Linux Foundation，nearest-wins 嵌套）
+- llms.txt / llms-full.txt（Jeremy Howard, Answer.AI）
+- A2A Agent Card（/.well-known/agent.json，Linux Foundation）
+- Spec Kit（GitHub SDD, 38+ agent 集成）
+
+## References
+
+- 根门户: https://github.com/stevenzhao07/medical-ai-toolkit
+- AI 参与指南: https://github.com/stevenzhao07/medical-ai-toolkit/blob/main/AI_PARTICIPATION.md
