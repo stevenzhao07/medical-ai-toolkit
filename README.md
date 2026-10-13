@@ -2,7 +2,7 @@
 
 > **Single navigation portal** for an open, zero-dependency toolkit covering the **full lifecycle of medical-device AI**, built on **LGD** — a declarative, industry-neutral skeleton where every capability is an independently loadable module. Medical devices are the reference domain; the skeleton itself is industry-neutral.
 
-> Contributed by [@stevenzhao07](https://github.com/stevenzhao07) · Affiliation: MedXpert (medical-device RA & regulatory consultancy) · Pure technical input, no commercial promotion.
+> Contributed by [@stevenzhao07](https://github.com/stevenzhao07) — maintained as an individual open-source project on medical-device RA & AI governance. Pure technical input, no commercial promotion.
 
 ---
 
@@ -19,11 +19,29 @@ We use a **four-tier verification convention** and never overstate maturity. Eac
 
 > **These are reference implementations and decision-support tools — not medical devices, not certified submissions, not clinical advice.** Always confirm outputs against the current official text in your jurisdiction.
 
-## 🧭 How to use this portal
+## Quick start
 
 1. **Pick a domain** from the matrix below.
 2. Open the linked module repo → read its README → run its self-test.
 3. Contribute via Issue/PR (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
+
+Run the portal's own router demo to see the full module list:
+
+```bash
+python scripts/discover.py --demo
+```
+
+## 快速开始
+
+1. 从下方矩阵**选择领域**。
+2. 打开对应模块仓库 → 读其 README → 运行自测。
+3. 通过 Issue/PR 贡献（见 [CONTRIBUTING.md](./CONTRIBUTING.md)）。
+
+运行门户自带的路由演示，查看完整模块清单：
+
+```bash
+python scripts/discover.py --demo
+```
 
 ## 🗂 Tool matrix (25 repositories, verified 2026-10-13)
 
@@ -97,10 +115,12 @@ python harness.py --module medical-ai-toolkit
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md), [GOOD_FIRST_ISSUES.md](./GOOD_FIRST_ISSUES.md), and the issue/PR templates under `.github/`. All changes go through a branch + PR; nothing merges to `main` without review.
 
+To contribute: **fork** the repository, **clone** it locally, then open an issue or pull request.
+
 ## 📄 License
 
-Code: **Apache-2.0**. Content/docs: **CC BY 4.0** (some reference texts CC0). See [LICENSE](./LICENSE) and [PROJECT_ATTRIBUTION.md](./PROJECT_ATTRIBUTION.md).
+Each repository ships its own `LICENSE` file. Across the account the licenses are **mixed per repository** — Apache-2.0, CC BY 4.0, CC0, and MIT — and the authoritative terms are those in each repo's `LICENSE`. See each repository's `LICENSE` for details. (A unified attribution/provenance note is pending a separate PR.)
 
 ## 🤖 Attribution & AI assistance
 
-The reorganisation specification was drafted with ChatGPT and reviewed by the owner; execution was performed by a WorkBuddy agent. Full disclosure (author, affiliation, AI-assistance, license, verification convention) is in [PROJECT_ATTRIBUTION.md](./PROJECT_ATTRIBUTION.md).
+This reorganisation's specification was drafted with ChatGPT and reviewed by the account owner; execution was performed by a WorkBuddy agent on the owner's machine. AI is assistive only and does not replace domain-expert review or official-source verification. (Full provenance note pending a separate PR.)
