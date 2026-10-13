@@ -11,7 +11,7 @@ harness.py — 全自动化测试 Harness（6 维度）
   流畅性 fluency    entry --help 不崩、退出码正常、无死锁
   外人实跑 outsider 从干净视角跑通 README 用法段全部可跑命令（非仅第一条），
                    带 <占位符> 或缺输入文件的命令明确跳过并记录，不假跑
-  易用性 usability  README 有"使用"段、entry 文件存在、有 CTA
+  易用性 usability  README 有用法段（中英标题均认）、entry 文件存在、有 CTA
   语义回归 gold     跑 gold_set.json 每条真实任务，校验 expect 子串 / regex / not_contains
 
 布局说明（2026-10-12 三方复审 P0 修复）：
@@ -71,6 +71,18 @@ KEY_FIELDS = {
     "omop-ortho-toolkit": [r"CPT4", r"TO_BE_VALIDATED"],
     "samd-ra-toolkit": [r"MDCG", r"AI Office", r"内部统一风险刻度"],
 }
+
+
+# README「用法段」标题识别（二/三级标题，中英双语）。
+# 2026-10-13：门户 README 按用户要求改为「英文在前、中文在后」双语版后，
+# 标题从 `## 使用` 变成 `### Quick start` / `### 快速开始`，原字面量匹配
+# `"## 使用"` 直接判负 —— CI 精确抓到该回归。此处放宽为双语通用标题，
+# 但「必须真的存在可跑用法段」这一语义不放宽。
+USAGE_RE = re.compile(
+    r"^#{2,3}[ \t]*(?:使用|用法|快速开始|快速上手|上手|"
+    r"Usage|Quick[ \t]*[Ss]tart|Getting[ \t]*[Ss]tarted|Quickstart)[ \t]*$",
+    re.M | re.I,
+)
 
 
 def _resolve_repo(mid: str) -> str | None:
@@ -302,22 +314,74 @@ def _missing_input_files(tail: list[str], repo: str) -> list[str]:
     return missing
 
 
+def _strip_trailing_comment(cmd: str) -> str:
+    """剥离命令行尾的 `#` 注释（README 常见写法），引号内的 # 原样保留。
+
+    2026-10-13：门户 README 的用法段写作
+    `python harness.py --module medical-ai-toolkit   # run the 6-dimension self-test`，
+    原样传给 subprocess 会把 `run the 6-dimension self-test` 当成参数 → rc=2。
+    这种写法在 bash/PowerShell 里都合法，是解析方的错，不是 README 的错。
+    """
+    out: list[str] = []
+    quote = None
+    for i, ch in enumerate(cmd):
+        if quote:
+            if ch == quote:
+                quote = None
+            out.append(ch)
+        elif ch in "\"'":
+            quote = ch
+            out.append(ch)
+        elif ch == "#" and (i == 0 or cmd[i - 1].isspace()):
+            break
+        else:
+            out.append(ch)
+    return "".join(out).strip()
+
+
+def _usage_sections(readme: str) -> list[str]:
+    """取出 README 全部「用法段」正文（中英标题均认）。
+
+    双语 README 会同时有英文与中文用法段，故返回全部，由调用方取第一个
+    真正含可跑命令的段。截断只认 >=2 级标题（`##` / `###`）——
+    代码块里的 `# 注释` 若被当成标题，会把 python 命令切到段外。
+    """
+    secs = []
+    for m in USAGE_RE.finditer(readme):
+        rest = readme[m.end():]
+        nxt = re.search(r"^#{2,3}[ \t]", rest, re.M)
+        secs.append(rest[: nxt.start()] if nxt else rest)
+    return secs
+
+
 def check_outsider(repo: str, readme: str) -> tuple[bool, str]:
     """外人实跑：README 用法段全部可跑命令 smoke 跑通（2026-10-12 修复：
     原先只跑第一条，其余命令坏了也不知道）。带 <占位符> 或缺输入文件的
     命令明确跳过并记入 detail；跑前跑后做沙箱快照，报告副作用文件。"""
-    m = re.search(r"## (?:使用|用法)(.*?)(?:\n## |\Z)", readme, re.S)
-    if not m:
-        return False, "README 无'使用'段（外人不知怎么跑）"
-    cmds = re.findall(r"python\s+([^\n`]+)", m.group(1))
+    sections = _usage_sections(readme)
+    if not sections:
+        return False, "README 无用法段（外人不知怎么跑）"
+    cmds: list[str] = []
+    for s in sections:
+        found = [_strip_trailing_comment(c)
+                 for c in re.findall(r"python\s+([^\n`]+)", s)]
+        found = [c for c in found if c]
+        if found:
+            cmds = found
+            break
     if not cmds:
-        return False, "使用段无 python 命令"
+        return False, "用法段无 python 命令"
     import shlex
     before = _snapshot(repo)
     ran, failed, skipped = 0, [], []
     for c in cmds:
         c = c.strip().strip("`")
         if "--demo" in c or "--help" in c:
+            continue
+        # 防递归：README 里「跑 harness 自己」的命令已由 CI 第一步直接覆盖，
+        # 在 outsider 里再执行会自我递归（子 harness 又跑自己的 outsider）。
+        if "harness.py" in c:
+            skipped.append(f"{c[:40]}(自测命令，避免递归)")
             continue
         try:
             tail = shlex.split(c)  # 正确处理带引号参数（P2-11 修复）
@@ -351,10 +415,10 @@ def check_outsider(repo: str, readme: str) -> tuple[bool, str]:
 
 
 def check_usability(repo: str, readme: str, entry: str | None) -> tuple[bool, str]:
-    """易用性：README 有使用段 + entry 存在 + 有 CTA。"""
+    """易用性：README 有用法段 + entry 存在 + 有 CTA。"""
     errs = []
-    if "## 使用" not in readme:
-        errs.append("无使用段")
+    if not USAGE_RE.search(readme):
+        errs.append("无用法段")
     if not entry:
         errs.append("无 entry 文件")
     if not re.search(r"(fork|clone|提\s*issue|demo)", readme, re.I):

@@ -10,7 +10,7 @@
     "AGENTS.md": "b50095f55b406904bc88939595ad0916a0d203c4e8ceff9df923c7756e490d42",
     "AI_PARTICIPATION.md": "7d3474870e34c053ecafc4890b8f508a974d6043b120208572b44961ad228ea2",
     "gold_set.json": "fb9e77419f576c5b3da38c5ae4689ec60f2ddca785c073737497bd6cc4b27e07",
-    "harness.py": "2eccb0873f9180c8812a2e8264d327484e0343d315a28c84ea72e5c098a270ef",
+    "harness.py": "a148f76d7e57c81c5519ad7aea2a4aadc70f2215da7205e0b6450b12d2c1f028",
     "idea_scaffold.py": "a865069d60cb5cd5a58a23143035702bb4fd02759609e24690f4d92ae77d774d",
     "lifecycle_modules.py": "2d0cd81968c2857adbdc4c49155614d460016bcc00c3fab244ed892fd3d50112",
     "llms-full.txt": "d74ec48b92dcc778a29f7449df1459aa41db09c55c7929bf5289d8c21777dfe5",
@@ -20,7 +20,7 @@
     "scaffold.py": "b9d406781a0770e0e6593c7cb8d41622fd7d84e3a4fd9b2d8469358e94ad57ba",
     "scripts/check_portal.py": "ac1ded449faa04cd163a7e0ce962f1627706b9dcafc64c1a4bba1d1b80096cf9",
     "scripts/check_portal_sync.py": "c1844bd7f9daf38fdfb4439fc86fe4421f8193f86d23d9ae094c493133aea38b",
-    "skeleton.json": "b6a9d1b98e27e43a1929bedb63199f4d186e95aea6e3976e98160112808c2888",
+    "skeleton.json": "70c94846b20d21b891148810d6104d4d7fe11853fce21baa65c415c34f56274c",
     "teamai.manifest.json": "68d0e28a426673f0c8053e74dce9f74f52f760883f66f07af1ac72f9759dfb31"
   }
 }
