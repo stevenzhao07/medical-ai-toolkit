@@ -13,14 +13,14 @@
     "harness.py": "2eccb0873f9180c8812a2e8264d327484e0343d315a28c84ea72e5c098a270ef",
     "idea_scaffold.py": "a865069d60cb5cd5a58a23143035702bb4fd02759609e24690f4d92ae77d774d",
     "lifecycle_modules.py": "2d0cd81968c2857adbdc4c49155614d460016bcc00c3fab244ed892fd3d50112",
-    "llms-full.txt": "8a09c603779cac2e781affe62ff9a8d92f7e55b0c061a07b0bedd38d28a53702",
+    "llms-full.txt": "682ad94d40648fef96aaec2bbad92ea6a8eff476aa2a72b2c2bfe74e37ed2903",
     "llms.txt": "b65f8b061d4cbc7a6369c952b18cbcc9b382682a293e73e66d3d066a7794a868",
     "router.py": "8638c3f5ce767cd377275e6ff68f5afc803872b1dfbf69a374a584fbfacd1d4c",
     "run_all.py": "85a523221f1f5ef899e2c3be05dc435fec18dd7947bafc490b6817de9add7e96",
     "scaffold.py": "b9d406781a0770e0e6593c7cb8d41622fd7d84e3a4fd9b2d8469358e94ad57ba",
     "scripts/check_portal.py": "ac1ded449faa04cd163a7e0ce962f1627706b9dcafc64c1a4bba1d1b80096cf9",
     "scripts/check_portal_sync.py": "c1844bd7f9daf38fdfb4439fc86fe4421f8193f86d23d9ae094c493133aea38b",
-    "skeleton.json": "dd025e1e99de84631faa6264f4a40b208972a1e5339415a3385ffad435641c0c",
+    "skeleton.json": "18e91a507a21025a8e7a0fc9b890cc824d0f09b30d1181964d9f652cf690283e",
     "teamai.manifest.json": "68d0e28a426673f0c8053e74dce9f74f52f760883f66f07af1ac72f9759dfb31"
   }
 }
