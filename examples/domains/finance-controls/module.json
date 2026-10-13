@@ -1,0 +1,40 @@
+{
+  "id": "finance-controls-example",
+  "title": "Finance controls example — transaction review (non-medical)",
+  "description": "A second non-medical module on the same lgd-skeleton/1.0 contract. It runs a small deterministic rule set over a transaction ledger and reports control findings: missing approval, dual-approval breaches above a threshold, probable duplicate payments, round amounts, and weekend postings. Included to show that the same contract carries an unrelated domain without any change to the core.",
+  "triggers": {
+    "keywords": [
+      "finance",
+      "internal-controls",
+      "transaction",
+      "duplicate-payment",
+      "approval",
+      "audit"
+    ],
+    "file_patterns": [
+      "control_review.py"
+    ],
+    "intents": [
+      "transaction review",
+      "internal control findings",
+      "duplicate payment detection"
+    ]
+  },
+  "provides": [
+    "finance-controls-example",
+    "control-findings",
+    "duplicate-detection"
+  ],
+  "skills": [],
+  "needs_backends": [],
+  "license": "Apache-2.0",
+  "upstream": null,
+  "cost": "low",
+  "lazy": true,
+  "nested": true,
+  "entry": "scripts/control_review.py",
+  "deps": [],
+  "generated_by": "lgd-skeleton/1.0 (non-medical example)",
+  "idea": "Transaction ledger → internal-control findings on a deterministic rule set",
+  "extension_note": "Add a rule by writing a check function and registering it in RULES; thresholds live in THRESHOLDS."
+}
