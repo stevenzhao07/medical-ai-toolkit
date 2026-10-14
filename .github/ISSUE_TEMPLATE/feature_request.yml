@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose a new capability or improvement for a module
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: Target repository
+      placeholder: e.g. stevenzhao07/ml-validation-toolkit
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What gap does this fill?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope & constraints
+      description: Does it touch regulatory logic, license/IP, or medical-risk calc? (Those need maintainer approval.)
+  - type: checkboxes
+    id: deps
+    attributes:
+      label: Dependency check
+      options:
+        - label: "This can be done with Python standard library only (zero-dependency)"

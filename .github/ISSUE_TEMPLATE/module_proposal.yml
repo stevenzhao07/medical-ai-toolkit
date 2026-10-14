@@ -1,0 +1,42 @@
+name: New module proposal
+description: Propose a new industry-neutral or medical module to add under the LGD skeleton
+title: "[module] "
+labels: ["module-proposal"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Proposed module name
+      placeholder: e.g. ai-agent-cost-tracker
+    validations:
+      required: true
+  - type: dropdown
+    id: vertical
+    attributes:
+      label: Vertical / domain
+      options:
+        - Medical device (reference domain)
+        - AI governance (cross-industry)
+        - Cybersecurity (cross-industry)
+        - AI agents (cross-industry)
+        - Other (describe below)
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose & LGD fit
+      description: What capability does it add? How does it plug into the skeleton?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Regulatory / standards sources
+      description: List official sources + versions you plan to anchor constants to.
+  - type: checkboxes
+    id: ip
+    attributes:
+      label: IP / license
+      options:
+        - label: "I confirm the proposed content does not introduce third-party copyrighted material"

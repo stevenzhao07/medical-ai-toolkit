@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a defect in a tool module (logic error, crash, wrong output)
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: Affected repository
+      placeholder: e.g. stevenzhao07/iso14971-risk-file
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Exact commands / inputs to trigger the bug.
+      placeholder: |
+        1. python iso14971-risk-file.py --input x
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the full error trace or wrong output.
+    validations:
+      required: true
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification honesty
+      options:
+        - label: "I ran the module's self-test and it failed (🟡 functional)"
+        - label: "I confirm this is NOT a regulatory-accuracy claim that needs an official source"
