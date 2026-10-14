@@ -134,7 +134,7 @@ python idea_scaffold.py "骨科 IFU 多语种对照 + 日文版"
 | 流畅性 fluency | `entry --help` 不崩 | 代理调用即挂 |
 | 外人实跑 outsider | README「使用」段命令全部能 smoke 跑 | 陌生人 clone 即卡 |
 | 易用性 usability | 有使用段 + entry + CTA | 不知怎么用/怎么参与 |
-| 语义回归 gold | gold_set.json 218 条真实任务逐条过（缺 gold 硬性判负） | 回归坏了没人知 |
+| 语义回归 gold | gold_set.json 逐条过（当前 **21 条 = 21 个模块 × 1 条金样本**；此前文档称「218 条」与实测不符，已于 2026-10-14 勘误；缺 gold 硬性判负） | 回归坏了没人知 |
 
 **布局说明（2026-10-12 复审修复）**：`harness.py` 只存在于门户开发态（21 仓平级
 `repos/` 布局）。单仓独立克隆跑 `python harness.py` 会 file not found——这是
