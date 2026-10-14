@@ -97,13 +97,13 @@ Each module is a **zero-dependency Python CLI** (or reference corpus). Typical p
 ```bash
 cd <module>
 python <module>.py --help
-python <module>.py --selftest      # if the module ships a self-test
+python <module>.py --selftest      # 端到端断言 + 负对照（2026-10-14 起 21/21 模块已实现）
 ```
 
 The portal itself runs a 6-dimension self-test harness:
 
 ```bash
-python harness.py --module medical-ai-toolkit
+python harness.py --module medical-ai-toolkit   # 仅在门户本仓（目录名须为 medical-ai-toolkit）可跑
 ```
 
 ## 📦 CI status (transparency)
@@ -124,3 +124,31 @@ To contribute: **fork** the repository, **clone** it locally, then open an issue
 ## 🤖 Attribution & AI assistance
 
 This reorganisation's specification was drafted with ChatGPT and reviewed by the account owner; execution was performed by a WorkBuddy agent on the owner's machine. AI is assistive only and does not replace domain-expert review or official-source verification. (Full provenance note pending a separate PR.)
+
+## ✅ 支持的用途 / ❌ 不支持的用途 / 🌍 支持的辖区
+
+> 本节为 2026-10-14 全量实跑审计后新增，用于消除「对外宣称 vs 实现」的口径歧义。
+
+### ✅ 支持的用途
+- 参考实现与能力演示（须附本节免责说明）
+- 生命周期方法论导航、工程计算的**粗算**参考
+- 内部评审、培训与方案讨论的辅助材料
+
+### ❌ 不支持的用途
+- **不得**作为注册申报、合规结论、临床或生产决策的依据
+- 本项目自述为 *non-medical-device / non-certified submission / non-clinical advice*
+- 🔵 专家评审全线 pending；独立数值验算仅覆盖计算主干（28 项，1 项不一致已登记）
+
+### 🌍 支持的辖区
+| 形式 | 取值 | 说明 |
+|---|---|---|
+| 已实现（代码层） | `CN` / `US` / `EU` / `JP` | 别名互通：`NMPA`=`CN`、`FDA`=`US`、`MDR`/`CE`=`EU`、`PMDA`=`JP` |
+| **未实现** | `ASEAN`（东南亚）/ `LATAM`（拉美） | 21/21 模块明确拒绝 |
+
+> ⚠️ 官网 medxpert.cn 所述「及东南亚、拉美等多市场」为**人工咨询服务的覆盖承诺**，**不代表**本开源工具已实现该辖区的计算能力。
+
+### ✅ 验证方式
+```bash
+python <module>.py --selftest          # 端到端自测（含负对照）
+python harness.py --module medical-ai-toolkit   # 门户自测（仅门户本仓可跑）
+```
