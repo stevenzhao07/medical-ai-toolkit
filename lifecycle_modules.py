@@ -15,6 +15,408 @@ lifecycle_modules.py — 医疗器械全生命周期扩展模块清单（法规�
 """
 
 MODULES = [
+    {
+    "id": "udi-hospital-trace",
+    "title": "院内 UDI 解析/建档/召回追溯（GS1·HIBCC·ICCBBA）",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "udi_hospital_trace.py",
+    "description": "医院端 UDI 工作流：条码解析（GS1 AIDC/HIBCC/ICCBBA/裸 GTIN-14，含 mod-10 校验位）、入院建档（A1/A2/A3 责任字段 + 患者假名化）、按器械键召回追溯（时间线输出）。零依赖纯标准库。",
+    "keywords": [
+        "udi",
+        "gs1",
+        "gtin",
+        "hibcc",
+        "iccbba",
+        "召回追溯",
+        "入院建档",
+        "医院端"
+    ],
+    "file_patterns": [
+        "udi_hospital_trace.py"
+    ],
+    "intents": [
+        "解析UDI",
+        "入院建档",
+        "召回追溯"
+    ],
+    "provides": [
+        "udi-hospital-trace",
+        "udi-parse",
+        "udi-intake",
+        "udi-recall-trace"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "院内 UDI 全流程：解析→建档→追溯",
+    "features": [
+        "GS1 GTIN-14 mod-10 校验",
+        "HIBCC/ICCBBA 格式解析",
+        "A1/A2/A3 责任记录 + 患者假名化",
+        "召回追溯时间线"
+    ],
+    "extension_note": "新增条码格式：在 parse_udi 加分发分支。",
+    "usage": "```bash\npython udi_hospital_trace.py --selftest\npython udi_hospital_trace.py --demo\npython udi_hospital_trace.py --parse '(01)00614141234561(21)123456'\n```",
+    "extra": "医院端模块；与制造商端 udi-assignment 算法同源。",
+    "related": [
+        "udi-assignment",
+        "hospital-admission-eval",
+        "fhir-hospital-interop",
+        "vigilance-hospital-report"
+    ],
+    "upstream": null
+},
+    {
+    "id": "ortho-registry-rwe",
+    "title": "骨科登记处随访排程与 RWE 结局事件（OMOP 导出）",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "ortho_registry_rwe.py",
+    "description": "骨科登记处术后随访排程（6周/3月/1年/2年/5年）、PROM 结局事件采集（有效性校验）、OMOP-CDM v5.4 精简导出。支撑真实世界证据（RWE）收集。",
+    "keywords": [
+        "registry",
+        "rwe",
+        "followup",
+        "prom",
+        "omop",
+        "登记处",
+        "随访",
+        "真实世界"
+    ],
+    "file_patterns": [
+        "ortho_registry_rwe.py"
+    ],
+    "intents": [
+        "随访排程",
+        "结局事件",
+        "OMOP导出"
+    ],
+    "provides": [
+        "ortho-registry-rwe",
+        "followup-schedule",
+        "prom-event",
+        "omop-lite"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "登记处随访 + RWE 结局闭环",
+    "features": [
+        "5 节点随访排程",
+        "PROM 0-100 有效性校验",
+        "OMOP-CDM v5.4 lite 导出"
+    ],
+    "extension_note": "新增随访节点：改 FOLLOWUP_POINTS。",
+    "usage": "```bash\npython ortho_registry_rwe.py --selftest\npython ortho_registry_rwe.py --schedule 2026-03-10\n```",
+    "extra": "与 omop-ortho-toolkit 映射层衔接。",
+    "related": [
+        "omop-ortho-toolkit",
+        "fhir-hospital-interop",
+        "hospital-llm-training"
+    ],
+    "upstream": null
+},
+    {
+    "id": "vigilance-hospital-report",
+    "title": "医院不良事件上报与监管时限（NMPA/EU/FDA）",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "vigilance_hospital_report.py",
+    "description": "医院向 MAH/监管上报不良事件的时限感知工具：NMPA 20 工作日、EU MDR 15 天、FDA 30 天（含工作日计算），事件录入含严重度校验与事件 ID。",
+    "keywords": [
+        "vigilance",
+        "adverse-event",
+        "不良事件",
+        "上报时限",
+        "nmpa",
+        "mdr",
+        "fda"
+    ],
+    "file_patterns": [
+        "vigilance_hospital_report.py"
+    ],
+    "intents": [
+        "不良事件上报",
+        "监管时限"
+    ],
+    "provides": [
+        "vigilance-hospital-report",
+        "ae-deadline",
+        "ae-record"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "医院不良事件上报时限感知",
+    "features": [
+        "三辖区工作日时限",
+        "严重度校验",
+        "事件状态机"
+    ],
+    "extension_note": "新增辖区时限：改 DEADLINES。",
+    "usage": "```bash\npython vigilance_hospital_report.py --selftest\npython vigilance_hospital_report.py --deadline 2026-10-05\n```",
+    "extra": "与制造商端 pms-vigilance 构成双向上报链。",
+    "related": [
+        "pms-vigilance",
+        "udi-hospital-trace",
+        "fhir-hospital-interop"
+    ],
+    "upstream": null
+},
+    {
+    "id": "fhir-hospital-interop",
+    "title": "FHIR R4 资源生成 + ICD-10/ICPM 编码参考",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "fhir_hospital_interop.py",
+    "description": "医院信息互操作：FHIR R4 Patient/Device(UDI)/Procedure 资源生成（确定性 ID），骨科 ICD-10/ICPM 编码参考查询。",
+    "keywords": [
+        "fhir",
+        "r4",
+        "hl7",
+        "icd10",
+        "icpm",
+        "互操作",
+        "编码"
+    ],
+    "file_patterns": [
+        "fhir_hospital_interop.py"
+    ],
+    "intents": [
+        "FHIR资源",
+        "编码查询"
+    ],
+    "provides": [
+        "fhir-hospital-interop",
+        "fhir-patient",
+        "fhir-device",
+        "fhir-procedure",
+        "coding-lookup"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "FHIR R4 资源生成 + 骨科编码参考",
+    "features": [
+        "Patient/Device/Procedure 资源",
+        "UDI 标识",
+        "ICD-10/ICPM 查询"
+    ],
+    "extension_note": "新增资源类型：扩展 fhir_resource 分发。",
+    "usage": "```bash\npython fhir_hospital_interop.py --selftest\npython fhir_hospital_interop.py --resource Device --json '{\"udi\":\"(01)00614141234561\"}'\n```",
+    "extra": "与 fhir-ortho-toolkit 同源；不替代官方 FHIR 服务器。",
+    "related": [
+        "fhir-ortho-toolkit",
+        "udi-hospital-trace",
+        "omop-ortho-toolkit"
+    ],
+    "upstream": null
+},
+    {
+    "id": "equipment-asset-management",
+    "title": "医院设备台账/维护校准排程/报废判断",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "equipment_asset_management.py",
+    "description": "设备科核心：设备台账登记（A1/A2/A3 决策记录）、预防性维护到期排程、校准/计量到期状态（expired/due-soon/ok）、报废判断。",
+    "keywords": [
+        "equipment",
+        "asset",
+        "pm",
+        "calibration",
+        "metrology",
+        "设备台账",
+        "校准",
+        "报废"
+    ],
+    "file_patterns": [
+        "equipment_asset_management.py"
+    ],
+    "intents": [
+        "设备台账",
+        "维护排程",
+        "校准到期",
+        "报废"
+    ],
+    "provides": [
+        "equipment-asset-management",
+        "pm-due",
+        "cal-status",
+        "retire-check"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "设备科台账 + PM/校准 + 报废闭环",
+    "features": [
+        "PM 到期排程",
+        "校准状态三态",
+        "报废判断"
+    ],
+    "extension_note": "新增维护周期：改 pm_schedule 参数。",
+    "usage": "```bash\npython equipment_asset_management.py --selftest\npython equipment_asset_management.py --pm 2026-01-15\n```",
+    "extra": "与 sterilization-validation 校准逻辑同源。",
+    "related": [
+        "sterilization-validation",
+        "supplier-audit"
+    ],
+    "upstream": null
+},
+    {
+    "id": "supplier-audit",
+    "title": "供应商审核清单/资质到期/分级",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "supplier_audit.py",
+    "description": "供应链质量：6 项供应商审核清单（ISO13485/营业执照/GSP/质量协议/审核报告/召回史）、资质证照到期跟踪（90 天预警窗）、审核分级 A/B/C/D。",
+    "keywords": [
+        "supplier",
+        "audit",
+        "iso13485",
+        "供应链",
+        "供应商审核",
+        "资质到期"
+    ],
+    "file_patterns": [
+        "supplier_audit.py"
+    ],
+    "intents": [
+        "供应商审核",
+        "资质到期"
+    ],
+    "provides": [
+        "supplier-audit",
+        "audit-grade",
+        "license-expiry"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "供应商审核 + 资质证照闭环",
+    "features": [
+        "审核清单 → A/B/C/D",
+        "证照 90 天预警"
+    ],
+    "extension_note": "新增审核项：改 CHECKLIST。",
+    "usage": "```bash\npython supplier_audit.py --selftest\npython supplier_audit.py --audit S-01 --json '{\"iso13485\":true}'\n```",
+    "extra": "与 manufacturing-gmp 自查逻辑同源。",
+    "related": [
+        "manufacturing-gmp",
+        "equipment-asset-management"
+    ],
+    "upstream": null
+},
+    {
+    "id": "hospital-admission-eval",
+    "title": "医院采购准入评估（证照校验+卫生经济学）",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "hospital_admission_eval.py",
+    "description": "采购决策支持：三类证照校验（注册证/生产许可/经营许可 + 效期）、卫生经济学粗算（单患者年成本 + 高成本阈值）、综合准入结论。",
+    "keywords": [
+        "admission",
+        "procurement",
+        "license",
+        "卫生经济学",
+        "采购准入",
+        "证照校验"
+    ],
+    "file_patterns": [
+        "hospital_admission_eval.py"
+    ],
+    "intents": [
+        "证照校验",
+        "卫生经济学",
+        "准入结论"
+    ],
+    "provides": [
+        "hospital-admission-eval",
+        "license-check",
+        "heco",
+        "admission-verdict"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "采购准入：证照 + 经济学双闸",
+    "features": [
+        "三证校验+效期",
+        "单患者年成本",
+        "准入结论"
+    ],
+    "extension_note": "新增证照类型：扩展 license_check。",
+    "usage": "```bash\npython hospital_admission_eval.py --selftest\npython hospital_admission_eval.py --verdict --json '{\"reg_cert\":\"NMPA-2024-001\",\"prod_license\":\"P-01\",\"biz_license\":\"B-01\",\"reg_expiry\":\"2027-12-31\",\"price_cny\":50000,\"annual_volume\":20,\"expected_life_years\":5,\"reoperation_rate\":0.05}'\n```",
+    "extra": "与 device-regulatory-map 辖区规则同源。",
+    "related": [
+        "device-regulatory-map",
+        "udi-hospital-trace",
+        "supplier-audit"
+    ],
+    "upstream": null
+},
+    {
+    "id": "hospital-llm-training",
+    "title": "医院大模型训练工具链（PII 脱敏+LoRA 编排+模型卡）",
+    "layer": "L2",
+    "license": "Apache-2.0",
+    "entry": "hospital_llm_training.py",
+    "description": "医院本地大模型训练闭环：合规数据流水线（PII 扫描：姓名/证件/电话/病历号/邮箱 → 密钥化 SHA-256 假名化 → 4/1/1 拆分）、LoRA 微调配置编排（torch 检测，无则 dry-run 不假装训练）、评估、ai-model-passport 模型卡输出。",
+    "keywords": [
+        "llm",
+        "training",
+        "lora",
+        "pii",
+        "pseudonymization",
+        "模型卡",
+        "脱敏",
+        "微调",
+        "医院大模型"
+    ],
+    "file_patterns": [
+        "hospital_llm_training.py"
+    ],
+    "intents": [
+        "数据脱敏",
+        "LoRA微调",
+        "模型卡"
+    ],
+    "provides": [
+        "hospital-llm-training",
+        "pii-pipeline",
+        "lora-config",
+        "model-card"
+    ],
+    "cost": "low",
+    "lazy": true,
+    "nested": true,
+    "deps": [],
+    "idea": "医院合规训练：数据→微调→评估→模型卡",
+    "features": [
+        "PII 五类正则扫描",
+        "密钥化假名化",
+        "4/1/1 拆分",
+        "LoRA 编排（torch 检测 dry-run）",
+        "模型卡输出"
+    ],
+    "extension_note": "新增 PII 模式：改 PII_PATTERNS。",
+    "usage": "```bash\npython hospital_llm_training.py --selftest\npython hospital_llm_training.py --demo\npython hospital_llm_training.py --prepare --json '[{\"note\":\"患者 张伟 13812345678\"}]'\n```",
+    "extra": "真训练需 torch+GPU（家用机可跑）；工具链承担工程化/合规/评估/治理四件事。",
+    "related": [
+        "omop-ortho-toolkit",
+        "ml-validation-toolkit",
+        "ai-model-passport",
+        "ai-governance-checklist"
+    ],
+    "upstream": null
+},
     # ------------------------------------------------------------------ P0 核心四件
     {
         "id": "design-controls-toolkit",
