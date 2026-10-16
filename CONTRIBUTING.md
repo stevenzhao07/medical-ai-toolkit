@@ -1,43 +1,20 @@
-# CONTRIBUTING · medical-ai-toolkit（lgd-skeleton/1.0 可插拔模块）
+# Contributing / 贡献指南
 
-> 完整《AI 参与指南》见根门户：https://github.com/stevenzhao07/medical-ai-toolkit/blob/main/AI_PARTICIPATION.md
-> 红线：纯技术贡献；MedXpert 仅作署名（@stevenzhao07）；不挂机构自推；发布前需仓库所有者「go」。
+Thank you for considering a contribution to the MedXpert medical-ai-toolkit portfolio. / 感谢你考虑为 MedXpert medical-ai-toolkit 组合贡献。
 
-## 30 秒上手
-```bash
-git clone https://github.com/stevenzhao07/medical-ai-toolkit.git && cd medical-ai-toolkit
-python scripts/discover.py --demo
-python scripts/discover.py --help
-```
+## Scope / 范围
+This repository is the portal/registry of the stevenzhao07 medical-AI toolkit (33 modules). Contributions improving accuracy of regulatory references, adding verifiable modules, or fixing documentation are welcome. / 本仓为 stevenzhao07 医械 AI 工具链（33 模块）门户/注册中心。欢迎改进法规引用的准确性、新增可验证模块或修复文档的贡献。
 
-## 分支命名
-- **AI 代理**：`agent/` `codex/` `claude/` `copilot/` `cursor/` `ai/` + 简述（如 `agent/add-fhir-observation`）
-- **人类**：`feat/` `fix/` `human/` + 简述
-- 一次 PR 只做一件事（one PR one task）。
+## Process / 流程
+1. Open an issue describing the change (bug / feature / docs). / 先开 issue 描述变更（缺陷/功能/文档）。
+2. Fork, make changes, run the module self-test (`--selftest`) — every script ships built-in assertions with negative controls. / Fork 并修改，运行模块自测（`--selftest`）——每个脚本内置带负对照的断言。
+3. Submit a pull request referencing the issue. CI (smoke / CodeQL / Scorecard) must pass. / 提交关联 issue 的 PR，CI（smoke/CodeQL/Scorecard）必须通过。
 
-## AI 自标识（写进 commit trailer + PR 正文）
-```
-Agent-Model: <模型名>
-Agent-Task: <一句话任务>
-Agent-Limitation: <已知限制 / 待校验项>
-```
+## Standards / 标准
+- Bilingual: English first, Chinese complete, both unabridged for any public-facing doc. / 对外文档双语英前中完整、均不缩写。
+- Neutral wording only; no placeholder or priority-claim phrasing. / 仅中性措辞，禁止占位/抢注类表述。
+- Zero runtime dependencies (stdlib only) unless approved. / 零运行时依赖（仅标准库），除非获批。
+- License: Apache-2.0. / 许可证：Apache-2.0。
 
-## 加能力（一切即插件，不动主码）
-新增能力只需在主体代码注册表加一行，无需改主流程。
-
-## 本地自检（CI 门禁）
-**单仓独立克隆**：只能跑 `python scripts/discover.py --demo` / `--help` 冒烟——`harness.py`
-（6 维测试）只存在于根门户，不在本仓（2026-10-12 复审修复：原指引直接让单仓跑
-`python harness.py`，必然 file not found）。
-
-**完整 6 维自检**（适配性/准确性/流畅性/外人实跑/易用性/语义回归 gold）：
-```bash
-git clone https://github.com/stevenzhao07/medical-ai-toolkit.git portal-dev && cd portal-dev
-# 开发态布局：把你的改动同步进 portal-dev/repos/medical-ai-toolkit/ 后
-python harness.py --module medical-ai-toolkit
-```
-（CI 同款；gold 语义回归全绿再提 PR。）
-
-## 路由 / 总入口
-本模块由 **[medical-ai-toolkit](https://github.com/stevenzhao07/medical-ai-toolkit)** 自动路由发现。
-有新想法？`python idea_scaffold.py "<想法>"` → 命中复用 / 否则自动建骨架并自检（在门户开发态运行）。
+## Response / 响应
+Maintainers will respond within 5 working days. / 维护者将在 5 个工作日内响应。
