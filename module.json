@@ -3,7 +3,7 @@
   "stage": "portal",
   "stage_name": "总入口门户",
   "title": "MedXpert 医疗 AI 落地 · 可插拔总入口与方法论门户",
-  "description": "lgd-skeleton/1.0 总入口：提供医疗 AI 从合规到临床落地的五层方法论导航，并自动路由发现 20 个子模块（工具矩阵共 21 仓：AI 治理 4 + 器械全生命周期 11 + AI/ML 2 + 互操作 3 + 门户 1）。",
+  "description": "lgd-skeleton/1.0 entry point: five-layer methodology navigation for medical AI from compliance to clinical deployment.",
   "triggers": {
     "keywords": [
       "medai",
