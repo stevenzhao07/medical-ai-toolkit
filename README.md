@@ -43,9 +43,9 @@ python scripts/discover.py --demo
 python scripts/discover.py --demo
 ```
 
-## 🗂 Tool matrix (25 repositories, verified 2026-10-13)
+## 🗂 Tool matrix (33 repositories, verified 2026-10-16)
 
-> Note: an earlier version of this README stated "21 repositories". The accurate count as of 2026-10-13 is **25**. This correction is part of the current portal PR.
+> Note: an earlier version of this README stated "21 repositories". The accurate count as of 2026-10-13 is **25**. On 2026-10-16 the portal expanded to **33** with 8 new hospital / supply-chain modules (each ships a runnable self-test with negative controls).
 
 ### AI governance & trust methodology
 | Module | What it does | Verification |
@@ -83,6 +83,18 @@ python scripts/discover.py --demo
 | [omop-ortho-toolkit](https://github.com/stevenzhao07/omop-ortho-toolkit) | Ortho registry → OMOP CDM ETL proposal | 🟢+🟡 · 🔵⚪ pending |
 | [multilingual-ifu](https://github.com/stevenzhao07/multilingual-ifu) | 13-language IFU aligned corpus | 🟢+🟡 · 🔵⚪ pending |
 
+### Hospital & supply-chain (8 new, 2026-10-16)
+| Module | What it does | Verification |
+|---|---|---|
+| [udi-hospital-trace](https://github.com/stevenzhao07/udi-hospital-trace) | Hospital-side UDI parse / intake / recall-trace (GS1·HIBCC·ICCBBA) | 🟢+🟡 · selftest 4 asserts |
+| [ortho-registry-rwe](https://github.com/stevenzhao07/ortho-registry-rwe) | Orthopedic follow-up scheduling + RWE outcome events (OMOP-lite) | 🟢+🟡 · selftest 4 asserts |
+| [vigilance-hospital-report](https://github.com/stevenzhao07/vigilance-hospital-report) | Hospital adverse-event reporting + regulator deadlines (NMPA/EU/FDA) | 🟢+🟡 · selftest 4 asserts |
+| [fhir-hospital-interop](https://github.com/stevenzhao07/fhir-hospital-interop) | FHIR R4 Patient/Device/Procedure + ICD-10/ICPM coding reference | 🟢+🟡 · selftest 4 asserts |
+| [equipment-asset-management](https://github.com/stevenzhao07/equipment-asset-management) | Equipment ledger / PM / calibration / retirement checks | 🟢+🟡 · selftest 4 asserts |
+| [supplier-audit](https://github.com/stevenzhao07/supplier-audit) | Supplier audit checklist / license expiry / grading A-D | 🟢+🟡 · selftest 4 asserts |
+| [hospital-admission-eval](https://github.com/stevenzhao07/hospital-admission-eval) | Procurement admission: license checks + health-economics estimate | 🟢+🟡 · selftest 4 asserts |
+| [hospital-llm-training](https://github.com/stevenzhao07/hospital-llm-training) | Hospital LLM training: PII pipeline / LoRA orchestration / model card | 🟢+🟡 · selftest 4 asserts |
+
 ### Cross-domain / ecosystem
 | Module | What it does | Note |
 |---|---|---|
@@ -97,7 +109,7 @@ Each module is a **zero-dependency Python CLI** (or reference corpus). Typical p
 ```bash
 cd <module>
 python <module>.py --help
-python <module>.py --selftest      # 端到端断言 + 负对照（2026-10-14 起 21/21 模块已实现）
+python <module>.py --selftest      # 端到端断言 + 负对照（2026-10-16 起 33/33 模块已实现）
 ```
 
 The portal itself runs a 6-dimension self-test harness:
@@ -149,6 +161,6 @@ This reorganisation's specification was drafted with ChatGPT and reviewed by the
 
 ### ✅ 验证方式
 ```bash
-python <module>.py --selftest          # 端到端自测（含负对照）
+python <module>.py --selftest          # 端到端自测（含负对照；2026-10-16 起 33/33 模块已实现）
 python harness.py --module medical-ai-toolkit   # 门户自测（仅门户本仓可跑）
 ```
