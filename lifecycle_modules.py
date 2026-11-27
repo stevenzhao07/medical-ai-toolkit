@@ -47,8 +47,8 @@ MODULES = [
         "udi-recall-trace"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "院内 UDI 全流程：解析→建档→追溯",
     "features": [
@@ -66,7 +66,7 @@ MODULES = [
         "fhir-hospital-interop",
         "vigilance-hospital-report"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "ortho-registry-rwe",
@@ -100,8 +100,8 @@ MODULES = [
         "omop-lite"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "登记处随访 + RWE 结局闭环",
     "features": [
@@ -117,7 +117,7 @@ MODULES = [
         "fhir-hospital-interop",
         "hospital-llm-training"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "vigilance-hospital-report",
@@ -148,8 +148,8 @@ MODULES = [
         "ae-record"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "医院不良事件上报时限感知",
     "features": [
@@ -165,7 +165,7 @@ MODULES = [
         "udi-hospital-trace",
         "fhir-hospital-interop"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "fhir-hospital-interop",
@@ -198,8 +198,8 @@ MODULES = [
         "coding-lookup"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "FHIR R4 资源生成 + 骨科编码参考",
     "features": [
@@ -215,7 +215,7 @@ MODULES = [
         "udi-hospital-trace",
         "omop-ortho-toolkit"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "equipment-asset-management",
@@ -250,8 +250,8 @@ MODULES = [
         "retire-check"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "设备科台账 + PM/校准 + 报废闭环",
     "features": [
@@ -266,7 +266,7 @@ MODULES = [
         "sterilization-validation",
         "supplier-audit"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "supplier-audit",
@@ -296,8 +296,8 @@ MODULES = [
         "license-expiry"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "供应商审核 + 资质证照闭环",
     "features": [
@@ -305,13 +305,13 @@ MODULES = [
         "证照 90 天预警"
     ],
     "extension_note": "新增审核项：改 CHECKLIST。",
-    "usage": "```bash\npython supplier_audit.py --selftest\npython supplier_audit.py --audit S-01 --json '{\"iso13485\":true}'\n```",
+    "usage": "```bash\npython supplier_audit.py --selftest\npython supplier_audit.py --audit S-01 --json '{\"iso13485\":True}'\n```",
     "extra": "与 manufacturing-gmp 自查逻辑同源。",
     "related": [
         "manufacturing-gmp",
         "equipment-asset-management"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "hospital-admission-eval",
@@ -343,8 +343,8 @@ MODULES = [
         "admission-verdict"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "采购准入：证照 + 经济学双闸",
     "features": [
@@ -360,7 +360,7 @@ MODULES = [
         "udi-hospital-trace",
         "supplier-audit"
     ],
-    "upstream": null
+    "upstream": None
 },
     {
     "id": "hospital-llm-training",
@@ -395,8 +395,8 @@ MODULES = [
         "model-card"
     ],
     "cost": "low",
-    "lazy": true,
-    "nested": true,
+    "lazy": True,
+    "nested": True,
     "deps": [],
     "idea": "医院合规训练：数据→微调→评估→模型卡",
     "features": [
@@ -415,7 +415,7 @@ MODULES = [
         "ai-model-passport",
         "ai-governance-checklist"
     ],
-    "upstream": null
+    "upstream": None
 },
     # ------------------------------------------------------------------ P0 核心四件
     {
