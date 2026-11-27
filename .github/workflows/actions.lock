@@ -13,8 +13,8 @@ workflows:
     '.github/workflows/scorecard.yml':
         - 'actions/checkout@v4.4.0'
         - 'actions/upload-artifact@v4.6.2'
-        - 'github/codeql-action@v3.39.4'
-        - 'ossf/scorecard-action@v2.5.0'
+        - 'github/codeql-action@v3'
+        - 'ossf/scorecard-action@v2.6.0'
 dependencies:
     'actions/checkout@v4.4.0':
         ref: 'v4.4.0'
@@ -31,13 +31,18 @@ dependencies:
         commit: 'sha1-ea165f8d65b6e75b540449e92b4886f43607fa02'
         owner_id: 44036562
         repo_id: 192625955
+    'github/codeql-action@v3':
+        ref: 'v3'
+        commit: 'sha1-74c1aea9df7c0f02e9b7bfe4a8935abf2e5e3aa6'
+        owner_id: 9919
+        repo_id: 259445878
     'github/codeql-action@v3.39.4':
         ref: 'v3.39.4'
         commit: 'sha1-d2aacf54c2fbc910db8d7ec338fdb54ea48c692d'
         owner_id: 9919
         repo_id: 259445878
-    'ossf/scorecard-action@v2.5.0':
-        ref: 'v2.5.0'
-        commit: 'sha1-fa7117db83c52d787ae5a89f350999701505d78e'
+    'ossf/scorecard-action@v2.6.0':
+        ref: 'v2.6.0'
+        commit: 'sha1-23f22cd43608bae7a1f1fa2603d7314dee9538a5'
         owner_id: 67707773
         repo_id: 421101922
