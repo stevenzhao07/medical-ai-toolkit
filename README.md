@@ -43,14 +43,16 @@ python scripts/discover.py --demo
 python scripts/discover.py --demo
 ```
 
-## 🗂 Tool matrix (33 repositories, verified 2026-10-16)
+## 🗂 Tool matrix（模块名册；公开仓状态已按实测标注）
 
-> Note: an earlier version of this README stated "21 repositories". The accurate count as of 2026-10-13 is **25**. On 2026-10-16 the portal expanded to **33** with 8 new hospital / supply-chain modules (each ships a runnable self-test with negative controls).
+> Note: an earlier version of this README stated "21 repositories". The accurate count as of 2026-10-13 is **25**. On 2026-10-16 the portal expanded to **33** with 8 new hospital / supply-chain modules (each ships a runnable self-test with negative controls). 下列 33 为**模块名数**，其中 19 个尚无公开仓（见下方标注）。
+
+> **2026-11-27 校正（匿名外链实测发现）**：本矩阵曾把全部模块写成可点链接，其中 19 个模块**从未建过独立公开仓**（匿名 codeload 拉取一律 404）。这些名称已降级为纯文本并标「未建仓·计划中」；原「33/33 模块已实现」指**开发态本地目录**，公开克隆里只有门户本仓，`python run_all.py` 会明确输出 `SKIP：repos 不存在（独立克隆态）`。矩阵结构保留，供对照开发态。
 
 ### AI governance & trust methodology
 | Module | What it does | Verification |
 |---|---|---|
-| [ai-a3-laws](https://github.com/stevenzhao07/ai-a3-laws) | Runtime constraint library: A1 authority / A2 human-oversight / A3 accountability | 🟢+🟡 · 🔵⚪ pending |
+| ai-a3-laws（未建仓·计划中） | Runtime constraint library: A1 authority / A2 human-oversight / A3 accountability | 🟢+🟡 · 🔵⚪ pending |
 | [ai-governance-checklist](https://github.com/stevenzhao07/ai-governance-checklist) | Model-card / data-card / human-oversight / fairness checklists | 🟢+🟡 · 🔵⚪ pending |
 | [ai-model-passport](https://github.com/stevenzhao07/ai-model-passport) | Machine-readable AI passport JSON (sign + verify) | 🟢+🟡 · 🔵⚪ pending |
 | [delivery-guard](https://github.com/stevenzhao07/delivery-guard) | 17-gate pre-release checker + dual SHA-256 provenance ledger | 🟢+🟡 · 🔵⚪ pending |
@@ -58,42 +60,42 @@ python scripts/discover.py --demo
 ### Medical-device lifecycle (QMS / RA)
 | Module | What it does | Verification |
 |---|---|---|
-| [design-controls-toolkit](https://github.com/stevenzhao07/design-controls-toolkit) | ISO 13485 §7.3 / 21 CFR 820.30 design-control self-check generator | 🟢+🟡 · 🔵⚪ pending |
+| design-controls-toolkit（未建仓·计划中） | ISO 13485 §7.3 / 21 CFR 820.30 design-control self-check generator | 🟢+🟡 · 🔵⚪ pending |
 | [device-regulatory-map](https://github.com/stevenzhao07/device-regulatory-map) | Cross-jurisdiction classification & path map (NMPA/EU MDR/FDA/PMDA) | 🟢+🟡 · ⚪ partial |
-| [iec62304-software](https://github.com/stevenzhao07/iec62304-software) | Software safety class A/B/C + lifecycle checklist | 🟢+🟡 · 🔵⚪ pending |
+| iec62304-software（未建仓·计划中） | Software safety class A/B/C + lifecycle checklist | 🟢+🟡 · 🔵⚪ pending |
 | [iso14971-risk-file](https://github.com/stevenzhao07/iso14971-risk-file) | Risk-management file skeleton (ISO 14971:2019) | 🟢+🟡 · 🔵⚪ pending |
-| [manufacturing-gmp](https://github.com/stevenzhao07/manufacturing-gmp) | GMP self-check + 2025-vs-2014 diff (NMPA #107 verified 2026-10-12) | 🟢+🟡 · ⚪ dated |
-| [clinical-evaluation](https://github.com/stevenzhao07/clinical-evaluation) | CER path planner + PMCF plan generator | 🟢+🟡 · 🔵⚪ pending |
-| [biocompatibility-iso10993](https://github.com/stevenzhao07/biocompatibility-iso10993) | ISO 10993-1:2018 endpoint matrix | 🟢+🟡 · 🔵⚪ pending |
+| manufacturing-gmp（未建仓·计划中） | GMP self-check + 2025-vs-2014 diff (NMPA #107 verified 2026-10-12) | 🟢+🟡 · ⚪ dated |
+| clinical-evaluation（未建仓·计划中） | CER path planner + PMCF plan generator | 🟢+🟡 · 🔵⚪ pending |
+| biocompatibility-iso10993（未建仓·计划中） | ISO 10993-1:2018 endpoint matrix | 🟢+🟡 · 🔵⚪ pending |
 | [sterilization-validation](https://github.com/stevenzhao07/sterilization-validation) | EO/F0/irradiation/cleaning/endotoxin calculators | 🟢+🟡 · 🔵⚪ pending |
-| [pms-vigilance](https://github.com/stevenzhao07/pms-vigilance) | PMS/Vigilance deadline calculators (NMPA/EU MDR/FDA) | 🟢+🟡 · ⚪ partial |
+| pms-vigilance（未建仓·计划中） | PMS/Vigilance deadline calculators (NMPA/EU MDR/FDA) | 🟢+🟡 · ⚪ partial |
 | [udi-assignment](https://github.com/stevenzhao07/udi-assignment) | GS1 GTIN-14 / HIBCC / ICCBBA UDI reference | 🟢+🟡 · 🔵⚪ pending |
-| [cybersecurity-medical](https://github.com/stevenzhao07/cybersecurity-medical) | IEC 81001-5-1 / FDA premarket cyber / SBOM checks | 🟢+🟡 · 🔵⚪ pending |
+| cybersecurity-medical（未建仓·计划中） | IEC 81001-5-1 / FDA premarket cyber / SBOM checks | 🟢+🟡 · 🔵⚪ pending |
 
 ### AI / ML tooling
 | Module | What it does | Verification |
 |---|---|---|
-| [ml-validation-toolkit](https://github.com/stevenzhao07/ml-validation-toolkit) | AUC / calibration / subgroup-fairness (stdlib only) | 🟢+🟡 · 🔵⚪ pending |
+| ml-validation-toolkit（未建仓·计划中） | AUC / calibration / subgroup-fairness (stdlib only) | 🟢+🟡 · 🔵⚪ pending |
 | [samd-ra-toolkit](https://github.com/stevenzhao07/samd-ra-toolkit) | SaMD/AIaMD RA + cross-jurisdiction diff | 🟢+🟡 · 🔵⚪ pending |
 
 ### Interop / data / labeling
 | Module | What it does | Verification |
 |---|---|---|
-| [fhir-ortho-toolkit](https://github.com/stevenzhao07/fhir-ortho-toolkit) | HL7 FHIR R4 profiles for ortho UDI | 🟢+🟡 · 🔵⚪ pending |
-| [omop-ortho-toolkit](https://github.com/stevenzhao07/omop-ortho-toolkit) | Ortho registry → OMOP CDM ETL proposal | 🟢+🟡 · 🔵⚪ pending |
+| fhir-ortho-toolkit（未建仓·计划中） | HL7 FHIR R4 profiles for ortho UDI | 🟢+🟡 · 🔵⚪ pending |
+| omop-ortho-toolkit（未建仓·计划中） | Ortho registry → OMOP CDM ETL proposal | 🟢+🟡 · 🔵⚪ pending |
 | [multilingual-ifu](https://github.com/stevenzhao07/multilingual-ifu) | 13-language IFU aligned corpus | 🟢+🟡 · 🔵⚪ pending |
 
 ### Hospital & supply-chain (8 new, 2026-10-16)
 | Module | What it does | Verification |
 |---|---|---|
-| [udi-hospital-trace](https://github.com/stevenzhao07/udi-hospital-trace) | Hospital-side UDI parse / intake / recall-trace (GS1·HIBCC·ICCBBA) | 🟢+🟡 · selftest 4 asserts |
-| [ortho-registry-rwe](https://github.com/stevenzhao07/ortho-registry-rwe) | Orthopedic follow-up scheduling + RWE outcome events (OMOP-lite) | 🟢+🟡 · selftest 4 asserts |
-| [vigilance-hospital-report](https://github.com/stevenzhao07/vigilance-hospital-report) | Hospital adverse-event reporting + regulator deadlines (NMPA/EU/FDA) | 🟢+🟡 · selftest 4 asserts |
-| [fhir-hospital-interop](https://github.com/stevenzhao07/fhir-hospital-interop) | FHIR R4 Patient/Device/Procedure + ICD-10/ICPM coding reference | 🟢+🟡 · selftest 4 asserts |
-| [equipment-asset-management](https://github.com/stevenzhao07/equipment-asset-management) | Equipment ledger / PM / calibration / retirement checks | 🟢+🟡 · selftest 4 asserts |
-| [supplier-audit](https://github.com/stevenzhao07/supplier-audit) | Supplier audit checklist / license expiry / grading A-D | 🟢+🟡 · selftest 4 asserts |
-| [hospital-admission-eval](https://github.com/stevenzhao07/hospital-admission-eval) | Procurement admission: license checks + health-economics estimate | 🟢+🟡 · selftest 4 asserts |
-| [hospital-llm-training](https://github.com/stevenzhao07/hospital-llm-training) | Hospital LLM training: PII pipeline / LoRA orchestration / model card | 🟢+🟡 · selftest 4 asserts |
+| udi-hospital-trace（未建仓·计划中） | Hospital-side UDI parse / intake / recall-trace (GS1·HIBCC·ICCBBA) | 🟢+🟡 · selftest 4 asserts |
+| ortho-registry-rwe（未建仓·计划中） | Orthopedic follow-up scheduling + RWE outcome events (OMOP-lite) | 🟢+🟡 · selftest 4 asserts |
+| vigilance-hospital-report（未建仓·计划中） | Hospital adverse-event reporting + regulator deadlines (NMPA/EU/FDA) | 🟢+🟡 · selftest 4 asserts |
+| fhir-hospital-interop（未建仓·计划中） | FHIR R4 Patient/Device/Procedure + ICD-10/ICPM coding reference | 🟢+🟡 · selftest 4 asserts |
+| equipment-asset-management（未建仓·计划中） | Equipment ledger / PM / calibration / retirement checks | 🟢+🟡 · selftest 4 asserts |
+| supplier-audit（未建仓·计划中） | Supplier audit checklist / license expiry / grading A-D | 🟢+🟡 · selftest 4 asserts |
+| hospital-admission-eval（未建仓·计划中） | Procurement admission: license checks + health-economics estimate | 🟢+🟡 · selftest 4 asserts |
+| hospital-llm-training（未建仓·计划中） | Hospital LLM training: PII pipeline / LoRA orchestration / model card | 🟢+🟡 · selftest 4 asserts |
 
 ### Cross-domain / ecosystem
 | Module | What it does | Note |
@@ -109,7 +111,7 @@ Each module is a **zero-dependency Python CLI** (or reference corpus). Typical p
 ```bash
 cd <module>
 python <module>.py --help
-python <module>.py --selftest      # 端到端断言 + 负对照（2026-10-16 起 33/33 模块已实现）
+python <module>.py --selftest      # 端到端断言 + 负对照（2026-10-16 起开发态 33/33 模块有实现）
 ```
 
 The portal itself runs a 6-dimension self-test harness:
@@ -161,6 +163,6 @@ This reorganisation's specification was drafted with ChatGPT and reviewed by the
 
 ### ✅ 验证方式
 ```bash
-python <module>.py --selftest          # 端到端自测（含负对照；2026-10-16 起 33/33 模块已实现）
+python <module>.py --selftest          # 端到端自测（含负对照；2026-10-16 起开发态 33/33 模块有实现）
 python harness.py --module medical-ai-toolkit   # 门户自测（仅门户本仓可跑）
 ```
