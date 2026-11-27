@@ -114,11 +114,14 @@ python <module>.py --help
 python <module>.py --selftest      # 端到端断言 + 负对照（2026-10-16 起开发态 33/33 模块有实现）
 ```
 
-The portal itself runs a 6-dimension self-test harness:
+The portal runs an **in-repo smoke gate** that works in a single clone (no `./repos/` needed):
 
 ```bash
-python harness.py --module medical-ai-toolkit   # 仅在门户本仓（目录名须为 medical-ai-toolkit）可跑
+python run_all.py   # 仓内自足冒烟：路由 demo / 四向一致 / 哈希台账 / 路由清单 / 扩展模块清单
 ```
+
+It prints `通过 n/5` and exits non-zero if any check fails. The 6-dimension harness needs
+the dev-time layout: `python harness.py --all`（要求 `./repos/` 存在）。
 
 ## 📦 CI status (transparency)
 
@@ -164,5 +167,5 @@ This reorganisation's specification was drafted with ChatGPT and reviewed by the
 ### ✅ 验证方式
 ```bash
 python <module>.py --selftest          # 端到端自测（含负对照；2026-10-16 起开发态 33/33 模块有实现）
-python harness.py --module medical-ai-toolkit   # 门户自测（仅门户本仓可跑）
+python run_all.py                              # 门户仓内自足冒烟（单克隆可跑，5 项断言）
 ```
